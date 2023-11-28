@@ -3,6 +3,7 @@ export default function Home() {
     <>
       <h1>Home page</h1>
       <p>This is my homepage</p>
+      <p>another test</p>
     </>
   );
 }
