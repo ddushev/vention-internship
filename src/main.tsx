@@ -3,9 +3,8 @@ import "./styles/main.scss";
 
 import { Component, ErrorInfo /* , StrictMode */ } from "react";
 import ReactDOM from "react-dom/client";
-import TheHeader from "./components/theHeader";
-import Login from "./components/account/login";
 import apiEndpoints from "./api.endpoints";
+import Home from "./components/home";
 
 interface Props {}
 interface State {}
@@ -39,10 +38,7 @@ class AppContainer extends Component<Props, State> {
   render() {
     return (
       // <StrictMode>
-      <>
-        <TheHeader />
-        <Login />
-      </>
+      <Home />
       // </StrictMode>
     );
   }
