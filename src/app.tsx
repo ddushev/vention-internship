@@ -7,6 +7,7 @@ import Header from "./components/header/header";
 import Home from "./components/home/home";
 import About from "./components/about/about";
 import Products from "./components/products/products";
+import Footer from "./components/footer";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path={PATHS.PRODUCTS} element={<Products />} />
         <Route path="*" element={<Home />} />
       </Routes>
+      <Footer />
     </>
   );
 }
