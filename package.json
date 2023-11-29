@@ -87,6 +87,7 @@
     "prettier-eslint": "^16.1.2",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
+    "scss-reset": "^1.4.2",
     "shx": "^0.3.4",
     "style-loader": "^3.3.3",
     "stylelint": "^15.11.0",

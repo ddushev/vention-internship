@@ -2,6 +2,8 @@
 @import "sanitize.css";
 @import "fontface.css";
 
+@use "scss-reset/reset";
+
 :root {
   --base-margin: 1.6rem;
 }
@@ -11,16 +13,7 @@ body {
   // prettier-ignore
   font: 14px "OpenSans-Regular", sans-serif;
   min-height: 100vh;
-  background: top / contain url(images/background.svg) no-repeat;
-}
-
-h1 {
-  font-size: 2.2em;
-  text-align: center;
-}
-
-h2 {
-  font-size: 2em;
+  line-height: 1;
 }
 
 ::placeholder {
