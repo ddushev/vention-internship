@@ -1,0 +1,25 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+  background-color: $background;
+  color: $whitText;
+}
+
+.navbar-link-items {
+  display: flex;
+  gap: 20px;
+}
+
+.link-item {
+  padding: 20px;
+
+  .active {
+    border-bottom: 6px solid $activeLink;
+  }
+}
+
+.link-item:hover {
+  background-color: $hover;
+}
