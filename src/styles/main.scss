@@ -2,6 +2,7 @@
 @import "sanitize.css";
 @import "fontface.css";
 
+// Resets
 *,
 *::before,
 *::after {
@@ -39,4 +40,9 @@ a {
 ::placeholder {
   /* test for autoprefixer in postcss */
   color: antiquewhite;
+}
+
+//Global
+.center-text {
+  text-align: center;
 }

@@ -6,7 +6,7 @@ import PATHS from "@/utils/paths";
 export default function Header() {
   return (
     <header>
-      <h1>Games Market</h1>
+      <h2>Games Market</h2>
       <nav>
         <ul>
           <li>
