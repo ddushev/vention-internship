@@ -13,10 +13,10 @@ export default function Header() {
             <NavLink to={PATHS.HOME}>Home</NavLink>
           </li>
           <li>
-            <NavLink to={PATHS.PRODUCTS}>Products</NavLink>
+            <NavLink to={PATHS.ABOUT}>About</NavLink>
           </li>
           <li>
-            <NavLink to={PATHS.ABOUT}>About</NavLink>
+            <NavLink to={PATHS.PRODUCTS}>Products</NavLink>
           </li>
         </ul>
       </nav>
