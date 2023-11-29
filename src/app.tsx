@@ -16,6 +16,7 @@ export default function App() {
         <Route path={PATHS.HOME} element={<Home />} />
         <Route path={PATHS.ABOUT} element={<About />} />
         <Route path={PATHS.PRODUCTS} element={<Products />} />
+        <Route path="*" element={<Home />} />
       </Routes>
     </>
   );
