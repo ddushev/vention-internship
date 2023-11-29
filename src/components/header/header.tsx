@@ -15,10 +15,16 @@ export default function Header() {
             <NavLink to={PATHS.HOME}>Home</NavLink>
           </li>
           <li className="link-item">
+            <NavLink to={PATHS.PRODUCTS}>Products</NavLink>
+          </li>
+          <li className="link-item">
             <NavLink to={PATHS.ABOUT}>About</NavLink>
           </li>
           <li className="link-item">
-            <NavLink to={PATHS.PRODUCTS}>Products</NavLink>
+            <NavLink to={PATHS.SIGN_IN}>Sign In</NavLink>
+          </li>
+          <li className="link-item">
+            <NavLink to={PATHS.SIGN_UP}>Sign Up</NavLink>
           </li>
         </ul>
       </nav>

@@ -8,6 +8,8 @@ import Home from "./components/home/home";
 import About from "./components/about/about";
 import Products from "./components/products/products";
 import Footer from "./components/footer";
+import SignIn from "./components/user/singIn/signIn";
+import SignUp from "./components/user/signUp/signUp";
 
 export default function App() {
   return (
@@ -17,6 +19,8 @@ export default function App() {
         <Route path={PATHS.HOME} element={<Home />} />
         <Route path={PATHS.ABOUT} element={<About />} />
         <Route path={PATHS.PRODUCTS} element={<Products />} />
+        <Route path={PATHS.SIGN_IN} element={<SignIn />} />
+        <Route path={PATHS.SIGN_UP} element={<SignUp />} />
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
