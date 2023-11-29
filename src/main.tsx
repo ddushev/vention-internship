@@ -1,9 +1,13 @@
 import "./styles/main.scss";
 // watch: native intellisense and file-peek for aliases from jsconfig.json and with none-js files doesn't work: https://github.com/microsoft/TypeScript/issues/29334
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { BrowserRouter } from "react-router-dom";
 
 import { Component, ErrorInfo /* , StrictMode */ } from "react";
 import ReactDOM from "react-dom/client";
+
 import apiEndpoints from "./api.endpoints";
+
 import App from "./app";
 
 interface Props {}
@@ -38,7 +42,9 @@ class AppContainer extends Component<Props, State> {
   render() {
     return (
       // <StrictMode>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
       // </StrictMode>
     );
   }
