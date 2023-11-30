@@ -1,7 +1,7 @@
 export default function Products() {
   return (
     <div className="background-image center-text">
-      <h1>Products page</h1>
+      <h2>Products page</h2>
       <p>This is the products page</p>
     </div>
   );

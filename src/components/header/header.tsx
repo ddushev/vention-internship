@@ -8,7 +8,7 @@ import styles from "./header.module.scss";
 export default function Header() {
   return (
     <header className={styles.headerContainer}>
-      <h2>Games Store</h2>
+      <h1>Games Store</h1>
       <nav>
         <ul className={styles.navbarLinkItems}>
           <NavLink className={styles.linkItem} to={PATHS.HOME}>

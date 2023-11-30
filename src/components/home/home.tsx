@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div className="background-image center-text">
-      <h1>Home page</h1>
+      <h2>Home page</h2>
       <p>This is the homepage</p>
     </div>
   );
