@@ -16,10 +16,10 @@
   padding: 20px;
 
   .active {
-    border-bottom: 6px solid $activeLinkColor;
+    border-bottom: 6px solid $activeNavBorderColor;
   }
 }
 
 .link-item:hover {
-  background-color: $hoverColor;
+  background-color: $navHoverColor;
 }
