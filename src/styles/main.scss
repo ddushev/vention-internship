@@ -44,7 +44,17 @@ a {
 
 //Global
 .center-text {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $whitTextColor;
+}
+
+.background-image {
+  height: 83.5vh;
+  background-image: url("../assets/images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 //Navbar
