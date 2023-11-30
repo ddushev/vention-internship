@@ -4,28 +4,21 @@ import { Route, Routes } from "react-router-dom";
 import PATHS from "./utils/paths";
 
 import Header from "./components/header/header";
-import Home from "./components/home/home";
-import About from "./components/about/about";
-import Products from "./components/products/products";
+import Page from "./elements/page";
 import Footer from "./components/footer";
-import SignIn from "./components/user/singIn/signIn";
-import SignUp from "./components/user/signUp/signUp";
-import Wrapper from "./components/wrapper";
 
 export default function App() {
   return (
     <>
       <Header />
-      <Wrapper>
-        <Routes>
-          <Route path={PATHS.HOME} element={<Home />} />
-          <Route path={PATHS.ABOUT} element={<About />} />
-          <Route path={PATHS.PRODUCTS} element={<Products />} />
-          <Route path={PATHS.SIGN_IN} element={<SignIn />} />
-          <Route path={PATHS.SIGN_UP} element={<SignUp />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </Wrapper>
+      <Routes>
+        <Route path={PATHS.HOME} element={<Page title="Home page" />} />
+        <Route path={PATHS.ABOUT} element={<Page title="About page" />} />
+        <Route path={PATHS.PRODUCTS} element={<Page title="Products page" />} />
+        <Route path={PATHS.SIGN_IN} element={<Page title="Sign In page" />} />
+        <Route path={PATHS.SIGN_UP} element={<Page title="Sign Up page" />} />
+        <Route path="*" element={<Page title="Home page" />} />
+      </Routes>
       <Footer />
     </>
   );
