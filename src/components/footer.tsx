@@ -1,6 +1,6 @@
-import rockstar from "images/games/rockstar.png";
-import epic from "images/games/epic.png";
-import riot from "images/games/riot.png";
+import rockstarGamesLogo from "images/footer/rockstarGamesLogo.svg";
+import epicGamesLogo from "images/footer/epicGamesLogo.svg";
+import riotGamesLogo from "images/footer/riotGames.svg";
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from "react-router-dom";
@@ -15,19 +15,19 @@ export default function Footer() {
       </div>
 
       <ul className={styles.gamesList}>
-        <li>
+        <li className={styles.listItems}>
           <Link target="_blank" to="https://www.rockstargames.com/" className={styles.imageContainer}>
-            <img className={styles.gameLogo} src={rockstar} alt="rockstar-games-icon" />
+            <img className={styles.gameLogo} src={rockstarGamesLogo} alt="rockstar-games-icon" />
           </Link>
         </li>
-        <li>
+        <li className={styles.listItems}>
           <Link target="_blank" to="https://www.epicgames.com/site/en-US/home" className={styles.imageContainer}>
-            <img className={styles.gameLogo} src={epic} alt="epic-games-icon" />
+            <img className={styles.gameLogo} src={epicGamesLogo} alt="epic-games-icon" />
           </Link>
         </li>
-        <li>
-          <Link target="_blank" to="https://www.riotgames.com/en" className={styles.imageContainer}>
-            <img className={styles.gameLogo} src={riot} alt="riot-games-icon" />
+        <li className={styles.listItems}>
+          <Link target="_blank" to="https://www.riotgames.com/en" className={styles.imageContainerRiot}>
+            <img className={styles.riotLogo} src={riotGamesLogo} alt="riot-games-icon" />
           </Link>
         </li>
       </ul>
