@@ -51,7 +51,7 @@ a {
 }
 
 .background-image {
-  height: 83.5vh;
+  height: 85vh;
   background-image: url("../assets/images/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -60,5 +60,5 @@ a {
 //Navbar
 
 .active {
-  border-bottom: 6px solid $activeNavBorderColor;
+  border-bottom: 4px solid $activeNavBorderColor;
 }

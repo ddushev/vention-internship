@@ -8,24 +8,28 @@ import styles from "./header.module.scss";
 export default function Header() {
   return (
     <header className={styles.headerContainer}>
-      <h2>Games Market</h2>
+      <h2>Games Store</h2>
       <nav>
         <ul className={styles.navbarLinkItems}>
-          <li className={styles.linkItem}>
-            <NavLink to={PATHS.HOME}>Home</NavLink>
-          </li>
-          <li className={styles.linkItem}>
-            <NavLink to={PATHS.PRODUCTS}>Products</NavLink>
-          </li>
-          <li className={styles.linkItem}>
-            <NavLink to={PATHS.ABOUT}>About</NavLink>
-          </li>
-          <li className={styles.linkItem}>
-            <NavLink to={PATHS.SIGN_IN}>Sign In</NavLink>
-          </li>
-          <li className={styles.linkItem}>
-            <NavLink to={PATHS.SIGN_UP}>Sign Up</NavLink>
-          </li>
+          <NavLink className={styles.linkItem} to={PATHS.HOME}>
+            Home
+          </NavLink>
+
+          <NavLink className={styles.linkItem} to={PATHS.PRODUCTS}>
+            Products
+          </NavLink>
+
+          <NavLink className={styles.linkItem} to={PATHS.ABOUT}>
+            About
+          </NavLink>
+
+          <NavLink className={styles.linkItem} to={PATHS.SIGN_IN}>
+            Sign In
+          </NavLink>
+
+          <NavLink className={styles.linkItem} to={PATHS.SIGN_UP}>
+            Sign Up
+          </NavLink>
         </ul>
       </nav>
     </header>
