@@ -3,8 +3,8 @@
   justify-content: space-between;
   align-items: center;
   font-size: 24px;
-  background-color: $background;
-  color: $whitText;
+  background-color: $backgroundColor;
+  color: $whitTextColor;
 }
 
 .navbar-link-items {
@@ -16,10 +16,10 @@
   padding: 20px;
 
   .active {
-    border-bottom: 6px solid $activeLink;
+    border-bottom: 6px solid $activeLinkColor;
   }
 }
 
 .link-item:hover {
-  background-color: $hover;
+  background-color: $hoverColor;
 }
