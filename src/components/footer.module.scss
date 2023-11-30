@@ -1,0 +1,53 @@
+.footerContainer {
+  display: flex;
+  gap: 300px;
+  justify-content: center;
+  align-items: center;
+  background-color: $backgroundColor;
+  color: $whitTextColor;
+  padding: 20px 0;
+}
+
+.footerDetails {
+  border-bottom: 2px solid #53216b;
+}
+
+.footerCreator {
+  margin-bottom: 10px;
+}
+
+.footerCompany {
+  margin-bottom: 5px;
+}
+
+.gamesList {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #53216b;
+}
+
+.imageContainer {
+  display: block;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.imageContainer:hover {
+  overflow: visible;
+}
+
+.gameLogo {
+  width: 100%;
+  height: auto;
+  background-color: $backgroundColor;
+  transition: width 0.1s ease;
+}
+
+.gameLogo:hover {
+  width: 110%;
+  transition: width 0.1s ease;
+}
