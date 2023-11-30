@@ -41,22 +41,6 @@ a {
   /* test for autoprefixer in postcss */
   color: antiquewhite;
 }
-
-//Global
-.center-text {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: $whitTextColor;
-}
-
-.background-image {
-  height: 85vh;
-  background-image: url("../assets/images/background.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
 //Navbar
 
 .active {
