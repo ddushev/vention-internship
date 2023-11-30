@@ -46,3 +46,9 @@ a {
 .center-text {
   text-align: center;
 }
+
+//Navbar
+
+.active {
+  border-bottom: 6px solid $activeNavBorderColor;
+}

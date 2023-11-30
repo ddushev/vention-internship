@@ -1,4 +1,4 @@
-.header-container {
+.headerContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,19 +7,15 @@
   color: $whitTextColor;
 }
 
-.navbar-link-items {
+.navbarLinkItems {
   display: flex;
   gap: 20px;
 }
 
-.link-item {
+.linkItem {
   padding: 20px;
-
-  .active {
-    border-bottom: 6px solid $activeNavBorderColor;
-  }
 }
 
-.link-item:hover {
+.linkItem:hover {
   background-color: $navHoverColor;
 }
