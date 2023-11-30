@@ -18,3 +18,7 @@
 .linkItem:hover {
   background-color: $navHoverColor;
 }
+
+.linkItem:focus {
+  background-color: $navHoverColor;
+}
