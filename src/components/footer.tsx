@@ -2,7 +2,6 @@ import rockstarGamesLogo from "images/footer/rockstarGamesLogo.svg";
 import epicGamesLogo from "images/footer/epicGamesLogo.svg";
 import riotGamesLogo from "images/footer/riotGames.svg";
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from "react-router-dom";
 import styles from "./footer.module.scss";
 

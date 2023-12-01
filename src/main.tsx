@@ -1,6 +1,5 @@
 import "./styles/main.scss";
 // watch: native intellisense and file-peek for aliases from jsconfig.json and with none-js files doesn't work: https://github.com/microsoft/TypeScript/issues/29334
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { BrowserRouter } from "react-router-dom";
 
 import { Component, ErrorInfo /* , StrictMode */ } from "react";
