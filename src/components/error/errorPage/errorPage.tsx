@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import styles from "./errorPage.module.scss";
 
 interface ErrorPageProps {
@@ -7,6 +8,10 @@ interface ErrorPageProps {
 
 export default function ErrorPage({ onResetError }: ErrorPageProps) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/something-went-wrong");
+  }, []);
 
   const handleGoHome = () => {
     onResetError();

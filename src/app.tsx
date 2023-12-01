@@ -6,6 +6,7 @@ import Header from "./components/header/header";
 import Page from "./elements/page";
 import Footer from "./components/footer";
 import ErrorBoundary from "./components/error/errorBoundary/errorBoundary";
+import ErrorPage from "./components/error/errorPage/errorPage";
 import SimulateError from "./components/simulateError";
 
 // Define a layout component for routes with Header and Footer
@@ -23,6 +24,9 @@ export default function App() {
   return (
     <ErrorBoundary>
       <Routes>
+        {/* Temporary component and route for testing with simulated error*/}
+        <Route path="/component-with-error" element={<SimulateError />} />
+
         {/* Default layout for most routes */}
         <Route
           path={PATHS.HOME}
@@ -64,9 +68,7 @@ export default function App() {
             </DefaultLayout>
           }
         />
-
-        {/* Temporary component and route for testing with simulated error*/}
-        <Route path="/component-with-error" element={<SimulateError />} />
+        <Route path="/something-went-wrong" element={<ErrorPage onResetError={() => {}} />} />
 
         {/* Fallback route */}
         <Route
