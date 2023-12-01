@@ -1,0 +1,33 @@
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  background-color: $backgroundColor;
+  color: $whitTextColor;
+  height: $headerHeight;
+}
+
+.storeName {
+  padding-left: 15px;
+}
+
+.navbarLinkItems {
+  display: flex;
+}
+
+.linkItem {
+  padding: 22px;
+}
+
+.active {
+  border-bottom: 4px solid $activeNavBorderColor;
+}
+
+.linkItem:hover {
+  background-color: $navHoverColor;
+}
+
+.linkItem:focus {
+  background-color: $navHoverColor;
+}
