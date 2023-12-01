@@ -13,9 +13,9 @@ export default function ErrorPage({ onResetError }: ErrorPageProps) {
     navigate("/");
   };
   return (
-    <div className={styles.backgroundWrapperImage}>
-      <h2>Ops. Something went wrong!</h2>
-      <button type="button" onClick={handleGoHome}>
+    <div className={styles.errorContainer}>
+      <h2 className={styles.errorHeading}>Ops. Something went wrong!</h2>
+      <button className={styles.errorButton} type="button" onClick={handleGoHome}>
         Go to Home page.
       </button>
     </div>
