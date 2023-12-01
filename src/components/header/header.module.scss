@@ -8,12 +8,16 @@
   height: $headerHeight;
 }
 
+.storeName {
+  padding-left: 15px;
+}
+
 .navbarLinkItems {
   display: flex;
 }
 
 .linkItem {
-  padding: 15px;
+  padding: 20px;
 }
 
 .active {

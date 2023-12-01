@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 export default function Header() {
   return (
     <header className={styles.headerContainer}>
-      <h1>Games Store</h1>
+      <h1 className={styles.storeName}>Games Store</h1>
       <nav>
         <ul className={styles.navbarLinkItems}>
           <NavLink className={({ isActive }) => cx(styles.linkItem, isActive && styles.active)} to={PATHS.HOME}>
