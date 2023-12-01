@@ -13,6 +13,9 @@ export default function Header() {
       <h1 className={styles.storeName}>Games Store</h1>
       <nav>
         <ul className={styles.navbarLinkItems}>
+          <NavLink className={({ isActive }) => cx(styles.linkItem, isActive && styles.active)} to="/component-with-error">
+            Simulate Error(Temporary link)
+          </NavLink>
           <NavLink className={({ isActive }) => cx(styles.linkItem, isActive && styles.active)} to={PATHS.HOME}>
             Home
           </NavLink>
