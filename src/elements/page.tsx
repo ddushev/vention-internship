@@ -1,6 +1,11 @@
 import styles from "./page.module.scss";
 
-export default function Page({ children, title }: { children?: React.ReactNode; title: string }) {
+type PageProps = {
+  children?: React.ReactNode;
+  title: string;
+};
+
+export default function Page({ children, title }: PageProps) {
   return (
     <div className={styles.backgroundWrapperImage}>
       <h2>{title}</h2>

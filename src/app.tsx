@@ -9,8 +9,12 @@ import ErrorBoundary from "./components/error/errorBoundary/errorBoundary";
 import ErrorPage from "./components/error/errorPage/errorPage";
 import SimulateError from "./components/simulateError";
 
+type DefaultLayoutProps = {
+  children: React.ReactNode;
+};
+
 // Define a layout component for routes with Header and Footer
-function DefaultLayout({ children }: { children: React.ReactNode }) {
+function DefaultLayout({ children }: DefaultLayoutProps) {
   return (
     <>
       <Header />
