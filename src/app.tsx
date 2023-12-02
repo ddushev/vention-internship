@@ -72,7 +72,7 @@ export default function App() {
             </DefaultLayout>
           }
         />
-        <Route path="/something-went-wrong" element={<ErrorPage onResetError={() => {}} />} />
+        <Route path={PATHS.ERROR} element={<ErrorPage onResetError={() => {}} />} />
 
         {/* Fallback route */}
         <Route
