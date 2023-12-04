@@ -7,7 +7,6 @@ import Page from "./elements/page";
 import Footer from "./components/footer";
 import ErrorBoundary from "./components/error/errorBoundary/errorBoundary";
 import ErrorPage from "./components/error/errorPage/errorPage";
-import SimulateError from "./components/simulateError";
 
 type DefaultLayoutProps = {
   children: React.ReactNode;
@@ -45,8 +44,6 @@ export default function App() {
             </DefaultLayout>
           }
         />
-        {/* Temporary component and route for testing with simulated error*/}
-        <Route path="/component-with-error" element={<SimulateError />} />
       </Routes>
     </ErrorBoundary>
   );
