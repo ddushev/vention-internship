@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import PATHS from "./utils/paths";
 
@@ -40,7 +40,7 @@ export default function App() {
                 <Route path={PATHS.SIGN_IN} element={<Page title="Sign In page" />} />
                 <Route path={PATHS.SIGN_UP} element={<Page title="Sign Up page" />} />
                 <Route path={PATHS.ERROR} element={<ErrorPage onResetError={() => {}} />} />
-                <Route path="*" element={<Page title="Home page" />} />
+                <Route path="*" element={<Navigate to={PATHS.HOME} />} />
               </Routes>
             </DefaultLayout>
           }
