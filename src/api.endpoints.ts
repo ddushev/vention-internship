@@ -1,6 +1,6 @@
 const apiEndpoints = {
   testMock: "/api/testMock",
-  searchMock: "/api/products/search/:text",
+  searchMock: "/api/products/search",
 };
 
 export default apiEndpoints;

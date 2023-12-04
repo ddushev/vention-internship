@@ -13,7 +13,7 @@ const mockData = {
 export default webpackMockServer.add((app, helper) => {
   app.get(apiEndpoints.testMock, (_req, res) => res.json(mockData));
 
-  app.get(apiEndpoints.searchMock, (_req, res) => {
+  app.get(`${apiEndpoints.searchMock}/:text`, (_req, res) => {
     const searchMockData = [
       { id: helper.getUniqueIdInt(), name: "Battlefield" },
       { id: helper.getUniqueIdInt(), name: "Counter-Strike" },
