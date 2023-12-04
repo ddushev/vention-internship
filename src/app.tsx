@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import PATHS from "./utils/paths";
 
 import Header from "./components/header/header";
-import Page from "./elements/page";
+import Page from "./elements/controls/page/page";
 import Footer from "./components/footer";
 import ErrorBoundary from "./components/error/errorBoundary/errorBoundary";
 import ErrorPage from "./components/error/errorPage/errorPage";
