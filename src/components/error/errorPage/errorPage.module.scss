@@ -1,0 +1,24 @@
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $whitTextColor;
+  font-size: 24px;
+  height: 100vh;
+  background-image: url("images/background2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.errorHeading {
+  margin-bottom: 20px;
+}
+
+.errorButton {
+  font-size: 18px;
+  padding: 10px;
+  background-color: inherit;
+  color: $whitTextColor;
+  cursor: pointer;
+}
