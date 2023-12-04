@@ -2,7 +2,7 @@ import styles from "./page.module.scss";
 
 interface PageProps {
   children?: React.ReactNode;
-  title: string;
+  title?: string;
 }
 
 export default function Page({ children, title }: PageProps) {
