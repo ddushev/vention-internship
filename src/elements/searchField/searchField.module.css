@@ -13,6 +13,7 @@
     border-radius: 40px;
     font-size: 16px;
     background-color: $inheritDarkerBackground;
+    color: $whitTextColor;
     padding-left: 20px;
   }
 }
