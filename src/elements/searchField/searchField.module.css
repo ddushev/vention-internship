@@ -24,4 +24,8 @@
       width: 100%;
     }
   }
+
+  .resultsList {
+    color: $whitTextColor;
+  }
 }
