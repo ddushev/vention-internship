@@ -1,11 +1,11 @@
-type Paths = {
+interface Paths {
   HOME: string;
   PRODUCTS: string;
   ABOUT: string;
   SIGN_IN: string;
   SIGN_UP: string;
   ERROR: string;
-};
+}
 
 const PATHS: Paths = {
   HOME: "/",

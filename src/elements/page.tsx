@@ -1,9 +1,9 @@
 import styles from "./page.module.scss";
 
-type PageProps = {
+interface PageProps {
   children?: React.ReactNode;
   title: string;
-};
+}
 
 export default function Page({ children, title }: PageProps) {
   return (

@@ -1,12 +1,12 @@
 import { Component, ErrorInfo } from "react";
 import ErrorPage from "../errorPage/errorPage";
 
-type ErrorBoundaryProps = {
+interface ErrorBoundaryProps {
   children: React.ReactNode;
-};
-type ErrorBoundaryState = {
+}
+interface ErrorBoundaryState {
   hasError: boolean;
-};
+}
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {

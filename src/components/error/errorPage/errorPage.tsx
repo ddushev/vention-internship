@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import styles from "./errorPage.module.scss";
 
-type ErrorPageProps = {
+interface ErrorPageProps {
   onResetError: () => void;
-};
+}
 
 export default function ErrorPage({ onResetError }: ErrorPageProps) {
   const navigate = useNavigate();
