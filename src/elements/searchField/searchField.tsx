@@ -38,11 +38,15 @@ export default function SearchField() {
     [fetchSearchResults],
   );
 
-  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setSearchTerm(value);
     debouncedFetchSearchResults(value);
-  }
+  };
+
+  const handleGameSelect = (game: string) => {
+    alert(`Got product - ${game}`);
+  };
 
   return (
     <div className={styles.searchField}>
@@ -56,7 +60,9 @@ export default function SearchField() {
         <ul className={styles.resultsList}>
           {searchResults.map((game) => (
             <li className={styles.listItem} key={game.id}>
-              {game.name}
+              <button onClick={() => handleGameSelect(game.name)} type="button">
+                {game.name}
+              </button>
             </li>
           ))}
         </ul>
