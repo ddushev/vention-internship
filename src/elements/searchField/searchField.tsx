@@ -1,7 +1,9 @@
 import loadingAnimation from "images/loading.svg";
 
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 import apiEndpoints from "@/api.endpoints";
+import debounce from "@/helpers/debounce";
+
 import styles from "./searchField.module.css";
 
 interface Game {
@@ -14,18 +16,7 @@ export default function SearchField() {
   const [isLoading, setIsLoading] = useState(false);
   const [searchResults, setSearchResults] = useState<Game[]>([]);
 
-  // Debounce function
-  const debounce = (func: (query: string) => void, delay: number) => {
-    let timeoutId: ReturnType<typeof setTimeout> | null = null;
-    return (query: string) => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-      timeoutId = setTimeout(() => func(query), delay);
-    };
-  };
-
-  async function fetchSearchResults(query: string): Promise<void> {
+  const fetchSearchResults = useCallback(async (query: string): Promise<void> => {
     if (!query) {
       setSearchResults([]);
     } else {
@@ -40,10 +31,12 @@ export default function SearchField() {
         setIsLoading(false);
       }
     }
-  }
+  }, []);
 
-  // Debounced fetchSearchResults function
-  const debouncedFetchSearchResults = debounce((query: string) => fetchSearchResults(query), 300);
+  const debouncedFetchSearchResults = useCallback(
+    debounce((query: string) => fetchSearchResults(query), 300),
+    [fetchSearchResults],
+  );
 
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
     const { value } = event.target;
@@ -62,7 +55,9 @@ export default function SearchField() {
       {!isLoading && searchResults.length > 0 && (
         <ul className={styles.resultsList}>
           {searchResults.map((game) => (
-            <li key={game.id}>{game.name}</li>
+            <li className={styles.listItem} key={game.id}>
+              {game.name}
+            </li>
           ))}
         </ul>
       )}
