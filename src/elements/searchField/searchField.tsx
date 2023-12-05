@@ -1,15 +1,54 @@
 import loadingAnimation from "images/loading.svg";
 
 import { ChangeEvent, useState } from "react";
+import apiEndpoints from "@/api.endpoints";
 import styles from "./searchField.module.css";
+
+interface Game {
+  id: number;
+  name: string;
+}
 
 export default function SearchField() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [isLoading] = useState(false);
-  const tempData = ["Game1", "Game2", "Game3", "Game4", "Game5"];
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchResults, setSearchResults] = useState<Game[]>([]);
+
+  // Debounce function
+  const debounce = <T extends (...args: string[]) => void>(func: T, delay: number): ((...args: Parameters<T>) => void) => {
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    return (...args: Parameters<T>) => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => func(...args), delay);
+    };
+  };
+
+  async function fetchSearchResults(query: string): Promise<void> {
+    if (!query) {
+      setSearchResults([]);
+    } else {
+      try {
+        setIsLoading(true);
+        const response = await fetch(`${apiEndpoints.searchMock}/${query}`);
+        const data = await response.json();
+        setSearchResults(data);
+      } catch (error) {
+        console.error("Error fetching search results", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  }
+
+  // Debounced fetchSearchResults function
+  const debouncedFetchSearchResults = debounce((query: string) => fetchSearchResults(query), 300);
 
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
-    setSearchTerm(event.target.value);
+    const { value } = event.target;
+    setSearchTerm(value);
+    debouncedFetchSearchResults(value);
   }
 
   return (
@@ -20,10 +59,10 @@ export default function SearchField() {
           <img src={loadingAnimation} alt="loading" />
         </div>
       )}
-      {tempData.length > 0 && (
+      {searchResults.length > 0 && (
         <ul className={styles.resultsList}>
-          {tempData.map((result) => (
-            <li key={result}>{result}</li>
+          {searchResults.map((game) => (
+            <li key={game.id}>{game.name}</li>
           ))}
         </ul>
       )}
