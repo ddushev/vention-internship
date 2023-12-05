@@ -28,4 +28,21 @@
   .resultsList {
     color: $whitTextColor;
   }
+
+  .listItem {
+    margin: 5px;
+
+    .buttonItem {
+      padding: 10px;
+      border-radius: 20px;
+      font-size: 16px;
+      background-color: $inheritDarkerBackground;
+      color: $whitTextColor;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $darkHoverColor;
+      }
+    }
+  }
 }

@@ -4,7 +4,7 @@ import { ChangeEvent, useCallback, useState } from "react";
 import apiEndpoints from "@/api.endpoints";
 import debounce from "@/helpers/debounce";
 
-import styles from "./searchField.module.css";
+import styles from "./searchField.module.scss";
 
 interface Game {
   id: number;
@@ -22,6 +22,12 @@ export default function SearchField() {
     } else {
       try {
         setIsLoading(true);
+
+        // Simulate a 0.5-second delay
+        await new Promise((resolve) => {
+          setTimeout(resolve, 500);
+        });
+
         const response = await fetch(`${apiEndpoints.searchMock}/${query}`);
         const data = await response.json();
         setSearchResults(data);
@@ -60,7 +66,7 @@ export default function SearchField() {
         <ul className={styles.resultsList}>
           {searchResults.map((game) => (
             <li className={styles.listItem} key={game.id}>
-              <button onClick={() => handleGameSelect(game.name)} type="button">
+              <button className={styles.buttonItem} onClick={() => handleGameSelect(game.name)} type="button">
                 {game.name}
               </button>
             </li>
