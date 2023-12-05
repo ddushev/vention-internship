@@ -23,7 +23,7 @@ export default function SearchField() {
       try {
         setIsLoading(true);
 
-        // Simulate a 0.5-second delay
+        // Simulate a 0.5-second delay on fetch
         await new Promise((resolve) => {
           setTimeout(resolve, 500);
         });
@@ -57,22 +57,24 @@ export default function SearchField() {
   return (
     <div className={styles.searchField}>
       <input value={searchTerm} onChange={handleInputChange} type="text" placeholder="Search" />
-      {isLoading && (
-        <div className={styles.loader}>
-          <img src={loadingAnimation} alt="loading" />
-        </div>
-      )}
-      {!isLoading && searchResults.length > 0 && (
-        <ul className={styles.resultsList}>
-          {searchResults.map((game) => (
-            <li className={styles.listItem} key={game.id}>
-              <button className={styles.buttonItem} onClick={() => handleGameSelect(game.name)} type="button">
-                {game.name}
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className={styles.resultsDropDown}>
+        {isLoading && (
+          <div className={styles.loader}>
+            <img src={loadingAnimation} alt="loading" />
+          </div>
+        )}
+        {!isLoading && searchResults.length > 0 && (
+          <ul className={styles.resultsList}>
+            {searchResults.map((game) => (
+              <li className={styles.listItem} key={game.id}>
+                <button className={styles.buttonItem} onClick={() => handleGameSelect(game.name)} type="button">
+                  {game.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
