@@ -2,10 +2,8 @@ import { NavLink } from "react-router-dom";
 
 import PATHS from "@/utils/paths";
 
-import classNames from "classnames/bind";
+import cx from "classnames";
 import styles from "./header.module.scss";
-
-const cx = classNames.bind(styles);
 
 export default function Header() {
   return (
