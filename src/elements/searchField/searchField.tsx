@@ -16,7 +16,7 @@ export default function SearchField() {
 
   // Debounce function
   const debounce = (func: (query: string) => void, delay: number) => {
-    let timeoutId: ReturnType<typeof setTimeout>;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
     return (query: string) => {
       if (timeoutId) {
         clearTimeout(timeoutId);
@@ -59,7 +59,7 @@ export default function SearchField() {
           <img src={loadingAnimation} alt="loading" />
         </div>
       )}
-      {searchResults.length > 0 && (
+      {!isLoading && searchResults.length > 0 && (
         <ul className={styles.resultsList}>
           {searchResults.map((game) => (
             <li key={game.id}>{game.name}</li>
