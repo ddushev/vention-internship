@@ -10,20 +10,21 @@ const mockData = {
   email: "willsmith321@gmail.com",
 };
 
-export default webpackMockServer.add((app, helper) => {
+const searchMockData = [
+  { id: 1, name: "Battlefield" },
+  { id: 2, name: "Counter-Strike" },
+  { id: 3, name: "Genshin Impact" },
+  { id: 4, name: "GTA" },
+  { id: 5, name: "Minecraft" },
+  { id: 6, name: "Overwatch" },
+  { id: 7, name: "Sims 4" },
+  { id: 8, name: "Terraria" },
+];
+
+export default webpackMockServer.add((app) => {
   app.get(apiEndpoints.testMock, (_req, res) => res.json(mockData));
 
   app.get(`${apiEndpoints.searchMock}/:text`, (_req, res) => {
-    const searchMockData = [
-      { id: helper.getUniqueIdInt(), name: "Battlefield" },
-      { id: helper.getUniqueIdInt(), name: "Counter-Strike" },
-      { id: helper.getUniqueIdInt(), name: "Genshin Impact" },
-      { id: helper.getUniqueIdInt(), name: "GTA" },
-      { id: helper.getUniqueIdInt(), name: "Minecraft" },
-      { id: helper.getUniqueIdInt(), name: "Overwatch" },
-      { id: helper.getUniqueIdInt(), name: "Sims 4" },
-      { id: helper.getUniqueIdInt(), name: "Terraria" },
-    ];
     const searchText = _req.params.text.toLowerCase();
     const matchingProducts = searchMockData.filter((game) => game.name.toLowerCase().includes(searchText));
     res.json(matchingProducts);
