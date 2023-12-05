@@ -15,13 +15,13 @@ export default function SearchField() {
   const [searchResults, setSearchResults] = useState<Game[]>([]);
 
   // Debounce function
-  const debounce = <T extends (...args: string[]) => void>(func: T, delay: number): ((...args: Parameters<T>) => void) => {
-    let timeoutId: ReturnType<typeof setTimeout> | null = null;
-    return (...args: Parameters<T>) => {
+  const debounce = (func: (query: string) => void, delay: number) => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+    return (query: string) => {
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
-      timeoutId = setTimeout(() => func(...args), delay);
+      timeoutId = setTimeout(() => func(query), delay);
     };
   };
 
