@@ -36,7 +36,7 @@ export default function App() {
               <Routes>
                 <Route path={PATHS.HOME} element={<Home />} />
                 <Route path={PATHS.ABOUT} element={<Page title="About page" />} />
-                <Route path={PATHS.PRODUCTS} element={<Page title="Products page" />} />
+                <Route path={`${PATHS.PRODUCTS}/:category`} element={<Page title="Products page" />} />
                 <Route path={PATHS.SIGN_IN} element={<Page title="Sign In page" />} />
                 <Route path={PATHS.SIGN_UP} element={<Page title="Sign Up page" />} />
                 <Route path={PATHS.ERROR} element={<ErrorPage onResetError={() => {}} />} />

@@ -1,0 +1,53 @@
+.categoriesWrapper {
+  width: 95vw;
+  height: 30vh;
+  margin: auto;
+  background-color: $inheritDarkerBackground;
+  border-radius: 50px;
+
+  .categoriesHeading {
+    width: 95%;
+    margin: 0 auto 30px auto;
+    padding: 35px 0 15px 15px;
+    color: $whitTextColor;
+    border-bottom: 1px solid #fff;
+    font-weight: normal;
+  }
+
+  .categoriesContainer {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+
+    .categoriesLink {
+      .categoryCardBox {
+        width: 200px;
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #fff;
+        border-bottom: 5px solid #fff;
+        border-radius: 10px;
+        background-color: $backgroundColor;
+
+        &:hover {
+          border-color: $interactBorderColor;
+        }
+      }
+
+      img {
+        width: 75px;
+        height: 75px;
+      }
+
+      .categoryTitle {
+        color: $whitTextColor;
+        font-weight: normal;
+      }
+    }
+  }
+}
