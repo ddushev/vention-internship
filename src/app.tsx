@@ -2,27 +2,11 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 import PATHS from "./utils/paths";
 
-import Header from "./components/header/header";
 import Page from "./elements/page/page";
 import Home from "./components/home/home";
-import Footer from "./components/footer";
 import ErrorBoundary from "./components/error/errorBoundary/errorBoundary";
 import ErrorPage from "./components/error/errorPage/errorPage";
-
-type DefaultLayoutProps = {
-  children: React.ReactNode;
-};
-
-// Define a layout component for routes with Header and Footer
-function DefaultLayout({ children }: DefaultLayoutProps) {
-  return (
-    <>
-      <Header />
-      {children}
-      <Footer />
-    </>
-  );
-}
+import DefaultLayout from "./elements/defaultLayout";
 
 export default function App() {
   return (
