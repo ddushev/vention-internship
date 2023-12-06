@@ -4,7 +4,7 @@ import Categories from "./categories/categories";
 
 export default function Home() {
   return (
-    <Page title="Home page">
+    <Page title="Home">
       <SearchField />
       <Categories />
     </Page>

@@ -26,10 +26,10 @@ class AppContainer extends Component {
                 <DefaultLayout>
                   <Routes>
                     <Route path={PATHS.HOME} element={<Home />} />
-                    <Route path={PATHS.ABOUT} element={<Page title="About page" />} />
-                    <Route path={`${PATHS.PRODUCTS}/:category`} element={<Page title="Products page" />} />
-                    <Route path={PATHS.SIGN_IN} element={<Page title="Sign In page" />} />
-                    <Route path={PATHS.SIGN_UP} element={<Page title="Sign Up page" />} />
+                    <Route path={PATHS.ABOUT} element={<Page title="About" />} />
+                    <Route path={`${PATHS.PRODUCTS}/:category`} element={<Page title="Products" />} />
+                    <Route path={PATHS.SIGN_IN} element={<Page title="Sign In" />} />
+                    <Route path={PATHS.SIGN_UP} element={<Page title="Sign Up" />} />
                     <Route path={PATHS.ERROR} element={<ErrorPage onResetError={() => {}} />} />
                     <Route path="*" element={<Navigate to={PATHS.HOME} />} />
                   </Routes>
