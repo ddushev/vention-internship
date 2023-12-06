@@ -28,7 +28,7 @@ export default function SearchField() {
           setTimeout(resolve, 500);
         });
 
-        const response = await fetch(`${apiEndpoints.searchMock}/${query}`);
+        const response = await fetch(`${apiEndpoints.searchMock}?text=${query}`);
         const data = await response.json();
         setSearchResults(data);
       } catch (error) {

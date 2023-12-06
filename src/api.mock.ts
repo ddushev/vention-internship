@@ -3,13 +3,6 @@
 import webpackMockServer from "webpack-mock-server";
 import apiEndpoints from "./api.endpoints";
 
-const mockData = {
-  id: 1,
-  firstName: "Will",
-  lastName: "Smith",
-  email: "willsmith321@gmail.com",
-};
-
 const searchMockData = [
   { id: 1, name: "Battlefield" },
   { id: 2, name: "Counter-Strike" },
@@ -22,10 +15,8 @@ const searchMockData = [
 ];
 
 export default webpackMockServer.add((app) => {
-  app.get(apiEndpoints.testMock, (_req, res) => res.json(mockData));
-
-  app.get(`${apiEndpoints.searchMock}/:text`, (_req, res) => {
-    const searchText = _req.params.text.toLowerCase();
+  app.get(`${apiEndpoints.searchMock}`, (_req, res) => {
+    const searchText = (_req.query.text as string).toLowerCase();
     const matchingProducts = searchMockData.filter((game) => game.name.toLowerCase().includes(searchText));
     res.json(matchingProducts);
   });
