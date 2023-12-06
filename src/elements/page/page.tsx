@@ -8,7 +8,7 @@ interface PageProps {
 export default function Page({ children, title }: PageProps) {
   return (
     <div className={styles.backgroundWrapperImage}>
-      {title && <h2>{title}</h2>}
+      <h2 className={styles.visuallyHidden}>{title}</h2>
       {children}
     </div>
   );
