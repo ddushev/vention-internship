@@ -15,6 +15,7 @@ export default function SearchField() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [searchResults, setSearchResults] = useState<Game[]>([]);
+  const [isTyping, setIsTyping] = useState(false);
 
   const fetchSearchResults = useCallback(async (query: string): Promise<void> => {
     if (!query) {
@@ -35,13 +36,17 @@ export default function SearchField() {
   }, []);
 
   const debouncedFetchSearchResults = useCallback(
-    debounce((query: string) => fetchSearchResults(query), 300),
+    debounce((query: string) => {
+      fetchSearchResults(query);
+      setIsTyping(false);
+    }, 300),
     [fetchSearchResults],
   );
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setSearchTerm(value);
+    setIsTyping(true);
     debouncedFetchSearchResults(value);
   };
 
@@ -58,15 +63,23 @@ export default function SearchField() {
             <img src={loadingAnimation} alt="loading" />
           </div>
         )}
-        {!isLoading && searchResults.length > 0 && (
+        {!isLoading && (
           <ul className={styles.resultsList}>
-            {searchResults.map((game) => (
-              <li className={styles.listItem} key={game.id}>
-                <button className={styles.buttonItem} onClick={() => handleGameSelect(game.name)} type="button">
-                  {game.name}
+            {searchResults.length > 0 &&
+              searchResults.map((game) => (
+                <li className={styles.listItem} key={game.id}>
+                  <button className={styles.buttonItem} onClick={() => handleGameSelect(game.name)} type="button">
+                    {game.name}
+                  </button>
+                </li>
+              ))}
+            {searchResults.length === 0 && searchTerm.length !== 0 && !isTyping && (
+              <li className={styles.listItem}>
+                <button className={styles.buttonItem} type="button">
+                  No items found
                 </button>
               </li>
-            ))}
+            )}
           </ul>
         )}
       </div>
