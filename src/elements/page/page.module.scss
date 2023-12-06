@@ -4,7 +4,12 @@
   background-size: cover;
   background-repeat: no-repeat;
 
-  .visuallyHidden {
-    display: none;
+  .visuallyHidden:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
   }
 }
