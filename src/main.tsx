@@ -12,10 +12,7 @@ import ErrorBoundary from "./components/error/errorBoundary/errorBoundary";
 import ErrorPage from "./components/error/errorPage/errorPage";
 import DefaultLayout from "./elements/defaultLayout";
 
-interface Props {}
-interface State {}
-
-class AppContainer extends Component<Props, State> {
+class AppContainer extends Component {
   render() {
     return (
       // <StrictMode>
