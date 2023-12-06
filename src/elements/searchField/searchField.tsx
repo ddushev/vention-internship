@@ -23,11 +23,6 @@ export default function SearchField() {
       try {
         setIsLoading(true);
 
-        // Simulate a 0.5-second delay on fetch
-        await new Promise((resolve) => {
-          setTimeout(resolve, 500);
-        });
-
         const response = await fetch(`${apiEndpoints.searchMock}?text=${query}`);
         const data = await response.json();
         setSearchResults(data);
