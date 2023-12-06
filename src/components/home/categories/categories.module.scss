@@ -1,6 +1,5 @@
 .categoriesWrapper {
   width: 95vw;
-  height: 30vh;
   margin: auto;
   background-color: $inheritDarkerBackground;
   border-radius: 50px;
@@ -19,8 +18,11 @@
     gap: 50px;
     justify-content: center;
     align-items: center;
+    padding-bottom: 30px;
 
     .categoriesLink {
+      display: flex;
+
       .categoryCardBox {
         width: 200px;
         height: 150px;
