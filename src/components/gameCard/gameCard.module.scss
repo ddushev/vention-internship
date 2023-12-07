@@ -48,7 +48,7 @@
           }
         }
 
-        img {
+        .gameImage {
           width: 195px;
           height: 220px;
           object-fit: cover;
@@ -68,7 +68,7 @@
           height: 17px;
           display: flex;
 
-          img {
+          .starIcon {
             width: 100%;
             filter: invert(30%) sepia(86%) saturate(6000%) hue-rotate(60deg) brightness(200%) contrast(50%);
           }

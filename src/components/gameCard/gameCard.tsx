@@ -30,14 +30,14 @@ export default function GameCard({ game }: { game: Game }) {
               {game?.platforms.includes("ps5") && <img className={styles.platformIcon} src={ps5} alt="ps5" />}
               {game?.platforms.includes("xbox") && <img className={styles.platformIcon} src={xbox} alt="xbox" />}
             </div>
-            <img src={game?.image} alt={game?.name} />
+            <img className={styles.gameImage} src={game?.image} alt={game?.name} />
           </div>
           <div className={styles.detailsContainer}>
             <h4 className={styles.gameTitle}>{game?.name}</h4>
             <p>{game?.price}$</p>
             <div className={styles.starsContainer}>
               {rating.map((star) => (
-                <img key={star} src={starFilled} alt={`${star}star`} />
+                <img className={styles.starIcon} key={star} src={starFilled} alt={`${star}star`} />
               ))}
             </div>
           </div>
