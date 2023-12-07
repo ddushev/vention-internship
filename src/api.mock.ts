@@ -12,6 +12,8 @@ const gamesMockData = [
     rating: 5,
     platforms: ["pc"],
     addDate: new Date("2023-01-01"),
+    description:
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
   },
   {
     id: 2,
@@ -21,6 +23,8 @@ const gamesMockData = [
     rating: 5,
     platforms: ["pc"],
     addDate: new Date("2023-01-02"),
+    description:
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
   },
   {
     id: 3,
@@ -30,6 +34,8 @@ const gamesMockData = [
     rating: 5,
     platforms: ["pc"],
     addDate: new Date("2023-01-03"),
+    description:
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
   },
   {
     id: 4,
@@ -39,6 +45,8 @@ const gamesMockData = [
     rating: 5,
     platforms: ["pc"],
     addDate: new Date("2023-01-01"),
+    description:
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
   },
   {
     id: 5,
@@ -48,6 +56,8 @@ const gamesMockData = [
     rating: 5,
     platforms: ["pc", "ps5", "xbox"],
     addDate: new Date("2023-01-05"),
+    description:
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
   },
   {
     id: 6,
@@ -57,6 +67,8 @@ const gamesMockData = [
     rating: 5,
     platforms: ["pc"],
     addDate: new Date("2023-01-06"),
+    description:
+      "Overwatch 2 is a free-to-play shooter featuring 30+ epic heroes, each with game-changing abilities. Choose your hero, group up with your friends and battle across all-new maps and modes in the ultimate team-based shooter.",
   },
   {
     id: 7,
@@ -66,6 +78,8 @@ const gamesMockData = [
     rating: 5,
     platforms: ["pc"],
     addDate: new Date("2023-01-01"),
+    description:
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
   },
   {
     id: 8,
@@ -75,6 +89,8 @@ const gamesMockData = [
     rating: 5,
     platforms: ["pc", "ps5", "xbox"],
     addDate: new Date("2023-01-04"),
+    description:
+      "The very world is at your fingertips as you fight for survival, fortune, and glory. Delve deep into cavernous expanses, seek out ever-greater foes to test your mettle in combat, or construct your own city - In the World of Terraria, the choice is yours!",
   },
 ];
 
