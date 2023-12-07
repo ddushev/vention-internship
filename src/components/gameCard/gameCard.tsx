@@ -1,12 +1,20 @@
-import overwatch from "images/games/overwatch.jpg";
-
 import styles from "./gameCard.module.scss";
 
-export default function GameCard() {
+export interface Game {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  rating: number;
+  platforms: string[];
+  addDate: Date;
+}
+
+export default function GameCard({ game }: { game: Game }) {
   return (
     <li className={styles.gameCardBox}>
-      <img src={overwatch} alt="overwatch" />
-      <h4 className={styles.gameTitle}>PC</h4>
+      <img src={game?.image} alt={game?.name} />
+      <h4 className={styles.gameTitle}>{game?.name}</h4>
     </li>
   );
 }

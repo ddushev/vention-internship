@@ -48,17 +48,17 @@ const gamesMockData = [
     image: "images/games/overwatch.jpg",
     rating: 5,
     platforms: ["pc"],
-    addDate: new Date("2023-01-04"),
+    addDate: new Date("2023-01-06"),
   },
   { id: 7, name: "Sims 4", price: 30.99, image: "images/games/sims4.jpg", rating: 5, platforms: ["pc"], addDate: new Date("2023-01-01") },
   {
     id: 8,
     name: "Terraria",
     price: 4.99,
-    image: "images/games/terraria.jpg",
+    image: "terraria",
     rating: 5,
     platforms: ["pc", "ps5", "xbox"],
-    addDate: new Date("2023-01-06"),
+    addDate: new Date("2023-01-04"),
   },
 ];
 
