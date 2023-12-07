@@ -1,9 +1,14 @@
 import styles from "./sectionWrapper.module.scss";
 
-export default function SectionWrapper({ children }: { children: React.ReactNode }) {
+interface SectionWrapperProps {
+  children: React.ReactNode;
+  heading: string;
+}
+
+export default function SectionWrapper({ children, heading }: SectionWrapperProps) {
   return (
     <div className={styles.sectionWrapper}>
-      <h3 className={styles.sectionHeading}>New Games</h3>
+      <h3 className={styles.sectionHeading}>{heading}</h3>
       <ul className={styles.sectionContainer}>{children}</ul>
     </div>
   );

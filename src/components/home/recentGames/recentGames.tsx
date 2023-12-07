@@ -8,7 +8,7 @@ import styles from "./recentGames.module.scss";
 
 export default function RecentGames() {
   return (
-    <SectionWrapper>
+    <SectionWrapper heading="New Games">
       <li className={styles.recentGamesCardBox}>
         <img src={overwatch} alt="overwatch" />
         <h4 className={styles.recentGamesTitle}>PC</h4>
