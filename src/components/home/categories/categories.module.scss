@@ -1,55 +1,31 @@
-.categoriesWrapper {
-  width: 95vw;
-  margin: auto;
-  background-color: $inheritDarkerBackground;
-  border-radius: 50px;
+.categoriesLink {
+  display: flex;
 
-  .categoriesHeading {
-    width: 95%;
-    margin: 0 auto 30px auto;
-    padding: 35px 0 15px 15px;
-    color: $whitTextColor;
-    border-bottom: 1px solid #fff;
-    font-weight: normal;
-  }
-
-  .categoriesContainer {
+  .categoryCardBox {
+    width: 200px;
+    height: 150px;
     display: flex;
-    gap: 50px;
+    flex-direction: column;
+    gap: 10px;
     justify-content: center;
     align-items: center;
-    padding-bottom: 30px;
+    border: 1px solid #fff;
+    border-bottom: 5px solid #fff;
+    border-radius: 10px;
+    background-color: $backgroundColor;
 
-    .categoriesLink {
-      display: flex;
-
-      .categoryCardBox {
-        width: 200px;
-        height: 150px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid #fff;
-        border-bottom: 5px solid #fff;
-        border-radius: 10px;
-        background-color: $backgroundColor;
-
-        &:hover {
-          border-color: $interactBorderColor;
-        }
-      }
-
-      img {
-        width: 75px;
-        height: 75px;
-      }
-
-      .categoryTitle {
-        color: $whitTextColor;
-        font-weight: normal;
-      }
+    &:hover {
+      border-color: $interactBorderColor;
     }
+  }
+
+  img {
+    width: 75px;
+    height: 75px;
+  }
+
+  .categoryTitle {
+    color: $whitTextColor;
+    font-weight: normal;
   }
 }
