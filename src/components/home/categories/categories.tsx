@@ -14,19 +14,19 @@ export default function Categories() {
     <SectionWrapper heading="Categories">
       <Link className={styles.categoriesLink} to={`${PATHS.PRODUCTS}/pc`}>
         <li className={styles.categoryCardBox}>
-          <img src={pc} alt="pc" />
+          <img className={styles.categoryIcon} src={pc} alt="pc" />
           <h4 className={styles.categoryTitle}>PC</h4>
         </li>
       </Link>
       <Link className={styles.categoriesLink} to={`${PATHS.PRODUCTS}/ps5`}>
         <li className={styles.categoryCardBox}>
-          <img src={ps5} alt="ps5" />
+          <img className={styles.categoryIcon} src={ps5} alt="ps5" />
           <h4 className={styles.categoryTitle}>Playstation 5</h4>
         </li>
       </Link>
       <Link className={styles.categoriesLink} to={`${PATHS.PRODUCTS}/xbox`}>
         <li className={styles.categoryCardBox}>
-          <img src={xbox} alt="xbox" />
+          <img className={styles.categoryIcon} src={xbox} alt="xbox" />
           <h4 className={styles.categoryTitle}>XBox One 5</h4>
         </li>
       </Link>
