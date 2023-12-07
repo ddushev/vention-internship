@@ -1,0 +1,23 @@
+.recentGamesCardBox {
+  width: 195px;
+  height: 310px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #fff;
+  border-bottom: 5px solid #fff;
+  border-radius: 10px;
+  background-color: $backgroundColor;
+}
+
+img {
+  width: 75px;
+  height: 75px;
+}
+
+.recentGamesTitle {
+  color: $whitTextColor;
+  font-weight: normal;
+}
