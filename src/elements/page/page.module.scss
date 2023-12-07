@@ -1,8 +1,9 @@
 .backgroundWrapperImage {
-  height: calc(100vh - $headerHeight - $footerHeight);
+  min-height: calc(100vh - $headerHeight - $footerHeight);
   background-image: url("images/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  padding-bottom: 1px;
 
   .visuallyHidden:not(:focus):not(:active) {
     clip: rect(0 0 0 0);
