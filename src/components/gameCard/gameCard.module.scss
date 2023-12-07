@@ -1,23 +1,120 @@
 .gameCardBox {
   width: 195px;
-  height: 310px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #fff;
-  border-bottom: 5px solid #fff;
-  border-radius: 10px;
-  background-color: $backgroundColor;
-}
-
-img {
-  width: 75px;
-  height: 75px;
-}
-
-.gameTitle {
+  height: 350px;
+  border-radius: 20px;
+  background-color: inherit;
   color: $whitTextColor;
-  font-weight: normal;
+
+  .gameCardContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+
+    .frontSide,
+    .backSide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .frontSide {
+      background-color: $backgroundColor;
+      box-shadow: 0px 0px 10px 2px $mainPinkColor;
+      border-radius: 20px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .imageContainer {
+        margin-bottom: 35px;
+
+        .platformsContainer {
+          display: flex;
+          position: absolute;
+          background-color: $inheritDarkerBackground;
+          border-top-left-radius: 20px;
+          padding: 3px;
+
+          .platformIcon {
+            width: 20px;
+            height: 20px;
+            filter: invert(100%);
+          }
+        }
+
+        img {
+          width: 195px;
+          height: 220px;
+          object-fit: cover;
+          border-top-right-radius: 20px;
+          border-top-left-radius: 20px;
+        }
+      }
+
+      .detailsContainer {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 15px;
+
+        .starsContainer {
+          width: 17px;
+          height: 17px;
+          display: flex;
+
+          img {
+            width: 100%;
+            filter: invert(30%) sepia(86%) saturate(6000%) hue-rotate(60deg) brightness(200%) contrast(50%);
+          }
+        }
+
+        .gameTitle {
+          font-weight: normal;
+        }
+      }
+    }
+
+    .backSide {
+      background-color: $backgroundColor;
+      box-shadow: 0px 0px 10px 2px $mainPinkColor;
+      border-radius: 20px;
+      transform: rotateY(180deg);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+
+      .description {
+        font-size: 14px;
+        text-align: justify;
+        padding: 30px 15px 0 15px;
+      }
+
+      .addToCartButton {
+        padding: 10px;
+        background-color: $mainPinkColor;
+        color: $whitTextColor;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+
+.gameCardBox:focus {
+  outline: 0;
+}
+
+.gameCardBox:hover .gameCardContainer,
+.gameCardBox:focus .gameCardContainer {
+  transform: rotateY(180deg);
 }
