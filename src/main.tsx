@@ -18,25 +18,18 @@ class AppContainer extends Component {
       // <StrictMode>
       <BrowserRouter>
         <ErrorBoundary>
-          <Routes>
-            {/* Routes wrapped with default layout */}
-            <Route
-              path="/*"
-              element={
-                <DefaultLayout>
-                  <Routes>
-                    <Route path={PATHS.HOME} element={<Home />} />
-                    <Route path={PATHS.ABOUT} element={<Page title="About" />} />
-                    <Route path={`${PATHS.PRODUCTS}/:category`} element={<Page title="Products" />} />
-                    <Route path={PATHS.SIGN_IN} element={<Page title="Sign In" />} />
-                    <Route path={PATHS.SIGN_UP} element={<Page title="Sign Up" />} />
-                    <Route path={PATHS.ERROR} element={<ErrorPage onResetError={() => {}} />} />
-                    <Route path="*" element={<Navigate to={PATHS.HOME} />} />
-                  </Routes>
-                </DefaultLayout>
-              }
-            />
-          </Routes>
+          {/* Routes wrapped with default layout */}
+          <DefaultLayout>
+            <Routes>
+              <Route path={PATHS.HOME} element={<Home />} />
+              <Route path={PATHS.ABOUT} element={<Page title="About" />} />
+              <Route path={`${PATHS.PRODUCTS}/:category`} element={<Page title="Products" />} />
+              <Route path={PATHS.SIGN_IN} element={<Page title="Sign In" />} />
+              <Route path={PATHS.SIGN_UP} element={<Page title="Sign Up" />} />
+              <Route path={PATHS.ERROR} element={<ErrorPage onResetError={() => {}} />} />
+              <Route path="*" element={<Navigate to={PATHS.HOME} />} />
+            </Routes>
+          </DefaultLayout>
         </ErrorBoundary>
       </BrowserRouter>
       // </StrictMode>
