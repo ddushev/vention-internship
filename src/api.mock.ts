@@ -103,13 +103,13 @@ const gamesMockData = [
 ];
 
 export default webpackMockServer.add((app) => {
-  app.get(`${apiEndpoints.searchMock}`, (_req, res) => {
+  app.get(apiEndpoints.searchMock, (_req, res) => {
     const searchText = (_req.query.text as string).toLowerCase();
     const matchingProducts = gamesMockData.filter((game) => game.name.toLowerCase().includes(searchText));
     res.json(matchingProducts);
   });
 
-  app.get(`${apiEndpoints.topGamesMock}`, (_req, res) => {
+  app.get(apiEndpoints.topGamesMock, (_req, res) => {
     const top3RecentlyAddedGames = gamesMockData.sort((a, b) => b.addDate.getTime() - a.addDate.getTime()).slice(0, 3);
     res.json(top3RecentlyAddedGames);
   });
