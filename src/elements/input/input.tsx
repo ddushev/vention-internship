@@ -11,7 +11,7 @@ export default function Input({ label, type, id, name }: InputProps) {
   return (
     <div className={styles.inputContainer}>
       <label htmlFor={id}>{label}</label>
-      <input type={type} id={id} name={name} />
+      <input className={styles.input} type={type} id={id} name={name} />
     </div>
   );
 }
