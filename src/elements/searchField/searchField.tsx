@@ -65,7 +65,7 @@ export default function SearchField() {
         )}
         {!isLoading && (
           <ul className={styles.resultsList}>
-            {searchResults.length > 0 &&
+            {searchResults.length &&
               searchResults.map((game) => (
                 <li className={styles.listItem} key={game.id}>
                   <button className={styles.buttonItem} onClick={() => handleGameSelect(game.name)} type="button">
@@ -73,7 +73,7 @@ export default function SearchField() {
                   </button>
                 </li>
               ))}
-            {searchResults.length === 0 && searchTerm.length !== 0 && !isTyping && (
+            {!searchResults.length && searchTerm.length && !isTyping && (
               <li className={styles.listItem}>
                 <button className={styles.buttonItem} type="button">
                   No items found
