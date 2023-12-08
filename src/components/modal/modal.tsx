@@ -23,7 +23,9 @@ export default function Modal({ title, isOpen, onClose, children }: ModalProps) 
         </button>
       </div>
       {children}
-      <button type="submit">Submit</button>
+      <button className={styles.submitBtn} type="submit">
+        Submit
+      </button>
     </div>,
     portalElement,
   );
