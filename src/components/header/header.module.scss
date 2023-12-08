@@ -17,17 +17,19 @@
 }
 
 .linkItem {
+  width: 115px;
   padding: 22px;
+  text-align: center;
 }
 
 .active {
-  border-bottom: 4px solid $activeNavBorderColor;
+  border-bottom: 4px solid $mainPinkColor;
 }
 
 .linkItem:hover {
-  background-color: $navHoverColor;
+  background-color: $darkHoverColor;
 }
 
 .linkItem:focus {
-  background-color: $navHoverColor;
+  background-color: $darkHoverColor;
 }

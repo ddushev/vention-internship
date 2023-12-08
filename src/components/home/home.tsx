@@ -1,8 +1,14 @@
+import Page from "@/elements/page/page";
+import SearchField from "@/elements/searchField/searchField";
+import Categories from "./categories/categories";
+import RecentGames from "./recentGames/recentGames";
+
 export default function Home() {
   return (
-    <div className="center-text">
-      <h2>Home page</h2>
-      <p>This is the homepage</p>
-    </div>
+    <Page title="Home">
+      <SearchField />
+      <Categories />
+      <RecentGames />
+    </Page>
   );
 }
