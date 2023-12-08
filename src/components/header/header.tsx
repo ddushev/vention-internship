@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import PATHS from "@/utils/paths";
 
 import cx from "classnames";
+import Input from "@/elements/input/input";
 import styles from "./header.module.scss";
 import ProductsDropDown from "./productsDropDown/productsDropDown";
 import Modal from "../modal/modal";
@@ -78,11 +79,14 @@ export default function Header() {
           </ul>
         </nav>
       </header>
-      <Modal isOpen={isSignInOpen} onClose={() => setIsSignInOpen(false)}>
-        <h3>Authorization</h3>
+      <Modal title="Authorization" isOpen={isSignInOpen} onClose={() => setIsSignInOpen(false)}>
+        <Input label="Login" type="text" id="login" name="login" />
+        <Input label="Password" type="password" id="password" name="password" />
       </Modal>
-      <Modal isOpen={isSignUpOpen} onClose={() => setIsSignUpOpen(false)}>
-        <h3>Registration</h3>
+      <Modal title="Registration" isOpen={isSignUpOpen} onClose={() => setIsSignUpOpen(false)}>
+        <Input label="Login" type="text" id="login" name="login" />
+        <Input label="Password" type="password" id="password" name="password" />
+        <Input label="Repeat Password" type="rePassword" id="rePassword" name="rePassword" />
       </Modal>
     </>
   );
