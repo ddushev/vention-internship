@@ -27,8 +27,15 @@ module.exports = {
   globals: {
     DEV: true,
   },
-  plugins: ["json", "prettier", "import", "@typescript-eslint", "unused-imports", "css-modules"],
+  plugins: ["json", "prettier", "import", "@typescript-eslint", "unused-imports", "css-modules", "jsx-a11y"],
   rules: {
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        assert: "either",
+        depth: 25,
+      },
+    ],
     "css-modules/no-unused-class": "warn",
     "css-modules/no-undef-class": "error",
     // TS
