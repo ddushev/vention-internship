@@ -28,11 +28,17 @@ export default function Header() {
 
   const handleSignInClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
+    if (isSignUpOpen) {
+      setIsSignUpOpen(false);
+    }
     setIsSignInOpen(true);
   };
 
   const handleSignUpClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
+    if (isSignInOpen) {
+      setIsSignInOpen(false);
+    }
     setIsSignUpOpen(true);
   };
   return (
