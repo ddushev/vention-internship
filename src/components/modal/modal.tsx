@@ -1,15 +1,23 @@
-import Input from "@/elements/input/input";
+import { createPortal } from "react-dom";
 import styles from "./modal.module.scss";
 
-export default function Modal() {
-  return (
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}
+
+export default function Modal({ isOpen, onClose, children }: ModalProps) {
+  const portalElement = document.getElementById("portal");
+  if (!isOpen || !portalElement) return null;
+
+  return createPortal(
     <div className={styles.modalContainer}>
-      <h3>Authorization</h3>
-      <form>
-        <Input label="Login" type="text" id="login" name="login" />
-        <Input label="Password" type="password" id="password" name="password" />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+      {children}
+      <button type="submit" onClick={onClose}>
+        Close
+      </button>
+    </div>,
+    portalElement,
   );
 }
