@@ -55,7 +55,11 @@ module.exports = (env, argv) => {
             // res.once("finish", () => {
             //   console.log(`Sent response: ${req.method} ${req.url}`);
             // });
-            next();
+            if (req.url.startsWith("/api")) {
+              setTimeout(next, 500);
+            } else {
+              next();
+            }
           },
         });
         return middlewares;

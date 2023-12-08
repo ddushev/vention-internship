@@ -1,0 +1,27 @@
+.productsDropDownContainer {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  background-color: $backgroundColor;
+  position: absolute;
+  top: 65px;
+  right: 345px;
+
+  .linkItem {
+    padding: 10px;
+    width: 115px;
+    font-size: 16px;
+    background-color: $backgroundColor;
+    color: $whitTextColor;
+    cursor: pointer;
+    border: none;
+
+    &:hover {
+      background-color: $darkHoverColor;
+    }
+  }
+}
+
+.showDropDown {
+  display: flex;
+}

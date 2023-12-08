@@ -1,0 +1,23 @@
+.sectionWrapper {
+  width: 95vw;
+  margin: 0 auto 30px auto;
+  background-color: $inheritDarkerBackground;
+  border-radius: 50px;
+
+  .sectionHeading {
+    width: 95%;
+    margin: 0 auto 30px auto;
+    padding: 35px 0 15px 15px;
+    color: $whitTextColor;
+    border-bottom: 1px solid #fff;
+    font-weight: normal;
+  }
+
+  .sectionContainer {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+  }
+}
