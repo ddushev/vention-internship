@@ -26,7 +26,7 @@
       background-color: $backgroundColor;
       box-shadow: 0px 0px 10px 2px $mainPinkColor;
       border-radius: 20px;
-      z-index: 2;
+      z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -86,7 +86,7 @@
       box-shadow: 0px 0px 10px 2px $mainPinkColor;
       border-radius: 20px;
       transform: rotateY(180deg);
-      z-index: 1;
+      z-index: 5;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
