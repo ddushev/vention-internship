@@ -22,10 +22,12 @@ export default function Modal({ title, isOpen, onClose, children }: ModalProps) 
           <img className={styles.closeIcon} src={closeIcon} alt="close-icon" />
         </button>
       </div>
-      {children}
-      <button className={styles.submitBtn} type="submit">
-        Submit
-      </button>
+      <form>
+        {children}
+        <button className={styles.submitBtn} type="submit">
+          Submit
+        </button>
+      </form>
     </div>,
     portalElement,
   );
