@@ -19,7 +19,11 @@
 .linkItem {
   width: 115px;
   padding: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  gap: 5px;
 }
 
 .active {
@@ -32,4 +36,9 @@
 
 .linkItem:focus {
   background-color: $darkHoverColor;
+}
+
+.icon {
+  height: 28px;
+  filter: invert(95%);
 }

@@ -1,3 +1,5 @@
+import logoutIcon from "images/icons/logout.png";
+import userIcon from "images/icons/user.png";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
@@ -129,8 +131,14 @@ export default function Header({ authData, setAuthData }: HeaderProps) {
               </NavLink>
             )}
             {authData?.username && (
+              <NavLink className={styles.linkItem} to="#">
+                <img className={styles.icon} src={userIcon} alt="user-icon" />
+                {authData?.username}
+              </NavLink>
+            )}
+            {authData?.username && (
               <NavLink onClick={() => setAuthData({ username: "" })} className={styles.linkItem} to="#">
-                Logout
+                <img className={styles.icon} src={logoutIcon} alt="shopping-cart" />
               </NavLink>
             )}
           </ul>
