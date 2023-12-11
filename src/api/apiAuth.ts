@@ -7,11 +7,19 @@ interface RequestParams {
 }
 
 export async function onLoginSubmit({ username, password }: RequestParams) {
-  const data = await api.post(apiEndpoints.loginMock, { username, password });
-  console.log(data);
+  try {
+    const data = await api.post(apiEndpoints.loginMock, { username, password });
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function onRegisterSubmit({ username, password, rePassword }: RequestParams) {
-  const data = await api.update(apiEndpoints.loginMock, { username, password, rePassword });
-  console.log(data);
+  try {
+    const data = await api.update(apiEndpoints.registerMock, { username, password, rePassword });
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
 }
