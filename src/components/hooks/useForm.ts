@@ -19,6 +19,7 @@ export default function useForm({ initialValues, onSubmitHandler }: FormProps) {
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     onSubmitHandler(values);
+    setValues(initialValues);
   }
 
   return { values, onChangeHandler, onSubmit };
