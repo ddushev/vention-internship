@@ -1,6 +1,7 @@
 import closeIcon from "images/icons/close.svg";
 
 import { createPortal } from "react-dom";
+import { FormEvent } from "react";
 import styles from "./modal.module.scss";
 
 interface ModalProps {
@@ -8,9 +9,10 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 }
 
-export default function Modal({ title, isOpen, onClose, children }: ModalProps) {
+export default function Modal({ title, isOpen, onClose, children, onSubmit }: ModalProps) {
   const portalElement = document.getElementById("portal");
   if (!isOpen || !portalElement) return null;
 
@@ -22,7 +24,7 @@ export default function Modal({ title, isOpen, onClose, children }: ModalProps) 
           <img className={styles.closeIcon} src={closeIcon} alt="close-icon" />
         </button>
       </div>
-      <form>
+      <form onSubmit={(event) => onSubmit(event)}>
         {children}
         <button className={styles.submitBtn} type="submit">
           Submit

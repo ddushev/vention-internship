@@ -1,15 +1,43 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import PATHS from "@/utils/paths";
-
 import cx from "classnames";
 import Input from "@/elements/input/input";
-import styles from "./header.module.scss";
+import PATHS from "@/utils/paths";
+import { onLoginSubmit, onRegisterSubmit } from "@/api/apiAuth";
+import useForm from "../hooks/useForm";
+
 import ProductsDropDown from "./productsDropDown/productsDropDown";
 import Modal from "../modal/modal";
 
+import styles from "./header.module.scss";
+
 export default function Header() {
+  const {
+    values: loginValues,
+    onChangeHandler: onLoginInputChange,
+    onSubmit: onLoginSubmitHandler,
+  } = useForm({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    onSubmitHandler: onLoginSubmit,
+  });
+
+  const {
+    values: registerValues,
+    onChangeHandler: onRegisterInputChange,
+    onSubmit: onRegisterSubmitHandler,
+  } = useForm({
+    initialValues: {
+      username: "",
+      password: "",
+      rePassword: "",
+    },
+    onSubmitHandler: onRegisterSubmit,
+  });
+
   const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
@@ -85,14 +113,28 @@ export default function Header() {
           </ul>
         </nav>
       </header>
-      <Modal title="Authorization" isOpen={isSignInOpen} onClose={() => setIsSignInOpen(false)}>
-        <Input label="Login" type="text" id="login" name="login" />
-        <Input label="Password" type="password" id="password" name="password" />
+      <Modal title="Authorization" isOpen={isSignInOpen} onClose={() => setIsSignInOpen(false)} onSubmit={onLoginSubmitHandler}>
+        <Input label="Login" type="text" id="username" name="username" values={loginValues} onInputChange={onLoginInputChange} />
+        <Input label="Password" type="password" id="password" name="password" values={loginValues} onInputChange={onLoginInputChange} />
       </Modal>
-      <Modal title="Registration" isOpen={isSignUpOpen} onClose={() => setIsSignUpOpen(false)}>
-        <Input label="Login" type="text" id="login" name="login" />
-        <Input label="Password" type="password" id="password" name="password" />
-        <Input label="Repeat Password" type="rePassword" id="rePassword" name="rePassword" />
+      <Modal title="Registration" isOpen={isSignUpOpen} onClose={() => setIsSignUpOpen(false)} onSubmit={onRegisterSubmitHandler}>
+        <Input label="Login" type="text" id="username" name="username" values={registerValues} onInputChange={onRegisterInputChange} />
+        <Input
+          label="Password"
+          type="password"
+          id="password"
+          name="password"
+          values={registerValues}
+          onInputChange={onRegisterInputChange}
+        />
+        <Input
+          label="Repeat Password"
+          type="password"
+          id="rePassword"
+          name="rePassword"
+          values={registerValues}
+          onInputChange={onRegisterInputChange}
+        />
       </Modal>
     </>
   );
