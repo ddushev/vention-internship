@@ -6,7 +6,7 @@ interface FormValues {
 
 interface FormProps {
   initialValues: FormValues;
-  onSubmitHandler: (values: FormValues) => object;
+  onSubmitHandler: (values: FormValues) => Promise<void>;
 }
 
 export default function useForm({ initialValues, onSubmitHandler }: FormProps) {
@@ -21,9 +21,5 @@ export default function useForm({ initialValues, onSubmitHandler }: FormProps) {
     onSubmitHandler(values);
   }
 
-  return {
-    values,
-    onChangeHandler,
-    onSubmit,
-  };
+  return { values, onChangeHandler, onSubmit };
 }
