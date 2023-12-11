@@ -102,6 +102,14 @@ const gamesMockData = [
   },
 ];
 
+// const userMockData = [
+//   {
+//     id: 1,
+//     username: "ddushev",
+//     password: "123456",
+//   },
+// ];
+
 export default webpackMockServer.add((app) => {
   app.get(apiEndpoints.searchMock, (_req, res) => {
     const searchText = (_req.query.text as string).toLowerCase();
@@ -112,5 +120,17 @@ export default webpackMockServer.add((app) => {
   app.get(apiEndpoints.topGamesMock, (_req, res) => {
     const top3RecentlyAddedGames = gamesMockData.sort((a, b) => b.addDate.getTime() - a.addDate.getTime()).slice(0, 3);
     res.json(top3RecentlyAddedGames);
+  });
+
+  app.post(apiEndpoints.loginMock, (_req, res) => {
+    console.log(_req.body);
+    res.status(201);
+    res.json("success login");
+  });
+
+  app.put(apiEndpoints.loginMock, (_req, res) => {
+    console.log(_req.body);
+    res.status(200);
+    res.json("success register");
   });
 });
