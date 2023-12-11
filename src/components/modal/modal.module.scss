@@ -20,7 +20,7 @@
       font-size: 20px;
     }
 
-    button {
+    .closeBtn {
       border: none;
       background-color: $backgroundColor;
       cursor: pointer;
@@ -41,5 +41,6 @@
     background-color: $mainPinkColor;
     border: none;
     border-radius: 10px;
+    cursor: pointer;
   }
 }

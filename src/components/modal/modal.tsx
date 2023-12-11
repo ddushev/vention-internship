@@ -20,7 +20,7 @@ export default function Modal({ title, isOpen, onClose, children, onSubmit }: Mo
     <div className={styles.modalContainer}>
       <div className={styles.modalHeader}>
         <h3 className={styles.modalTitle}>{title}</h3>
-        <button onClick={onClose} type="button">
+        <button className={styles.closeBtn} onClick={onClose} type="button">
           <img className={styles.closeIcon} src={closeIcon} alt="close-icon" />
         </button>
       </div>
