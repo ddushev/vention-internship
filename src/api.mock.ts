@@ -102,13 +102,18 @@ const gamesMockData = [
   },
 ];
 
-// const userMockData = [
-//   {
-//     id: 1,
-//     username: "ddushev",
-//     password: "123456",
-//   },
-// ];
+const userMockData = [
+  {
+    id: 1,
+    username: "ddushev",
+    password: "123",
+  },
+  {
+    id: 2,
+    username: "ddushev2",
+    password: "qwe",
+  },
+];
 
 export default webpackMockServer.add((app) => {
   app.get(apiEndpoints.searchMock, (_req, res) => {
@@ -123,14 +128,20 @@ export default webpackMockServer.add((app) => {
   });
 
   app.post(apiEndpoints.loginMock, (_req, res) => {
-    console.log(_req.body);
-    res.status(201);
-    res.json("success login");
+    const { username, password } = _req.body;
+    userMockData.forEach((user) => {
+      if (user.username.toLowerCase() === username.toLowerCase() && user.password === password) {
+        res.status(201);
+        res.json({ username: user.username });
+      } else {
+        res.status(400);
+        res.json("Username and/or password don't match!");
+      }
+    });
   });
 
-  app.put(apiEndpoints.loginMock, (_req, res) => {
+  app.put(apiEndpoints.registerMock, (_req, res) => {
     console.log(_req.body);
-    res.status(200);
     res.json("success register");
   });
 });
