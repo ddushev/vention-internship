@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import cx from "classnames";
+import { AuthData } from "@/types";
 import Input from "@/elements/input/input";
 import PATHS from "@/utils/paths";
 import { onLoginSubmit, onRegisterSubmit } from "@/api/apiAuth";
@@ -13,8 +14,8 @@ import Modal from "../modal/modal";
 import styles from "./header.module.scss";
 
 interface HeaderProps {
-  authData: object;
-  setAuthData: Dispatch<SetStateAction<object>>;
+  authData: AuthData;
+  setAuthData: Dispatch<SetStateAction<AuthData>>;
 }
 
 export default function Header({ authData, setAuthData }: HeaderProps) {
@@ -109,22 +110,29 @@ export default function Header({ authData, setAuthData }: HeaderProps) {
             <NavLink className={({ isActive }) => cx(styles.linkItem, isActive && styles.active)} to={PATHS.ABOUT}>
               About
             </NavLink>
-
-            <NavLink
-              onClick={(event) => handleSignInClick(event)}
-              className={({ isActive }) => cx(styles.linkItem, isActive && styles.active)}
-              to={PATHS.SIGN_IN}
-            >
-              Sign In
-            </NavLink>
-
-            <NavLink
-              onClick={(event) => handleSignUpClick(event)}
-              className={({ isActive }) => cx(styles.linkItem, isActive && styles.active)}
-              to={PATHS.SIGN_UP}
-            >
-              Sign Up
-            </NavLink>
+            {!authData?.username && (
+              <NavLink
+                onClick={(event) => handleSignInClick(event)}
+                className={({ isActive }) => cx(styles.linkItem, isActive && styles.active)}
+                to={PATHS.SIGN_IN}
+              >
+                Sign In
+              </NavLink>
+            )}
+            {!authData?.username && (
+              <NavLink
+                onClick={(event) => handleSignUpClick(event)}
+                className={({ isActive }) => cx(styles.linkItem, isActive && styles.active)}
+                to={PATHS.SIGN_UP}
+              >
+                Sign Up
+              </NavLink>
+            )}
+            {authData?.username && (
+              <NavLink onClick={() => setAuthData({ username: "" })} className={styles.linkItem} to="#">
+                Logout
+              </NavLink>
+            )}
           </ul>
         </nav>
       </header>

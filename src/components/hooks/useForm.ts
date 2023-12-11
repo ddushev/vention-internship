@@ -1,13 +1,15 @@
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 
+import { AuthData } from "@/types";
+
 interface FormValues {
   [key: string]: string;
 }
 
 interface FormProps {
   initialValues: FormValues;
-  onSubmitHandler: (values: FormValues, setUserData: Dispatch<SetStateAction<object>>) => Promise<void>;
-  setAuthData: Dispatch<SetStateAction<object>>;
+  onSubmitHandler: (values: FormValues, setUserData: Dispatch<SetStateAction<AuthData>>) => Promise<void>;
+  setAuthData: Dispatch<SetStateAction<AuthData>>;
 }
 
 export default function useForm({ initialValues, onSubmitHandler, setAuthData }: FormProps) {
