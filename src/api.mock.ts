@@ -129,39 +129,38 @@ export default webpackMockServer.add((app, helper) => {
 
   app.post(apiEndpoints.loginMock, (_req, res) => {
     const { username, password } = _req.body;
+    let isAuthenticated = false;
+
     userMockData.forEach((user) => {
       if (user.username === username.toLowerCase() && user.password === password) {
-        res.status(201);
-        res.json({ username: user.username });
+        isAuthenticated = true;
+        res.status(201).json({ username: user.username });
       }
     });
 
-    res.status(400);
-    res.json("Login failed: Username and/or password don't match!");
+    if (!isAuthenticated) {
+      res.status(400).json("Login failed: Username and/or password don't match!");
+    }
   });
 
   app.put(apiEndpoints.registerMock, (_req, res) => {
     const { username, password, rePassword } = _req.body;
-    userMockData.forEach((user) => {
-      if (user.username === username.toLowerCase()) {
-        res.status(400);
-        res.json("Register failed: Username already exist!");
-      }
-    });
+    if (userMockData.some((user) => user.username === username.toLowerCase())) {
+      res.status(400).json("Register failed: Username already exists!");
+      return;
+    }
 
     if (password !== rePassword) {
-      res.status(400);
-      res.json("Register failed: Passwords must match!");
-    } else {
-      const user = {
-        id: helper.getUniqueIdInt(),
-        username: username.toLowerCase(),
-        password,
-      };
-
-      userMockData.push(user);
-      res.status(200);
-      res.json({ username: user.username });
+      res.status(400).json("Register failed: Passwords must match!");
+      return;
     }
+    const user = {
+      id: helper.getUniqueIdInt(),
+      username: username.toLowerCase(),
+      password,
+    };
+
+    userMockData.push(user);
+    res.status(200).json({ username: user.username });
   });
 });
