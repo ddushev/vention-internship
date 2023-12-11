@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import cx from "classnames";
@@ -12,7 +12,24 @@ import Modal from "../modal/modal";
 
 import styles from "./header.module.scss";
 
-export default function Header() {
+interface HeaderProps {
+  authData: object;
+  setAuthData: Dispatch<SetStateAction<object>>;
+}
+
+export default function Header({ authData, setAuthData }: HeaderProps) {
+  const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  console.log(authData);
+
+  useEffect(() => {
+    if (authData) {
+      setIsSignInOpen(false);
+      setIsSignUpOpen(false);
+    }
+  }, [authData]);
+
   const {
     values: loginValues,
     onChangeHandler: onLoginInputChange,
@@ -23,6 +40,7 @@ export default function Header() {
       password: "",
     },
     onSubmitHandler: onLoginSubmit,
+    setAuthData,
   });
 
   const {
@@ -36,11 +54,8 @@ export default function Header() {
       rePassword: "",
     },
     onSubmitHandler: onRegisterSubmit,
+    setAuthData,
   });
-
-  const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
 
   const handleProductsHover = () => {
     setIsProductsDropdownVisible(true);
