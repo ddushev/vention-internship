@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 
 interface FormValues {
   [key: string]: string;
@@ -6,10 +6,11 @@ interface FormValues {
 
 interface FormProps {
   initialValues: FormValues;
-  onSubmitHandler: (values: FormValues) => Promise<void>;
+  onSubmitHandler: (values: FormValues, setUserData: Dispatch<SetStateAction<object>>) => Promise<void>;
+  setAuthData: Dispatch<SetStateAction<object>>;
 }
 
-export default function useForm({ initialValues, onSubmitHandler }: FormProps) {
+export default function useForm({ initialValues, onSubmitHandler, setAuthData }: FormProps) {
   const [values, setValues] = useState<FormValues>(initialValues);
 
   function onChangeHandler(event: React.ChangeEvent<HTMLInputElement>) {
@@ -18,7 +19,7 @@ export default function useForm({ initialValues, onSubmitHandler }: FormProps) {
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    onSubmitHandler(values);
+    onSubmitHandler(values, setAuthData);
     setValues(initialValues);
   }
 
