@@ -27,7 +27,7 @@ function AppContainer() {
         <DefaultLayout authData={authData} setAuthData={setAuthData} isSignInOpen={isSignInOpen} setIsSignInOpen={setIsSignInOpen}>
           <Routes>
             <Route path={PATHS.HOME} element={<Home />} />
-            <Route element={<UserRouteGuard authData={authData} />}>
+            <Route element={<UserRouteGuard authData={authData} setIsSignInOpen={setIsSignInOpen} />}>
               <Route path={PATHS.ABOUT} element={<Page title="About" />} />
               <Route path={`${PATHS.PRODUCTS}/:category`} element={<Page title="Products" />} />
               <Route path={PATHS.PROFILE} element={<Page title="Profile" />} />

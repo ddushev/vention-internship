@@ -1,16 +1,19 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Dispatch, SetStateAction, useEffect } from "react";
+import { Outlet } from "react-router-dom";
 
 import { AuthData } from "@/types";
-import PATHS from "@/utils/paths";
 
 interface UserRouteGuardProps {
   authData: AuthData;
+  setIsSignInOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function UserRouteGuard({ authData }: UserRouteGuardProps) {
-  if (!authData?.username) {
-    return <Navigate to={PATHS.SIGN_IN} />;
-  }
+export default function UserRouteGuard({ authData, setIsSignInOpen }: UserRouteGuardProps) {
+  useEffect(() => {
+    if (!authData?.username) {
+      setIsSignInOpen(true);
+    }
+  }, [authData, setIsSignInOpen]);
 
   return <Outlet />;
 }
