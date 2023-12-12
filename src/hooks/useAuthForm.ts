@@ -6,13 +6,13 @@ interface FormValues {
   [key: string]: string;
 }
 
-interface FormProps {
+interface UseFormProps {
   initialValues: FormValues;
   onSubmitHandler: (values: FormValues, setUserData: Dispatch<SetStateAction<AuthData>>) => Promise<void>;
   setAuthData: Dispatch<SetStateAction<AuthData>>;
 }
 
-export default function useForm({ initialValues, onSubmitHandler, setAuthData }: FormProps) {
+export default function useAuthForm({ initialValues, onSubmitHandler, setAuthData }: UseFormProps) {
   const [values, setValues] = useState<FormValues>(initialValues);
 
   function onChangeHandler(event: React.ChangeEvent<HTMLInputElement>) {

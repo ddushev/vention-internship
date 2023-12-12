@@ -1,14 +1,14 @@
 import logoutIcon from "images/icons/logout.png";
 import userIcon from "images/icons/user.png";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import cx from "classnames";
 import { AuthData } from "@/types";
 import Input from "@/elements/input/input";
 import PATHS from "@/utils/paths";
-import { onLoginSubmit, onRegisterSubmit } from "@/api/apiAuth";
-import useForm from "../hooks/useForm";
+import { onLoginSubmit, onRegisterSubmit, onLogout } from "@/api/apiAuth";
+import useAuthForm from "../../hooks/useAuthForm";
 
 import ProductsDropDown from "./productsDropDown/productsDropDown";
 import Modal from "../modal/modal";
@@ -24,6 +24,7 @@ export default function Header({ authData, setAuthData }: HeaderProps) {
   const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const navigate = useNavigate();
   console.log(authData);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ export default function Header({ authData, setAuthData }: HeaderProps) {
     values: loginValues,
     onChangeHandler: onLoginInputChange,
     onSubmit: onLoginSubmitHandler,
-  } = useForm({
+  } = useAuthForm({
     initialValues: {
       username: "",
       password: "",
@@ -50,7 +51,7 @@ export default function Header({ authData, setAuthData }: HeaderProps) {
     values: registerValues,
     onChangeHandler: onRegisterInputChange,
     onSubmit: onRegisterSubmitHandler,
-  } = useForm({
+  } = useAuthForm({
     initialValues: {
       username: "",
       password: "",
@@ -137,7 +138,7 @@ export default function Header({ authData, setAuthData }: HeaderProps) {
               </NavLink>
             )}
             {authData?.username && (
-              <NavLink onClick={() => setAuthData({ username: "" })} className={styles.linkItem} to="#">
+              <NavLink onClick={() => onLogout(setAuthData, navigate)} className={styles.linkItem} to="#">
                 <img className={styles.icon} src={logoutIcon} alt="shopping-cart" />
               </NavLink>
             )}
