@@ -1,5 +1,7 @@
 import logoutIcon from "images/icons/logout.png";
 import userIcon from "images/icons/user.png";
+import cartIcon from "images/icons/shoppingCart.png";
+
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -110,7 +112,7 @@ export default function Header({ authData, setAuthData, isSignInOpen, setIsSignI
               onMouseLeave={handleProductsLeave}
             >
               Products
-              <ProductsDropDown isProductsDropdownVisible={isProductsDropdownVisible} />
+              <ProductsDropDown isProductsDropdownVisible={isProductsDropdownVisible} authData={authData} />
             </NavLink>
 
             <NavLink className={({ isActive }) => cx(styles.linkItem, isActive && styles.active)} to={PATHS.ABOUT}>
@@ -135,14 +137,20 @@ export default function Header({ authData, setAuthData, isSignInOpen, setIsSignI
               </NavLink>
             )}
             {authData?.username && (
-              <NavLink className={styles.linkItem} to={PATHS.PROFILE}>
+              <NavLink className={({ isActive }) => cx(styles.linkItem, isActive && styles.active)} to={PATHS.PROFILE}>
                 <img className={styles.icon} src={userIcon} alt="user-icon" />
                 {authData?.username}
               </NavLink>
             )}
             {authData?.username && (
+              <NavLink className={({ isActive }) => cx(styles.linkItem, isActive && styles.active)} to={PATHS.CART}>
+                <img className={styles.icon} src={cartIcon} alt="cart-icon" />
+                {0}
+              </NavLink>
+            )}
+            {authData?.username && (
               <NavLink onClick={(event) => onLogout(event, setAuthData, navigate)} className={styles.linkItem} to="#">
-                <img className={styles.icon} src={logoutIcon} alt="shopping-cart" />
+                <img className={styles.icon} src={logoutIcon} alt="logout-icon" />
               </NavLink>
             )}
           </ul>
