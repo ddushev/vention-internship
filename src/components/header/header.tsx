@@ -18,11 +18,12 @@ import styles from "./header.module.scss";
 interface HeaderProps {
   authData: AuthData;
   setAuthData: Dispatch<SetStateAction<AuthData>>;
+  isSignInOpen: boolean;
+  setIsSignInOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function Header({ authData, setAuthData }: HeaderProps) {
+export default function Header({ authData, setAuthData, isSignInOpen, setIsSignInOpen }: HeaderProps) {
   const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const navigate = useNavigate();
 

@@ -18,12 +18,13 @@ function AppContainer() {
   const [authData, setAuthData] = useState<AuthData>({
     username: "",
   });
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
   return (
     // <StrictMode>
     <BrowserRouter>
       <ErrorBoundary>
         {/* Routes wrapped with default layout */}
-        <DefaultLayout authData={authData} setAuthData={setAuthData}>
+        <DefaultLayout authData={authData} setAuthData={setAuthData} isSignInOpen={isSignInOpen} setIsSignInOpen={setIsSignInOpen}>
           <Routes>
             <Route path={PATHS.HOME} element={<Home />} />
             <Route element={<UserRouteGuard authData={authData} />}>

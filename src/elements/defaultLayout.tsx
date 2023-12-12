@@ -9,13 +9,15 @@ interface DefaultLayoutProps {
   children: React.ReactNode;
   authData: AuthData;
   setAuthData: Dispatch<SetStateAction<AuthData>>;
+  isSignInOpen: boolean;
+  setIsSignInOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 // Define a layout component for routes with Header and Footer
-export default function DefaultLayout({ children, authData, setAuthData }: DefaultLayoutProps) {
+export default function DefaultLayout({ children, authData, setAuthData, isSignInOpen, setIsSignInOpen }: DefaultLayoutProps) {
   return (
     <>
-      <Header authData={authData} setAuthData={setAuthData} />
+      <Header authData={authData} setAuthData={setAuthData} isSignInOpen={isSignInOpen} setIsSignInOpen={setIsSignInOpen} />
       {children}
       <Footer />
     </>
