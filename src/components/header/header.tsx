@@ -25,7 +25,6 @@ export default function Header({ authData, setAuthData }: HeaderProps) {
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const navigate = useNavigate();
-  console.log(authData);
 
   useEffect(() => {
     if (authData) {
@@ -88,6 +87,7 @@ export default function Header({ authData, setAuthData }: HeaderProps) {
     }
     setIsSignUpOpen(true);
   };
+
   return (
     <>
       <header className={styles.headerContainer}>
@@ -138,7 +138,7 @@ export default function Header({ authData, setAuthData }: HeaderProps) {
               </NavLink>
             )}
             {authData?.username && (
-              <NavLink onClick={() => onLogout(setAuthData, navigate)} className={styles.linkItem} to="#">
+              <NavLink onClick={(event) => onLogout(event, setAuthData, navigate)} className={styles.linkItem} to="#">
                 <img className={styles.icon} src={logoutIcon} alt="shopping-cart" />
               </NavLink>
             )}
