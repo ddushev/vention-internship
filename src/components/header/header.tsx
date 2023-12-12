@@ -143,13 +143,13 @@ export default function Header({ authData, setAuthData, isSignInOpen, setIsSignI
               </NavLink>
             )}
             {authData?.username && (
-              <NavLink className={({ isActive }) => cx(styles.linkItem, isActive && styles.active)} to={PATHS.CART}>
+              <NavLink className={({ isActive }) => cx(styles.linkItem, styles.onlyIcon, isActive && styles.active)} to={PATHS.CART}>
                 <img className={styles.icon} src={cartIcon} alt="cart-icon" />
                 {0}
               </NavLink>
             )}
             {authData?.username && (
-              <NavLink onClick={(event) => onLogout(event, setAuthData, navigate)} className={styles.linkItem} to="#">
+              <NavLink onClick={(event) => onLogout(event, setAuthData, navigate)} className={cx(styles.linkItem, styles.onlyIcon)} to="#">
                 <img className={styles.icon} src={logoutIcon} alt="logout-icon" />
               </NavLink>
             )}
