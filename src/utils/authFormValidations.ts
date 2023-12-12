@@ -12,7 +12,7 @@ export function loginValidation(authFields: authFields) {
   }
 
   if (!/^[a-zA-Z0-9]{3,}$/.test(authFields.password)) {
-    errors.push("Password should be minimum 3 alphanumeric characters");
+    errors.push("Password should be minimum 3 alphanumeric characters!");
   }
 
   if (errors.length > 0) {
@@ -28,7 +28,7 @@ export function registerValidation(authFields: authFields) {
   }
 
   if (!/^[a-zA-Z0-9]{3,}$/.test(authFields.password)) {
-    errors.push("Password should be minimum 3 alphanumeric characters");
+    errors.push("Password should be minimum 3 alphanumeric characters!");
   }
 
   if (authFields.rePassword !== authFields.password) {
