@@ -20,9 +20,10 @@ interface HeaderProps {
   setAuthData: Dispatch<SetStateAction<AuthData>>;
   isSignInOpen: boolean;
   setIsSignInOpen: Dispatch<SetStateAction<boolean>>;
+  targetRoute: string;
 }
 
-export default function Header({ authData, setAuthData, isSignInOpen, setIsSignInOpen }: HeaderProps) {
+export default function Header({ authData, setAuthData, isSignInOpen, setIsSignInOpen, targetRoute }: HeaderProps) {
   const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const navigate = useNavigate();
@@ -45,6 +46,7 @@ export default function Header({ authData, setAuthData, isSignInOpen, setIsSignI
     },
     onSubmitHandler: onLoginSubmit,
     setAuthData,
+    targetRoute,
   });
 
   const {

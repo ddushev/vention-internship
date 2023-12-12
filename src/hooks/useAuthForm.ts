@@ -9,11 +9,17 @@ interface FormValues {
 
 interface UseFormProps {
   initialValues: FormValues;
-  onSubmitHandler: (values: FormValues, setUserData: Dispatch<SetStateAction<AuthData>>, navigate: NavigateFunction) => Promise<void>;
+  onSubmitHandler: (
+    values: FormValues,
+    setUserData: Dispatch<SetStateAction<AuthData>>,
+    navigate: NavigateFunction,
+    targetRoute: string,
+  ) => Promise<void>;
   setAuthData: Dispatch<SetStateAction<AuthData>>;
+  targetRoute?: string;
 }
 
-export default function useAuthForm({ initialValues, onSubmitHandler, setAuthData }: UseFormProps) {
+export default function useAuthForm({ initialValues, onSubmitHandler, setAuthData, targetRoute = "" }: UseFormProps) {
   const [values, setValues] = useState<FormValues>(initialValues);
   const navigate = useNavigate();
 
@@ -23,7 +29,7 @@ export default function useAuthForm({ initialValues, onSubmitHandler, setAuthDat
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    onSubmitHandler(values, setAuthData, navigate);
+    onSubmitHandler(values, setAuthData, navigate, targetRoute);
     setValues(initialValues);
   }
 

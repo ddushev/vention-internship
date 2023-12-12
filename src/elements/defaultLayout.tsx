@@ -11,13 +11,20 @@ interface DefaultLayoutProps {
   setAuthData: Dispatch<SetStateAction<AuthData>>;
   isSignInOpen: boolean;
   setIsSignInOpen: Dispatch<SetStateAction<boolean>>;
+  targetRoute: string;
 }
 
 // Define a layout component for routes with Header and Footer
-export default function DefaultLayout({ children, authData, setAuthData, isSignInOpen, setIsSignInOpen }: DefaultLayoutProps) {
+export default function DefaultLayout({ children, authData, setAuthData, isSignInOpen, setIsSignInOpen, targetRoute }: DefaultLayoutProps) {
   return (
     <>
-      <Header authData={authData} setAuthData={setAuthData} isSignInOpen={isSignInOpen} setIsSignInOpen={setIsSignInOpen} />
+      <Header
+        authData={authData}
+        setAuthData={setAuthData}
+        isSignInOpen={isSignInOpen}
+        setIsSignInOpen={setIsSignInOpen}
+        targetRoute={targetRoute}
+      />
       {children}
       <Footer />
     </>

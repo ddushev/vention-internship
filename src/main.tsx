@@ -19,15 +19,22 @@ function AppContainer() {
     username: "",
   });
   const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [targetRoute, setTargetRoute] = useState("");
   return (
     // <StrictMode>
     <BrowserRouter>
       <ErrorBoundary>
         {/* Routes wrapped with default layout */}
-        <DefaultLayout authData={authData} setAuthData={setAuthData} isSignInOpen={isSignInOpen} setIsSignInOpen={setIsSignInOpen}>
+        <DefaultLayout
+          authData={authData}
+          setAuthData={setAuthData}
+          isSignInOpen={isSignInOpen}
+          setIsSignInOpen={setIsSignInOpen}
+          targetRoute={targetRoute}
+        >
           <Routes>
             <Route path={PATHS.HOME} element={<Home />} />
-            <Route element={<UserRouteGuard authData={authData} setIsSignInOpen={setIsSignInOpen} />}>
+            <Route element={<UserRouteGuard authData={authData} setIsSignInOpen={setIsSignInOpen} setTargetRoute={setTargetRoute} />}>
               <Route path={PATHS.ABOUT} element={<Page title="About" />} />
               <Route path={`${PATHS.PRODUCTS}/:category`} element={<Page title="Products" />} />
               <Route path={PATHS.PROFILE} element={<Page title="Profile" />} />
