@@ -26,11 +26,16 @@ export async function onLoginSubmit({ username, password }: RequestParams, setAu
   }
 }
 
-export async function onRegisterSubmit({ username, password, rePassword }: RequestParams, setAuthData: Dispatch<SetStateAction<AuthData>>) {
+export async function onRegisterSubmit(
+  { username, password, rePassword }: RequestParams,
+  setAuthData: Dispatch<SetStateAction<AuthData>>,
+  navigate: NavigateFunction,
+) {
   try {
     registerValidation({ username, password, rePassword });
     const data = await api.update(apiEndpoints.registerMock, { username, password, rePassword });
     setAuthData(data);
+    navigate(PATHS.PROFILE);
   } catch (error) {
     console.error(error);
     if (Array.isArray(error)) {
