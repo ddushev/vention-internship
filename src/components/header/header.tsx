@@ -132,7 +132,7 @@ export default function Header({ authData, setAuthData }: HeaderProps) {
               </NavLink>
             )}
             {authData?.username && (
-              <NavLink className={styles.linkItem} to="#">
+              <NavLink className={styles.linkItem} to={PATHS.PROFILE}>
                 <img className={styles.icon} src={userIcon} alt="user-icon" />
                 {authData?.username}
               </NavLink>
