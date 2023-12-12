@@ -18,7 +18,11 @@ export async function onLoginSubmit({ username, password }: RequestParams, setAu
     setAuthData(data);
   } catch (error) {
     console.error(error);
-    alert(error);
+    if (Array.isArray(error)) {
+      alert(error.join("\n"));
+    } else {
+      alert(error);
+    }
   }
 }
 
@@ -29,7 +33,11 @@ export async function onRegisterSubmit({ username, password, rePassword }: Reque
     setAuthData(data);
   } catch (error) {
     console.error(error);
-    alert(error);
+    if (Array.isArray(error)) {
+      alert(error.join("\n"));
+    } else {
+      alert(error);
+    }
   }
 }
 
