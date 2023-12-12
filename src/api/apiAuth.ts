@@ -18,6 +18,7 @@ export async function onLoginSubmit({ username, password }: RequestParams, setAu
     setAuthData(data);
   } catch (error) {
     console.error(error);
+    alert(error);
   }
 }
 
@@ -28,6 +29,7 @@ export async function onRegisterSubmit({ username, password, rePassword }: Reque
     setAuthData(data);
   } catch (error) {
     console.error(error);
+    alert(error);
   }
 }
 
