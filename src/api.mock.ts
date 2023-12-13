@@ -8,7 +8,7 @@ const gamesMockData = [
     id: 1,
     name: "Battlefield",
     price: 30.99,
-    image: "https://raw.githubusercontent.com/ddushev/Vention/feat/home-page/src/publicMock/battlefield1.jpg",
+    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/battlefield1.jpg",
     rating: 5,
     platforms: ["pc"],
     minAge: 5,
@@ -20,7 +20,7 @@ const gamesMockData = [
     id: 2,
     name: "Counter-Strike",
     price: 29.99,
-    image: "https://raw.githubusercontent.com/ddushev/Vention/feat/home-page/src/publicMock/cs.jpg",
+    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/cs.jpg",
     rating: 5,
     platforms: ["pc"],
     minAge: 6,
@@ -32,7 +32,7 @@ const gamesMockData = [
     id: 3,
     name: "Genshin Impact",
     price: 13.99,
-    image: "https://raw.githubusercontent.com/ddushev/Vention/feat/home-page/src/publicMock/genshinimpact.jpg",
+    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/genshinimpact.jpg",
     rating: 5,
     platforms: ["pc"],
     minAge: 4,
@@ -44,7 +44,7 @@ const gamesMockData = [
     id: 4,
     name: "GTA",
     price: 18.99,
-    image: "https://raw.githubusercontent.com/ddushev/Vention/feat/home-page/src/publicMock/gta.jpg",
+    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/gta.jpg",
     rating: 5,
     platforms: ["pc"],
     minAge: 8,
@@ -56,7 +56,7 @@ const gamesMockData = [
     id: 5,
     name: "Minecraft",
     price: 25.99,
-    image: "https://raw.githubusercontent.com/ddushev/Vention/feat/home-page/src/publicMock/minecraft.jpg",
+    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/minecraft.jpg",
     rating: 5,
     platforms: ["pc", "ps5", "xbox"],
     minAge: 3,
@@ -68,7 +68,7 @@ const gamesMockData = [
     id: 6,
     name: "Overwatch",
     price: 23.99,
-    image: "https://raw.githubusercontent.com/ddushev/Vention/feat/home-page/src/publicMock/overwatch.jpg",
+    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/overwatch.jpg",
     rating: 4,
     platforms: ["pc"],
     minAge: 5,
@@ -80,7 +80,7 @@ const gamesMockData = [
     id: 7,
     name: "Sims 4",
     price: 30.99,
-    image: "https://raw.githubusercontent.com/ddushev/Vention/feat/home-page/src/publicMock/sims4.jpg",
+    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/sims4.jpg",
     rating: 5,
     platforms: ["pc"],
     minAge: 2,
@@ -92,7 +92,7 @@ const gamesMockData = [
     id: 8,
     name: "Terraria",
     price: 4.99,
-    image: "https://raw.githubusercontent.com/ddushev/Vention/feat/home-page/src/publicMock/terraria.jpg",
+    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/terraria.jpg",
     rating: 3,
     platforms: ["pc", "ps5", "xbox"],
     minAge: 4,
@@ -102,7 +102,20 @@ const gamesMockData = [
   },
 ];
 
-export default webpackMockServer.add((app) => {
+const userMockData = [
+  {
+    id: 1,
+    username: "ddushev",
+    password: "123",
+  },
+  {
+    id: 2,
+    username: "ddushev2",
+    password: "qwe",
+  },
+];
+
+export default webpackMockServer.add((app, helper) => {
   app.get(apiEndpoints.searchMock, (_req, res) => {
     const searchText = (_req.query.text as string).toLowerCase();
     const matchingProducts = gamesMockData.filter((game) => game.name.toLowerCase().includes(searchText));
@@ -112,5 +125,42 @@ export default webpackMockServer.add((app) => {
   app.get(apiEndpoints.topGamesMock, (_req, res) => {
     const top3RecentlyAddedGames = gamesMockData.sort((a, b) => b.addDate.getTime() - a.addDate.getTime()).slice(0, 3);
     res.json(top3RecentlyAddedGames);
+  });
+
+  app.post(apiEndpoints.loginMock, (_req, res) => {
+    const { username, password } = _req.body;
+    let isAuthenticated = false;
+
+    userMockData.forEach((user) => {
+      if (user.username === username.toLowerCase() && user.password === password) {
+        isAuthenticated = true;
+        res.status(201).json({ username: user.username });
+      }
+    });
+
+    if (!isAuthenticated) {
+      res.status(400).json("Login failed: Username and/or password don't match!");
+    }
+  });
+
+  app.put(apiEndpoints.registerMock, (_req, res) => {
+    const { username, password, rePassword } = _req.body;
+    if (userMockData.some((user) => user.username === username.toLowerCase())) {
+      res.status(400).json("Register failed: Username already exists!");
+      return;
+    }
+
+    if (password !== rePassword) {
+      res.status(400).json("Register failed: Passwords must match!");
+      return;
+    }
+    const user = {
+      id: helper.getUniqueIdInt(),
+      username: username.toLowerCase(),
+      password,
+    };
+
+    userMockData.push(user);
+    res.status(200).json({ username: user.username });
   });
 });
