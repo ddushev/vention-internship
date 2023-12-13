@@ -1,0 +1,15 @@
+.inputContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+
+  .input {
+    width: 250px;
+    height: 40px;
+    padding: 5px;
+    border-color: #fff;
+    background-color: $backgroundColor;
+    color: $whitTextColor;
+  }
+}
