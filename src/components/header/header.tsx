@@ -2,14 +2,14 @@ import logoutIcon from "images/icons/logout.png";
 import userIcon from "images/icons/user.png";
 import cartIcon from "images/icons/shoppingCart.png";
 
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
+import { onLoginSubmit, onRegisterSubmit, onLogout } from "@/api/apiAuth";
+import { AuthData, AuthState } from "@/types";
 import cx from "classnames";
-import { AuthData } from "@/types";
 import Input from "@/elements/input/input";
 import PATHS from "@/utils/paths";
-import { onLoginSubmit, onRegisterSubmit, onLogout } from "@/api/apiAuth";
 import useAuthForm from "../../hooks/useAuthForm";
 
 import ProductsDropDown from "./productsDropDown/productsDropDown";
@@ -18,24 +18,25 @@ import Modal from "../modal/modal";
 import styles from "./header.module.scss";
 
 interface HeaderProps {
-  authData: AuthData;
-  setAuthData: Dispatch<SetStateAction<AuthData>>;
-  isSignInOpen: boolean;
-  setIsSignInOpen: Dispatch<SetStateAction<boolean>>;
-  targetRoute: string;
+  onAuthUser: (newState: AuthState) => void;
 }
 
-export default function Header({ authData, setAuthData, isSignInOpen, setIsSignInOpen, targetRoute }: HeaderProps) {
+export default function Header({ onAuthUser }: HeaderProps) {
+  const [authData, setAuthData] = useState<AuthData>({
+    username: "",
+  });
   const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (authData) {
+    if (authData?.username) {
       setIsSignInOpen(false);
       setIsSignUpOpen(false);
     }
-  }, [authData]);
+    onAuthUser({ authData, setIsSignInOpen });
+  }, [authData, isSignInOpen]);
 
   const {
     values: loginValues,
@@ -48,7 +49,6 @@ export default function Header({ authData, setAuthData, isSignInOpen, setIsSignI
     },
     onSubmitHandler: onLoginSubmit,
     setAuthData,
-    targetRoute,
   });
 
   const {
@@ -93,6 +93,12 @@ export default function Header({ authData, setAuthData, isSignInOpen, setIsSignI
     setIsSignUpOpen(true);
   };
 
+  const handleSignInModalClose = () => {
+    setIsSignInOpen(false);
+    if (!authData.username) {
+      navigate(PATHS.HOME);
+    }
+  };
   return (
     <>
       <header className={styles.headerContainer}>
@@ -156,7 +162,7 @@ export default function Header({ authData, setAuthData, isSignInOpen, setIsSignI
           </ul>
         </nav>
       </header>
-      <Modal title="Authorization" isOpen={isSignInOpen} onClose={() => setIsSignInOpen(false)} onSubmit={onLoginSubmitHandler}>
+      <Modal title="Authorization" isOpen={isSignInOpen} onClose={handleSignInModalClose} onSubmit={onLoginSubmitHandler}>
         <Input label="Login" type="text" id="username" name="username" values={loginValues} onInputChange={onLoginInputChange} />
         <Input label="Password" type="password" id="password" name="password" values={loginValues} onInputChange={onLoginInputChange} />
       </Modal>

@@ -5,36 +5,34 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 
 import PATHS from "./utils/paths";
+import { AuthState } from "./types";
 
 import ErrorBoundary from "./components/error/errorBoundary/errorBoundary";
 import DefaultLayout from "./elements/defaultLayout";
 import Page from "./elements/page/page";
 import Home from "./components/home/home";
 import ErrorPage from "./components/error/errorPage/errorPage";
-import { AuthData } from "./types";
 import UserRouteGuard from "./components/guards/userRouteGuard";
 
 function AppContainer() {
-  const [authData, setAuthData] = useState<AuthData>({
-    username: "",
+  const [authState, setAuthState] = useState<AuthState>({
+    authData: {
+      username: "",
+    },
+    setIsSignInOpen: () => {},
   });
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
-  const [targetRoute, setTargetRoute] = useState("");
+  const onAuthUser = (newState: AuthState) => {
+    setAuthState(newState);
+  };
   return (
     // <StrictMode>
     <BrowserRouter>
       <ErrorBoundary>
         {/* Routes wrapped with default layout */}
-        <DefaultLayout
-          authData={authData}
-          setAuthData={setAuthData}
-          isSignInOpen={isSignInOpen}
-          setIsSignInOpen={setIsSignInOpen}
-          targetRoute={targetRoute}
-        >
+        <DefaultLayout onAuthUser={onAuthUser}>
           <Routes>
             <Route path={PATHS.HOME} element={<Home />} />
-            <Route element={<UserRouteGuard authData={authData} setIsSignInOpen={setIsSignInOpen} setTargetRoute={setTargetRoute} />}>
+            <Route element={<UserRouteGuard authState={authState} />}>
               <Route path={PATHS.ABOUT} element={<Page title="About" />} />
               <Route path={`${PATHS.PRODUCTS}/:category`} element={<Page title="Products" />} />
               <Route path={PATHS.PROFILE} element={<Page title="Profile" />} />

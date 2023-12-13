@@ -11,17 +11,11 @@ interface RequestParams {
   [key: string]: string;
 }
 
-export async function onLoginSubmit(
-  { username, password }: RequestParams,
-  setAuthData: Dispatch<SetStateAction<AuthData>>,
-  navigate: NavigateFunction,
-  targetRoute: string,
-) {
+export async function onLoginSubmit({ username, password }: RequestParams, setAuthData: Dispatch<SetStateAction<AuthData>>) {
   try {
     loginValidation({ username, password });
     const data = await api.post(apiEndpoints.loginMock, { username, password });
     setAuthData(data);
-    navigate(targetRoute);
   } catch (error) {
     console.error(error);
     if (Array.isArray(error)) {

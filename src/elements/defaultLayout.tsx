@@ -1,30 +1,18 @@
-import { Dispatch, SetStateAction } from "react";
-
-import { AuthData } from "@/types";
+import { AuthState } from "@/types";
 
 import Footer from "@/components/footer";
 import Header from "@/components/header/header";
 
 interface DefaultLayoutProps {
   children: React.ReactNode;
-  authData: AuthData;
-  setAuthData: Dispatch<SetStateAction<AuthData>>;
-  isSignInOpen: boolean;
-  setIsSignInOpen: Dispatch<SetStateAction<boolean>>;
-  targetRoute: string;
+  onAuthUser: (newState: AuthState) => void;
 }
 
 // Define a layout component for routes with Header and Footer
-export default function DefaultLayout({ children, authData, setAuthData, isSignInOpen, setIsSignInOpen, targetRoute }: DefaultLayoutProps) {
+export default function DefaultLayout({ children, onAuthUser }: DefaultLayoutProps) {
   return (
     <>
-      <Header
-        authData={authData}
-        setAuthData={setAuthData}
-        isSignInOpen={isSignInOpen}
-        setIsSignInOpen={setIsSignInOpen}
-        targetRoute={targetRoute}
-      />
+      <Header onAuthUser={onAuthUser} />
       {children}
       <Footer />
     </>
