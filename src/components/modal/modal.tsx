@@ -19,7 +19,7 @@ export default function Modal({ title, isOpen, onClose, children, onSubmit }: Mo
   return createPortal(
     <div className={styles.modalContainer}>
       <div className={styles.modalHeader}>
-        <h3 className={styles.modalTitle}>{title}</h3>
+        <h2 className={styles.modalTitle}>{title}</h2>
         <button className={styles.closeBtn} onClick={onClose} type="button">
           <img className={styles.closeIcon} src={closeIcon} alt="close-icon" />
         </button>
