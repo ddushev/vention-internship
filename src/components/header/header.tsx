@@ -99,6 +99,10 @@ export default function Header({ onAuthUser }: HeaderProps) {
       navigate(PATHS.HOME);
     }
   };
+
+  const handleSignUpModalClose = () => {
+    setIsSignUpOpen(false);
+  };
   return (
     <>
       <header className={styles.headerContainer}>
@@ -166,7 +170,7 @@ export default function Header({ onAuthUser }: HeaderProps) {
         <Input label="Login" type="text" id="username" name="username" values={loginValues} onInputChange={onLoginInputChange} />
         <Input label="Password" type="password" id="password" name="password" values={loginValues} onInputChange={onLoginInputChange} />
       </Modal>
-      <Modal title="Registration" isOpen={isSignUpOpen} onClose={() => setIsSignUpOpen(false)} onSubmit={onRegisterSubmitHandler}>
+      <Modal title="Registration" isOpen={isSignUpOpen} onClose={handleSignUpModalClose} onSubmit={onRegisterSubmitHandler}>
         <Input label="Login" type="text" id="username" name="username" values={registerValues} onInputChange={onRegisterInputChange} />
         <Input
           label="Password"
