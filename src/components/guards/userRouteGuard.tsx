@@ -1,13 +1,10 @@
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
-import { AuthState } from "@/types";
+import { useAuthContext } from "@/contexts/authContext";
 
-interface UserRouteGuardProps {
-  authState: AuthState;
-}
-
-export default function UserRouteGuard({ authState }: UserRouteGuardProps) {
+export default function UserRouteGuard() {
+  const { authState } = useAuthContext();
   useEffect(() => {
     if (!authState?.authData?.username) {
       authState?.setIsSignInOpen(true);

@@ -5,8 +5,9 @@ import cartIcon from "images/icons/shoppingCart.png";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
+import { useAuthContext } from "@/contexts/authContext";
 import { onLoginSubmit, onRegisterSubmit, onLogout } from "@/api/apiAuth";
-import { AuthData, AuthState } from "@/types";
+import { AuthData } from "@/types";
 import cx from "classnames";
 import Input from "@/elements/input/input";
 import PATHS from "@/utils/paths";
@@ -17,11 +18,8 @@ import Modal from "../modal/modal";
 
 import styles from "./header.module.scss";
 
-interface HeaderProps {
-  onAuthUser: (newState: AuthState) => void;
-}
-
-export default function Header({ onAuthUser }: HeaderProps) {
+export default function Header() {
+  const { setAuthState } = useAuthContext();
   const [authData, setAuthData] = useState<AuthData>({
     username: "",
   });
@@ -35,7 +33,7 @@ export default function Header({ onAuthUser }: HeaderProps) {
       setIsSignInOpen(false);
       setIsSignUpOpen(false);
     }
-    onAuthUser({ authData, setIsSignInOpen });
+    setAuthState({ authData, setIsSignInOpen });
   }, [authData, isSignInOpen]);
 
   const {
