@@ -31,4 +31,4 @@ export default function AuthContextProvider({ children }: AuthContextProps) {
   return <AuthContext.Provider value={context}>{children}</AuthContext.Provider>;
 }
 
-export const useAuthContext = (): AuthContextValue => useContext(AuthContext);
+export const useAuthContext = () => useContext(AuthContext);
