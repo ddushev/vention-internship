@@ -1,15 +1,25 @@
 import { createContext, useContext, useMemo, useState } from "react";
 
+import { AuthState } from "@/types";
+
 interface AuthContextProps {
   children: React.ReactNode;
 }
 
-export const AuthContext = createContext({});
+interface AuthContextValue {
+  authState: AuthState | undefined;
+  setAuthState: React.Dispatch<React.SetStateAction<AuthState | undefined>>;
+}
+
+export const AuthContext = createContext<AuthContextValue>({
+  authState: undefined,
+  setAuthState: () => {},
+});
 
 AuthContext.displayName = "AuthContext";
 
 export default function AuthContextProvider({ children }: AuthContextProps) {
-  const [authState, setAuthState] = useState();
+  const [authState, setAuthState] = useState<AuthState>();
 
   const context = useMemo(
     () => ({
@@ -21,4 +31,4 @@ export default function AuthContextProvider({ children }: AuthContextProps) {
   return <AuthContext.Provider value={context}>{children}</AuthContext.Provider>;
 }
 
-export const useAuthContext = () => useContext(AuthContext);
+export const useAuthContext = (): AuthContextValue => useContext(AuthContext);
