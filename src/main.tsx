@@ -2,7 +2,9 @@ import "./styles/main.scss";
 // watch: native intellisense and file-peek for aliases from jsconfig.json and with none-js files doesn't work: https://github.com/microsoft/TypeScript/issues/29334
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 
+import store from "./app/store";
 import PATHS from "./utils/paths";
 
 import AuthContextProvider from "./contexts/authContext";
@@ -42,5 +44,9 @@ function AppContainer() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("app")!).render(<AppContainer />);
+ReactDOM.createRoot(document.getElementById("app")!).render(
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>,
+);
 // React + TS: https://github.com/typescript-cheatsheets/react#reacttypescript-cheatsheets
