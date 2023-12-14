@@ -29,6 +29,7 @@ module.exports = {
   },
   plugins: ["json", "prettier", "import", "@typescript-eslint", "unused-imports", "css-modules", "jsx-a11y"],
   rules: {
+    "no-param-reassign": "off",
     "jsx-a11y/label-has-associated-control": [
       "error",
       {
