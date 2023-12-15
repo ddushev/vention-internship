@@ -15,7 +15,7 @@ import PATHS from "@/utils/paths";
 import useAuthForm from "../../hooks/useAuthForm";
 
 import ProductsDropDown from "./productsDropDown/productsDropDown";
-import Modal from "../modal/modal";
+import Modal from "../../elements/modal/modal";
 
 import styles from "./header.module.scss";
 
