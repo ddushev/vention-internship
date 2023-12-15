@@ -4,10 +4,9 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 
-import store from "./app/store";
+import { store } from "./redux/store";
 import PATHS from "./utils/paths";
 
-import AuthContextProvider from "./contexts/authContext";
 import ErrorBoundary from "./components/error/errorBoundary/errorBoundary";
 import DefaultLayout from "./elements/defaultLayout";
 import Page from "./elements/page/page";
@@ -19,26 +18,24 @@ function AppContainer() {
   return (
     // <StrictMode>
     <BrowserRouter>
-      <AuthContextProvider>
-        <ErrorBoundary>
-          {/* Routes wrapped with default layout */}
-          <DefaultLayout>
-            <Routes>
-              <Route path={PATHS.HOME} element={<Home />} />
-              <Route element={<UserRouteGuard />}>
-                <Route path={PATHS.ABOUT} element={<Page title="About" />} />
-                <Route path={`${PATHS.PRODUCTS}/:category`} element={<Page title="Products" />} />
-                <Route path={PATHS.PROFILE} element={<Page title="Profile" />} />
-                <Route path={PATHS.CART} element={<Page title="Cart" />} />
-              </Route>
-              <Route path={PATHS.SIGN_IN} element={<Page title="Sign In" />} />
-              <Route path={PATHS.SIGN_UP} element={<Page title="Sign Up" />} />
-              <Route path={PATHS.ERROR} element={<ErrorPage onResetError={() => {}} />} />
-              <Route path="*" element={<Navigate to={PATHS.HOME} />} />
-            </Routes>
-          </DefaultLayout>
-        </ErrorBoundary>
-      </AuthContextProvider>
+      <ErrorBoundary>
+        {/* Routes wrapped with default layout */}
+        <DefaultLayout>
+          <Routes>
+            <Route path={PATHS.HOME} element={<Home />} />
+            <Route element={<UserRouteGuard />}>
+              <Route path={PATHS.ABOUT} element={<Page title="About" />} />
+              <Route path={`${PATHS.PRODUCTS}/:category`} element={<Page title="Products" />} />
+              <Route path={PATHS.PROFILE} element={<Page title="Profile" />} />
+              <Route path={PATHS.CART} element={<Page title="Cart" />} />
+            </Route>
+            <Route path={PATHS.SIGN_IN} element={<Page title="Sign In" />} />
+            <Route path={PATHS.SIGN_UP} element={<Page title="Sign Up" />} />
+            <Route path={PATHS.ERROR} element={<ErrorPage onResetError={() => {}} />} />
+            <Route path="*" element={<Navigate to={PATHS.HOME} />} />
+          </Routes>
+        </DefaultLayout>
+      </ErrorBoundary>
     </BrowserRouter>
     // </StrictMode>
   );
