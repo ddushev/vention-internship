@@ -19,7 +19,7 @@ export default function SignInModal({ isSignInOpen, setIsSignInOpen, authData }:
   const navigate = useNavigate();
   const handleSignInModalClose = () => {
     setIsSignInOpen(false);
-    if (!authData.username) {
+    if (!authData?.username) {
       navigate(PATHS.HOME);
     }
   };
