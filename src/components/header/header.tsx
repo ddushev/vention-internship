@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { onLoginSubmit, onRegisterSubmit, onLogout } from "@/api/apiAuth";
-import { AuthData } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setAuthState, setIsSignInOpen } from "@/redux/authSlice";
+import { AuthData } from "@/types";
 import cx from "classnames";
 import Input from "@/elements/input/input";
 import PATHS from "@/utils/paths";
@@ -21,10 +21,12 @@ import styles from "./header.module.scss";
 
 export default function Header() {
   const dispatch = useAppDispatch();
+  const dispatchSetAuthState = (data: AuthData) => {
+    dispatch(setAuthState(data));
+  };
   const isSignInOpen = useAppSelector((state) => state.authReduxState.isSignInOpen);
-  const [authData, setAuthData] = useState<AuthData>({
-    username: "",
-  });
+  const authData = useAppSelector((state) => state.authReduxState.authData);
+
   const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const navigate = useNavigate();
@@ -47,7 +49,6 @@ export default function Header() {
       password: "",
     },
     onSubmitHandler: onLoginSubmit,
-    setAuthData,
   });
 
   const {
@@ -61,7 +62,6 @@ export default function Header() {
       rePassword: "",
     },
     onSubmitHandler: onRegisterSubmit,
-    setAuthData,
   });
 
   const handleProductsHover = () => {
@@ -158,7 +158,11 @@ export default function Header() {
               </NavLink>
             )}
             {authData?.username && (
-              <NavLink onClick={(event) => onLogout(event, setAuthData, navigate)} className={cx(styles.linkItem, styles.onlyIcon)} to="#">
+              <NavLink
+                onClick={(event) => onLogout(event, dispatchSetAuthState, navigate)}
+                className={cx(styles.linkItem, styles.onlyIcon)}
+                to="#"
+              >
                 <img className={styles.icon} src={logoutIcon} alt="logout-icon" />
               </NavLink>
             )}
