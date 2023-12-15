@@ -1,17 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 
-import { setIsSignInOpen } from "@/redux/authSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "@/redux/hooks";
+
+import SignInModal from "@/elements/modal/signInModal";
 
 export default function UserRouteGuard() {
-  const dispatch = useAppDispatch();
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
   const authData = useAppSelector((state) => state.authReduxState.authData);
+
   useEffect(() => {
     if (!authData?.username) {
-      dispatch(setIsSignInOpen(true));
+      setIsSignInOpen(true);
+    } else {
+      setIsSignInOpen(false);
     }
   }, [authData]);
 
-  return <Outlet />;
+  return (
+    <>
+      <SignInModal isSignInOpen={isSignInOpen} setIsSignInOpen={setIsSignInOpen} authData={authData} />
+      <Outlet />
+    </>
+  );
 }
