@@ -5,18 +5,16 @@ import cartIcon from "images/icons/shoppingCart.png";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-import { onRegisterSubmit, onLogout } from "@/api/apiAuth";
+import { onLogout } from "@/api/apiAuth";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setAuthState, setIsSignUpOpen } from "@/redux/authSlice";
+import { setAuthState } from "@/redux/authSlice";
 import { AuthData } from "@/types";
 import cx from "classnames";
-import Input from "@/elements/input/input";
 import PATHS from "@/utils/paths";
 import SignInModal from "@/elements/modal/signInModal";
-import useAuthForm from "../../hooks/useAuthForm";
+import SignUpModal from "@/elements/modal/signUpModal";
 
 import ProductsDropDown from "./productsDropDown/productsDropDown";
-import Modal from "../../elements/modal/modal";
 
 import styles from "./header.module.scss";
 
@@ -25,10 +23,10 @@ export default function Header() {
   const dispatchSetAuthState = (data: AuthData) => {
     dispatch(setAuthState(data));
   };
-  const isSignUpOpen = useAppSelector((state) => state.authReduxState.isSignUpOpen);
   const authData = useAppSelector((state) => state.authReduxState.authData);
 
   const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
 
   const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
   const navigate = useNavigate();
@@ -36,23 +34,10 @@ export default function Header() {
   useEffect(() => {
     if (authData?.username) {
       setIsSignInOpen(false);
-      dispatch(setIsSignUpOpen(false));
+      setIsSignUpOpen(false);
     }
     dispatch(setAuthState(authData));
   }, [authData, isSignInOpen]);
-
-  const {
-    values: registerValues,
-    onChangeHandler: onRegisterInputChange,
-    onSubmit: onRegisterSubmitHandler,
-  } = useAuthForm({
-    initialValues: {
-      username: "",
-      password: "",
-      rePassword: "",
-    },
-    onSubmitHandler: onRegisterSubmit,
-  });
 
   const handleProductsHover = () => {
     setIsProductsDropdownVisible(true);
@@ -69,7 +54,7 @@ export default function Header() {
   const handleSignInClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     if (isSignUpOpen) {
-      dispatch(setIsSignUpOpen(false));
+      setIsSignUpOpen(false);
     }
     setIsSignInOpen(true);
   };
@@ -79,12 +64,9 @@ export default function Header() {
     if (isSignInOpen) {
       setIsSignInOpen(false);
     }
-    dispatch(setIsSignUpOpen(true));
+    setIsSignUpOpen(true);
   };
 
-  const handleSignUpModalClose = () => {
-    dispatch(setIsSignUpOpen(false));
-  };
   return (
     <>
       <header className={styles.headerContainer}>
@@ -153,26 +135,7 @@ export default function Header() {
         </nav>
       </header>
       <SignInModal isSignInOpen={isSignInOpen} setIsSignInOpen={setIsSignInOpen} authData={authData} />
-
-      <Modal title="Registration" isOpen={isSignUpOpen} onClose={handleSignUpModalClose} onSubmit={onRegisterSubmitHandler}>
-        <Input label="Login" type="text" id="username" name="username" values={registerValues} onInputChange={onRegisterInputChange} />
-        <Input
-          label="Password"
-          type="password"
-          id="password"
-          name="password"
-          values={registerValues}
-          onInputChange={onRegisterInputChange}
-        />
-        <Input
-          label="Repeat Password"
-          type="password"
-          id="rePassword"
-          name="rePassword"
-          values={registerValues}
-          onInputChange={onRegisterInputChange}
-        />
-      </Modal>
+      <SignUpModal isSignUpOpen={isSignUpOpen} setIsSignUpOpen={setIsSignUpOpen} />
     </>
   );
 }
