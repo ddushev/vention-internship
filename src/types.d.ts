@@ -11,6 +11,4 @@ export interface AuthState {
 
 export interface AuthReduxState {
   authData: AuthData;
-  isSignInOpen: boolean;
-  isSignUpOpen: boolean;
 }
