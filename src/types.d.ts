@@ -8,3 +8,8 @@ export interface AuthState {
   authData: AuthData;
   setIsSignInOpen: Dispatch<SetStateAction<boolean>>;
 }
+
+export interface AuthReduxState {
+  authData: AuthData;
+  isSignInOpen: boolean;
+}

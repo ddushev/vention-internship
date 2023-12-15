@@ -1,10 +1,5 @@
-import { AuthData } from "@/types";
+import { AuthData, AuthReduxState } from "@/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-
-interface AuthReduxState {
-  authData: AuthData;
-  isSignInOpen: boolean;
-}
 
 const initialState: AuthReduxState = {
   authData: {
