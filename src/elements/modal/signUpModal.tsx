@@ -29,9 +29,17 @@ export default function SignUpModal({ isSignUpOpen, setIsSignUpOpen }: SignUpMod
   });
 
   return (
-    <Modal title="Authorization" isOpen={isSignUpOpen} onClose={handleSignInModalClose} onSubmit={onRegisterSubmitHandler}>
+    <Modal title="Registration" isOpen={isSignUpOpen} onClose={handleSignInModalClose} onSubmit={onRegisterSubmitHandler}>
       <Input label="Login" type="text" id="username" name="username" values={registerValues} onInputChange={onRegisterInputChange} />
       <Input label="Password" type="password" id="password" name="password" values={registerValues} onInputChange={onRegisterInputChange} />
+      <Input
+        label="Password"
+        type="password"
+        id="rePassword"
+        name="rePassword"
+        values={registerValues}
+        onInputChange={onRegisterInputChange}
+      />
     </Modal>
   );
 }
