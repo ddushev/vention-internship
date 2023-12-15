@@ -5,9 +5,10 @@ import cartIcon from "images/icons/shoppingCart.png";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-import { useAuthContext } from "@/contexts/authContext";
 import { onLoginSubmit, onRegisterSubmit, onLogout } from "@/api/apiAuth";
 import { AuthData } from "@/types";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { setAuthState, setIsSignInOpen } from "@/redux/authSlice";
 import cx from "classnames";
 import Input from "@/elements/input/input";
 import PATHS from "@/utils/paths";
@@ -19,21 +20,21 @@ import Modal from "../modal/modal";
 import styles from "./header.module.scss";
 
 export default function Header() {
-  const { setAuthState } = useAuthContext();
+  const dispatch = useAppDispatch();
+  const isSignInOpen = useAppSelector((state) => state.authReduxState.isSignInOpen);
   const [authData, setAuthData] = useState<AuthData>({
     username: "",
   });
   const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (authData?.username) {
-      setIsSignInOpen(false);
+      dispatch(setIsSignInOpen(false));
       setIsSignUpOpen(false);
     }
-    setAuthState({ authData, setIsSignInOpen });
+    dispatch(setAuthState(authData));
   }, [authData, isSignInOpen]);
 
   const {
@@ -80,19 +81,19 @@ export default function Header() {
     if (isSignUpOpen) {
       setIsSignUpOpen(false);
     }
-    setIsSignInOpen(true);
+    dispatch(setIsSignInOpen(true));
   };
 
   const handleSignUpClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     if (isSignInOpen) {
-      setIsSignInOpen(false);
+      dispatch(setIsSignInOpen(false));
     }
     setIsSignUpOpen(true);
   };
 
   const handleSignInModalClose = () => {
-    setIsSignInOpen(false);
+    dispatch(setIsSignInOpen(false));
     if (!authData.username) {
       navigate(PATHS.HOME);
     }

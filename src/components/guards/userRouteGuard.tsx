@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
-import { useAuthContext } from "@/contexts/authContext";
+import { setIsSignInOpen } from "@/redux/authSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 export default function UserRouteGuard() {
-  const { authState } = useAuthContext();
+  const dispatch = useAppDispatch();
+  const authData = useAppSelector((state) => state.authReduxState.authData);
   useEffect(() => {
-    if (!authState?.authData?.username) {
-      authState?.setIsSignInOpen(true);
+    if (!authData?.username) {
+      dispatch(setIsSignInOpen(true));
     }
-  }, [authState]);
+  }, [authData]);
 
   return <Outlet />;
 }
