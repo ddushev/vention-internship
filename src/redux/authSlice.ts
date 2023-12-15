@@ -1,19 +1,18 @@
-import { AuthData, AuthReduxState } from "@/types";
+import { AuthData } from "@/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-const initialState: AuthReduxState = {
-  authData: {
-    username: "",
-  },
+const initialState: AuthData = {
+  username: "",
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setAuthState: (state, action: PayloadAction<AuthData>) => {
-      state.authData = action.payload;
-    },
+    setAuthState: (state, action: PayloadAction<AuthData>) => ({
+      ...state,
+      ...action.payload,
+    }),
   },
 });
 

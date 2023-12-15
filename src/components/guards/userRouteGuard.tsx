@@ -7,7 +7,7 @@ import SignInModal from "@/elements/modal/signInModal";
 
 export default function UserRouteGuard() {
   const [isSignInOpen, setIsSignInOpen] = useState(false);
-  const authData = useAppSelector((state) => state.authReduxState.authData);
+  const authData = useAppSelector((state) => state.authReduxState);
 
   useEffect(() => {
     if (!authData?.username) {

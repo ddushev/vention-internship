@@ -23,21 +23,19 @@ export default function Header() {
   const dispatchSetAuthState = (data: AuthData) => {
     dispatch(setAuthState(data));
   };
-  const authData = useAppSelector((state) => state.authReduxState.authData);
+  const authData = useAppSelector((state) => state.authReduxState);
 
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
 
   const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
   const navigate = useNavigate();
-
   useEffect(() => {
     if (authData?.username) {
       setIsSignInOpen(false);
       setIsSignUpOpen(false);
     }
-    dispatch(setAuthState(authData));
-  }, [authData, isSignInOpen]);
+  }, [authData]);
 
   const handleProductsHover = () => {
     setIsProductsDropdownVisible(true);
