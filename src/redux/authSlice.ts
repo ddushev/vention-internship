@@ -6,6 +6,7 @@ const initialState: AuthReduxState = {
     username: "",
   },
   isSignInOpen: false,
+  isSignUpOpen: false,
 };
 
 export const authSlice = createSlice({
@@ -18,9 +19,12 @@ export const authSlice = createSlice({
     setIsSignInOpen: (state, action: PayloadAction<boolean>) => {
       state.isSignInOpen = action.payload;
     },
+    setIsSignUpOpen: (state, action: PayloadAction<boolean>) => {
+      state.isSignUpOpen = action.payload;
+    },
   },
 });
 
-export const { setAuthState, setIsSignInOpen } = authSlice.actions;
+export const { setAuthState, setIsSignInOpen, setIsSignUpOpen } = authSlice.actions;
 
 export default authSlice.reducer;

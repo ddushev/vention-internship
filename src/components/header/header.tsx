@@ -7,7 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import { onLoginSubmit, onRegisterSubmit, onLogout } from "@/api/apiAuth";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setAuthState, setIsSignInOpen } from "@/redux/authSlice";
+import { setAuthState, setIsSignInOpen, setIsSignUpOpen } from "@/redux/authSlice";
 import { AuthData } from "@/types";
 import cx from "classnames";
 import Input from "@/elements/input/input";
@@ -25,16 +25,16 @@ export default function Header() {
     dispatch(setAuthState(data));
   };
   const isSignInOpen = useAppSelector((state) => state.authReduxState.isSignInOpen);
+  const isSignUpOpen = useAppSelector((state) => state.authReduxState.isSignUpOpen);
   const authData = useAppSelector((state) => state.authReduxState.authData);
 
   const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (authData?.username) {
       dispatch(setIsSignInOpen(false));
-      setIsSignUpOpen(false);
+      dispatch(setIsSignUpOpen(false));
     }
     dispatch(setAuthState(authData));
   }, [authData, isSignInOpen]);
@@ -79,7 +79,7 @@ export default function Header() {
   const handleSignInClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     if (isSignUpOpen) {
-      setIsSignUpOpen(false);
+      dispatch(setIsSignUpOpen(false));
     }
     dispatch(setIsSignInOpen(true));
   };
@@ -89,7 +89,7 @@ export default function Header() {
     if (isSignInOpen) {
       dispatch(setIsSignInOpen(false));
     }
-    setIsSignUpOpen(true);
+    dispatch(setIsSignUpOpen(true));
   };
 
   const handleSignInModalClose = () => {
@@ -100,7 +100,7 @@ export default function Header() {
   };
 
   const handleSignUpModalClose = () => {
-    setIsSignUpOpen(false);
+    dispatch(setIsSignUpOpen(false));
   };
   return (
     <>
