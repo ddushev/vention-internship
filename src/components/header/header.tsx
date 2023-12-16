@@ -11,8 +11,8 @@ import { setAuthState } from "@/redux/authSlice";
 import { AuthData } from "@/types";
 import cx from "classnames";
 import PATHS from "@/utils/paths";
-import SignInModal from "@/elements/modal/signInModal";
-import SignUpModal from "@/elements/modal/signUpModal";
+import SignInModal from "@/components/account/signInModal";
+import SignUpModal from "@/components/account/signUpModal";
 
 import ProductsDropDown from "./productsDropDown/productsDropDown";
 

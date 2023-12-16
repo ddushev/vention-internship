@@ -6,8 +6,8 @@ import useAuthForm from "@/hooks/useAuthForm";
 import PATHS from "@/utils/paths";
 import { AuthData } from "@/types";
 
-import Modal from "./modal";
-import Input from "../input/input";
+import Modal from "../../elements/modal/modal";
+import Input from "../../elements/input/input";
 
 interface SignInModalProps {
   isSignInOpen: boolean;

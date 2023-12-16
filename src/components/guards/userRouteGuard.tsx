@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 import { useAppSelector } from "@/redux/hooks";
 
-import SignInModal from "@/elements/modal/signInModal";
+import SignInModal from "@/components/account/signInModal";
 
 export default function UserRouteGuard() {
   const [isSignInOpen, setIsSignInOpen] = useState(false);

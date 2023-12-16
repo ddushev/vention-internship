@@ -3,8 +3,8 @@ import { Dispatch, SetStateAction } from "react";
 import { onRegisterSubmit } from "@/api/apiAuth";
 import useAuthForm from "@/hooks/useAuthForm";
 
-import Modal from "./modal";
-import Input from "../input/input";
+import Modal from "../../elements/modal/modal";
+import Input from "../../elements/input/input";
 
 interface SignUpModalProps {
   isSignUpOpen: boolean;
