@@ -5,63 +5,37 @@ import cartIcon from "images/icons/shoppingCart.png";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-import { useAuthContext } from "@/contexts/authContext";
-import { onLoginSubmit, onRegisterSubmit, onLogout } from "@/api/apiAuth";
+import { onLogout } from "@/api/apiAuth";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { setAuthState } from "@/redux/authSlice";
 import { AuthData } from "@/types";
 import cx from "classnames";
-import Input from "@/elements/input/input";
 import PATHS from "@/utils/paths";
-import useAuthForm from "../../hooks/useAuthForm";
+import SignInModal from "@/elements/modal/signInModal";
+import SignUpModal from "@/elements/modal/signUpModal";
 
 import ProductsDropDown from "./productsDropDown/productsDropDown";
-import Modal from "../modal/modal";
 
 import styles from "./header.module.scss";
 
 export default function Header() {
-  const { setAuthState } = useAuthContext();
-  const [authData, setAuthData] = useState<AuthData>({
-    username: "",
-  });
-  const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
+  const dispatch = useAppDispatch();
+  const dispatchSetAuthState = (data: AuthData) => {
+    dispatch(setAuthState(data));
+  };
+  const authData = useAppSelector((state) => state.authReduxState);
+
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-  const navigate = useNavigate();
 
+  const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     if (authData?.username) {
       setIsSignInOpen(false);
       setIsSignUpOpen(false);
     }
-    setAuthState({ authData, setIsSignInOpen });
-  }, [authData, isSignInOpen]);
-
-  const {
-    values: loginValues,
-    onChangeHandler: onLoginInputChange,
-    onSubmit: onLoginSubmitHandler,
-  } = useAuthForm({
-    initialValues: {
-      username: "",
-      password: "",
-    },
-    onSubmitHandler: onLoginSubmit,
-    setAuthData,
-  });
-
-  const {
-    values: registerValues,
-    onChangeHandler: onRegisterInputChange,
-    onSubmit: onRegisterSubmitHandler,
-  } = useAuthForm({
-    initialValues: {
-      username: "",
-      password: "",
-      rePassword: "",
-    },
-    onSubmitHandler: onRegisterSubmit,
-    setAuthData,
-  });
+  }, [authData]);
 
   const handleProductsHover = () => {
     setIsProductsDropdownVisible(true);
@@ -91,16 +65,6 @@ export default function Header() {
     setIsSignUpOpen(true);
   };
 
-  const handleSignInModalClose = () => {
-    setIsSignInOpen(false);
-    if (!authData.username) {
-      navigate(PATHS.HOME);
-    }
-  };
-
-  const handleSignUpModalClose = () => {
-    setIsSignUpOpen(false);
-  };
   return (
     <>
       <header className={styles.headerContainer}>
@@ -157,36 +121,19 @@ export default function Header() {
               </NavLink>
             )}
             {authData?.username && (
-              <NavLink onClick={(event) => onLogout(event, setAuthData, navigate)} className={cx(styles.linkItem, styles.onlyIcon)} to="#">
+              <NavLink
+                onClick={(event) => onLogout(event, dispatchSetAuthState, navigate)}
+                className={cx(styles.linkItem, styles.onlyIcon)}
+                to="#"
+              >
                 <img className={styles.icon} src={logoutIcon} alt="logout-icon" />
               </NavLink>
             )}
           </ul>
         </nav>
       </header>
-      <Modal title="Authorization" isOpen={isSignInOpen} onClose={handleSignInModalClose} onSubmit={onLoginSubmitHandler}>
-        <Input label="Login" type="text" id="username" name="username" values={loginValues} onInputChange={onLoginInputChange} />
-        <Input label="Password" type="password" id="password" name="password" values={loginValues} onInputChange={onLoginInputChange} />
-      </Modal>
-      <Modal title="Registration" isOpen={isSignUpOpen} onClose={handleSignUpModalClose} onSubmit={onRegisterSubmitHandler}>
-        <Input label="Login" type="text" id="username" name="username" values={registerValues} onInputChange={onRegisterInputChange} />
-        <Input
-          label="Password"
-          type="password"
-          id="password"
-          name="password"
-          values={registerValues}
-          onInputChange={onRegisterInputChange}
-        />
-        <Input
-          label="Repeat Password"
-          type="password"
-          id="rePassword"
-          name="rePassword"
-          values={registerValues}
-          onInputChange={onRegisterInputChange}
-        />
-      </Modal>
+      <SignInModal isSignInOpen={isSignInOpen} setIsSignInOpen={setIsSignInOpen} authData={authData} />
+      <SignUpModal isSignUpOpen={isSignUpOpen} setIsSignUpOpen={setIsSignUpOpen} />
     </>
   );
 }

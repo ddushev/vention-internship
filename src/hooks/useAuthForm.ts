@@ -1,6 +1,8 @@
-import { Dispatch, FormEvent, SetStateAction, useState } from "react";
+import { FormEvent, useState } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 
+import { useAppDispatch } from "@/redux/hooks";
+import { setAuthState } from "@/redux/authSlice";
 import { AuthData } from "@/types";
 
 interface FormValues {
@@ -9,11 +11,15 @@ interface FormValues {
 
 interface UseFormProps {
   initialValues: FormValues;
-  onSubmitHandler: (values: FormValues, setUserData: Dispatch<SetStateAction<AuthData>>, navigate: NavigateFunction) => Promise<void>;
-  setAuthData: Dispatch<SetStateAction<AuthData>>;
+  onSubmitHandler: (values: FormValues, dispatchSetAuthState: (data: AuthData) => void, navigate: NavigateFunction) => Promise<void>;
 }
 
-export default function useAuthForm({ initialValues, onSubmitHandler, setAuthData }: UseFormProps) {
+export default function useAuthForm({ initialValues, onSubmitHandler }: UseFormProps) {
+  const dispatch = useAppDispatch();
+  const dispatchSetAuthState = (data: AuthData) => {
+    dispatch(setAuthState(data));
+  };
+
   const [values, setValues] = useState<FormValues>(initialValues);
   const navigate = useNavigate();
 
@@ -23,7 +29,7 @@ export default function useAuthForm({ initialValues, onSubmitHandler, setAuthDat
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    onSubmitHandler(values, setAuthData, navigate);
+    onSubmitHandler(values, dispatchSetAuthState, navigate);
     setValues(initialValues);
   }
 
