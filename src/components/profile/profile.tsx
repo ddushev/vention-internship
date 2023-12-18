@@ -13,7 +13,6 @@ export default function Profile() {
     <Page title="Profile">
       <SectionWrapper heading={`${authData.username} profile page`}>
         <Form>
-          <TextControl name="Name" validations={{ required: true }} />
           <TextControl name="Username" validations={{ required: true }} />
           <TextControl name="Address" validations={{ required: true }} />
           <NumberControl name="Phone number " validations={{ required: true }} />

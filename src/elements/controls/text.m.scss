@@ -1,6 +1,8 @@
 .ctrl {
   // override here only element-specific styles. Common styles override in main.scss
-  font: inherit;
   background-color: $inheritDarkerBackground;
-  margin: var(--base-margin) 0;
+}
+
+.ctrl:hover {
+  border-color: $mainPinkColor;
 }
