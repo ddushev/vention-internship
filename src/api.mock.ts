@@ -180,4 +180,21 @@ export default webpackMockServer.add((app) => {
   app.get(apiEndpoints.getProfile, (_req, res) => {
     res.json(currentUser);
   });
+
+  app.put(apiEndpoints.saveProfile, (_req, res) => {
+    const { username, address, phone, description } = _req.body;
+    if (currentUser.username !== username && usersMockData.some((user) => user.username === username.toLowerCase())) {
+      res.status(400).json("Update failed: Username already exists!");
+      return;
+    }
+
+    usersMockData.forEach((user, index) => {
+      if (user.username === currentUser.username) {
+        usersMockData[index] = { ...user, username, address, phone, description };
+        currentUser = { ...currentUser, username, address, phone, description };
+      }
+    });
+
+    res.json({ username: currentUser.username });
+  });
 });
