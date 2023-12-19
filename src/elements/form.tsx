@@ -31,10 +31,10 @@ export default class Form extends BaseWUP<WUPFormElement, Props> {
       <wup-form {...props} class={`${styles.form} ${props.className}`.trim()}>
         {this.props.children}
         <div className={styles.btnContainer}>
-          <button className={styles.submitBtn} type="button">
+          <button className={styles.submitBtn} type="submit">
             Save Profile
           </button>
-          <button className={styles.submitBtn} type="button">
+          <button className={styles.submitBtn} type="submit">
             Change password
           </button>
         </div>
