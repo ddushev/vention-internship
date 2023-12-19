@@ -10,7 +10,6 @@ import SectionWrapper from "@/elements/sectionWrapper/sectionWrapper";
 import Form from "@/elements/form";
 import TextControl from "@/elements/controls/text";
 import TextareaControl from "@/elements/controls/textarea";
-import NumberControl from "@/elements/controls/number";
 
 export default function Profile() {
   const authData = useAppSelector((state) => state.authReduxState);
@@ -28,7 +27,7 @@ export default function Profile() {
         <Form initModel={userData} onSubmit={handleFormSubmit}>
           <TextControl name="username" validations={{ required: true }} />
           <TextControl name="address" validations={{ required: true }} />
-          <NumberControl value={userData?.phone} label="Phone Number" name="phone" validations={{ required: true }} />
+          <TextControl value={userData?.phone} label="Phone Number" name="phone" validations={{ required: true }} />
           <TextareaControl value={userData?.description} label="Profile Description" name="description" validations={{ required: true }} />
         </Form>
       </SectionWrapper>

@@ -1,5 +1,6 @@
 .ctrl {
   // override here only element-specific styles. Common styles override in main.scss
+  color: $whitTextColor;
   background-color: $inheritDarkerBackground;
 }
 
