@@ -7,7 +7,7 @@ import styles from "./text.m.scss";
 WUPNumberControl.$use(); // register control in the browser
 // WUPNumberControl.$defaults.clearButton = false;
 
-interface Props extends BaseControlProps<string, WUPNumberControl, WUP.Number.Options> {}
+interface Props extends BaseControlProps<number, WUPNumberControl, WUP.Number.Options> {}
 
 export default class NumberControl extends BaseControl<WUPNumberControl, Props> {
   goRender(props: Record<string, unknown>): JSX.Element {

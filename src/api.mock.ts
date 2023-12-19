@@ -2,6 +2,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import webpackMockServer from "webpack-mock-server";
 import apiEndpoints from "./api.endpoints";
+import { CurrentUser } from "./types";
 
 const gamesMockData = [
   {
@@ -102,20 +103,28 @@ const gamesMockData = [
   },
 ];
 
-const userMockData = [
+const usersMockData = [
   {
     id: 1,
     username: "ddushev",
+    address: "Sofia city, Bulgaria",
+    phone: 359897357818,
+    description: "Profile description for username ddushev",
     password: "123",
   },
   {
     id: 2,
     username: "ddushev2",
+    address: "Burgas, Bulgaria",
+    phone: 359896457213,
+    description: "Profile description for username ddushev2",
     password: "qwe",
   },
 ];
 
-export default webpackMockServer.add((app, helper) => {
+let currentUser: CurrentUser = {};
+
+export default webpackMockServer.add((app) => {
   app.get(apiEndpoints.searchMock, (_req, res) => {
     const searchText = (_req.query.text as string).toLowerCase();
     const matchingProducts = gamesMockData.filter((game) => game.name.toLowerCase().includes(searchText));
@@ -131,9 +140,10 @@ export default webpackMockServer.add((app, helper) => {
     const { username, password } = _req.body;
     let isAuthenticated = false;
 
-    userMockData.forEach((user) => {
+    usersMockData.forEach((user) => {
       if (user.username === username.toLowerCase() && user.password === password) {
         isAuthenticated = true;
+        currentUser = { ...user, password: null };
         res.status(201).json({ username: user.username });
       }
     });
@@ -145,7 +155,7 @@ export default webpackMockServer.add((app, helper) => {
 
   app.put(apiEndpoints.registerMock, (_req, res) => {
     const { username, password, rePassword } = _req.body;
-    if (userMockData.some((user) => user.username === username.toLowerCase())) {
+    if (usersMockData.some((user) => user.username === username.toLowerCase())) {
       res.status(400).json("Register failed: Username already exists!");
       return;
     }
@@ -155,12 +165,19 @@ export default webpackMockServer.add((app, helper) => {
       return;
     }
     const user = {
-      id: helper.getUniqueIdInt(),
+      id: usersMockData[usersMockData.length - 1].id + 1,
       username: username.toLowerCase(),
+      address: "",
+      phone: 359,
+      description: "",
       password,
     };
-
-    userMockData.push(user);
+    currentUser = { ...user, password: null };
+    usersMockData.push(user);
     res.status(200).json({ username: user.username });
+  });
+
+  app.get(apiEndpoints.getProfile, (_req, res) => {
+    res.json(currentUser);
   });
 });
