@@ -27,8 +27,8 @@ export default function Profile() {
         <Form initModel={userData} onSubmit={handleFormSubmit}>
           <TextControl name="username" validations={{ required: true }} />
           <TextControl name="address" validations={{ required: true }} />
-          <TextControl value={userData?.phone} label="Phone Number" name="phone" validations={{ required: true }} />
-          <TextareaControl value={userData?.description} label="Profile Description" name="description" validations={{ required: true }} />
+          <TextControl label="Phone Number" name="phone" validations={{ required: true }} />
+          <TextareaControl label="Profile Description" name="description" validations={{ required: true }} />
         </Form>
       </SectionWrapper>
     </Page>
