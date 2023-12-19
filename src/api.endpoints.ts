@@ -3,6 +3,8 @@ const apiEndpoints = {
   topGamesMock: "/api/products/top",
   loginMock: "/api/auth/signIn",
   registerMock: "/api/auth/signUp",
+  getProfile: "/api/getProfile",
+  saveProfile: "/api/saveProfile",
 };
 
 export default apiEndpoints;
