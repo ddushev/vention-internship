@@ -8,7 +8,7 @@ import { CurrentUser } from "@/types";
 
 import Page from "@/elements/page/page";
 import SectionWrapper from "@/elements/sectionWrapper/sectionWrapper";
-import Form from "@/elements/form";
+import Form from "@/elements/form/form";
 import TextControl from "@/elements/controls/text";
 import TextareaControl from "@/elements/controls/textarea";
 import NumberControl from "@/elements/controls/number";
