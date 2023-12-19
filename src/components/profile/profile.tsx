@@ -11,6 +11,7 @@ import SectionWrapper from "@/elements/sectionWrapper/sectionWrapper";
 import Form from "@/elements/form";
 import TextControl from "@/elements/controls/text";
 import TextareaControl from "@/elements/controls/textarea";
+import NumberControl from "@/elements/controls/number";
 
 export default function Profile() {
   const dispatch = useAppDispatch();
@@ -36,7 +37,7 @@ export default function Profile() {
         <Form initModel={userData} onSubmit={(event) => handleFormSubmit(event)}>
           <TextControl name="username" validations={{ required: true }} />
           <TextControl name="address" validations={{ required: true }} />
-          <TextControl label="Phone Number" name="phone" validations={{ required: true }} />
+          <NumberControl mask="+(000)-000-000-000" label="Phone Number" name="phone" validations={{ required: true }} />
           <TextareaControl label="Profile Description" name="description" validations={{ required: true }} />
         </Form>
       </SectionWrapper>
