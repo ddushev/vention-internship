@@ -13,7 +13,7 @@ export async function updateUserProfile({ username, address, phone, description 
   return updatedUserData;
 }
 
-export async function changeUserPassword({ newPassword }: { newPassword: string }) {
-  const result = await api.update(apiEndpoints.changePassword, { newPassword });
+export async function changeUserPassword({ oldPassword, newPassword }: { oldPassword: string; newPassword: string }) {
+  const result = await api.update(apiEndpoints.changePassword, { oldPassword, newPassword });
   return result;
 }
