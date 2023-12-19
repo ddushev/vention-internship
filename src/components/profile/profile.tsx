@@ -13,6 +13,8 @@ import TextControl from "@/elements/controls/text";
 import TextareaControl from "@/elements/controls/textarea";
 import NumberControl from "@/elements/controls/number";
 
+import styles from "./profile.module.scss";
+
 export default function Profile() {
   const dispatch = useAppDispatch();
   const authData = useAppSelector((state) => state.authReduxState);
@@ -39,6 +41,14 @@ export default function Profile() {
           <TextControl name="address" validations={{ required: true }} />
           <NumberControl mask="+(000)-000-000-000" label="Phone Number" name="phone" validations={{ required: true }} />
           <TextareaControl label="Profile Description" name="description" validations={{ required: true }} />
+          <div className={styles.btnContainer}>
+            <button className={styles.submitBtn} type="submit">
+              Save Profile
+            </button>
+            <button className={styles.buttonBtn} type="button">
+              Change password
+            </button>
+          </div>
         </Form>
       </SectionWrapper>
     </Page>
