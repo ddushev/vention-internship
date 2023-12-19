@@ -5,6 +5,7 @@ const apiEndpoints = {
   registerMock: "/api/auth/signUp",
   getProfile: "/api/getProfile",
   saveProfile: "/api/saveProfile",
+  changePassword: "/api/changePassword",
 };
 
 export default apiEndpoints;

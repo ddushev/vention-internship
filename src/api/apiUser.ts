@@ -8,7 +8,12 @@ export async function getUserProfile() {
   return userData;
 }
 
-export async function saveUserProfile({ username, address, phone, description }: CurrentUser) {
+export async function updateUserProfile({ username, address, phone, description }: CurrentUser) {
   const updatedUserData = await api.update(apiEndpoints.saveProfile, { username, address, phone, description });
   return updatedUserData;
+}
+
+export async function changeUserPassword({ newPassword }: { newPassword: string }) {
+  const result = await api.update(apiEndpoints.changePassword, { newPassword });
+  return result;
 }
