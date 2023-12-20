@@ -10,12 +10,12 @@ interface Props extends BaseControlProps<string, WUPPasswordControl, WUP.Passwor
 }
 
 const strictValidations: Partial<WUP.Password.ValidityMap> = {
-  min: 8,
-  max: 64,
-  minUpper: 1,
-  minLower: 1,
-  minNumber: 1,
-  special: { min: 1, chars: "!@#$%^&-_" },
+  min: 3,
+  // max: 64,
+  // minUpper: 1,
+  // minLower: 1,
+  // minNumber: 1,
+  // special: { min: 1, chars: "!@#$%^&-_" },
 };
 
 export default class PasswordControl extends BaseControl<WUPPasswordControl, Props> {

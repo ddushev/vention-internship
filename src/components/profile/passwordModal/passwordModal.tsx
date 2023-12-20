@@ -26,9 +26,9 @@ export default function PasswordModal({ setIsPassChangeOpen }: { setIsPassChange
     <Modal onClose={() => setIsPassChangeOpen(false)} className={styles.modalContainer}>
       <h2 className={styles.modalHeader}>Change password</h2>
       <Form onSubmit={(event) => handleFormSubmit(event)}>
-        <PasswordControl name="oldPassword" validations={{ required: true }} />
-        <PasswordControl name="newPassword" validations={{ required: true }} />
-        <PasswordControl name="repeatPassword" validations={{ required: true }} />
+        <PasswordControl name="oldPassword" isStrict validationShowAll validations={{ required: true }} />
+        <PasswordControl name="newPassword" isStrict validationShowAll validations={{ required: true }} />
+        <PasswordControl name="repeatPassword" isStrict validationShowAll validations={{ required: true }} />
         <button className={styles.submitBtn} type="submit">
           Submit
         </button>
