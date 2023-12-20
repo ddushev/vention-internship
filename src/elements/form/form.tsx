@@ -9,7 +9,8 @@ interface Props extends React.PropsWithChildren<Partial<WUP.Form.Options>> {
   className?: string;
   initModel?: WUPFormElement["$initModel"];
   model?: WUPFormElement["$model"];
-  onSubmit?: WUPFormElement["$onSubmit"];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onSubmit?: (model: any, ev: WUP.Form.EventMap["$submit"]) => Promise<any>;
 }
 
 export default class Form extends BaseWUP<WUPFormElement, Props> {
@@ -17,7 +18,7 @@ export default class Form extends BaseWUP<WUPFormElement, Props> {
   updateOptions(nextProps: Props, isInit: boolean): void {
     super.updateOptions(nextProps, isInit);
 
-    this.domEl.$onSubmit = nextProps.onSubmit;
+    this.domEl.$onSubmit = (e) => nextProps.onSubmit?.call(this.domEl, e.detail.model, e);
     if (isInit || nextProps.model !== this.props.model) {
       this.domEl.$model = nextProps.model!; // update only if value changed
     }
