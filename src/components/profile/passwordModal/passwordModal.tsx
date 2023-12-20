@@ -7,7 +7,7 @@ import PasswordControl from "@/elements/controls/password";
 import { changeUserPassword } from "@/api/apiUser";
 import styles from "./passwordModal.module.scss";
 
-export default function PasswordModal({ onClose }: { onClose: (isClose: boolean) => void }) {
+export default function PasswordModal({ setIsPassChangeOpen }: { setIsPassChangeOpen: (isClose: boolean) => void }) {
   async function handleFormSubmit(event: CustomEvent) {
     try {
       const { oldPassword, newPassword, repeatPassword } = (event.target as WUPFormElement).$model;
@@ -23,7 +23,7 @@ export default function PasswordModal({ onClose }: { onClose: (isClose: boolean)
     }
   }
   return (
-    <Modal onClose={() => onClose(false)} className={styles.modalContainer}>
+    <Modal onClose={() => setIsPassChangeOpen(false)} className={styles.modalContainer}>
       <h2 className={styles.modalHeader}>Change password</h2>
       <Form onSubmit={(event) => handleFormSubmit(event)}>
         <PasswordControl name="oldPassword" validations={{ required: true }} />
