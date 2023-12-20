@@ -1,6 +1,8 @@
 import apiEndpoints from "@/api.endpoints";
-
 import { CurrentUser } from "@/types";
+import { dispatch } from "@/redux/store";
+import { setAuthState } from "@/redux/authSlice";
+import handleErrors from "@/utils/handleErrors";
 import * as api from "./requests";
 
 export async function getUserProfile() {
@@ -9,11 +11,18 @@ export async function getUserProfile() {
 }
 
 export async function updateUserProfile({ username, address, phone, description }: CurrentUser) {
-  const updatedUserData = await api.update(apiEndpoints.saveProfile, { username, address, phone, description });
-  return updatedUserData;
+  try {
+    const updatedUserName = await api.update(apiEndpoints.saveProfile, { username, address, phone, description });
+    dispatch(setAuthState(updatedUserName));
+  } catch (error) {
+    handleErrors(error);
+  }
 }
 
 export async function changeUserPassword({ oldPassword, newPassword }: { oldPassword: string; newPassword: string }) {
-  const result = await api.update(apiEndpoints.changePassword, { oldPassword, newPassword });
-  return result;
+  try {
+    await api.update(apiEndpoints.changePassword, { oldPassword, newPassword });
+  } catch (error) {
+    handleErrors(error);
+  }
 }
