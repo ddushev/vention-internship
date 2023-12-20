@@ -2,24 +2,4 @@
   display: flex;
   justify-content: center;
   gap: 10px;
-
-  .submitBtn,
-  .buttonBtn {
-    font-family: OpenSans-Regular, sans-serif;
-    font-size: 16px;
-    margin: 0;
-    line-height: 16px;
-    font-weight: normal;
-    padding: 10px;
-    color: $whitTextColor;
-    background-color: $inheritPinkBackground;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-  }
-
-  .submitBtn:hover,
-  .buttonBtn:hover {
-    background-color: rgba(90, 43, 125, 0.5);
-  }
 }

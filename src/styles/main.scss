@@ -15,11 +15,13 @@
 }
 
 :root {
-  --base-margin: 1.6rem;
   // Common
+  --base-margin: 1.6rem;
   --base-focus: #fff;
-  //Password modal
-  --base-btn-bg: #9933cb;
+  //Submit button
+  --base-btn-bg: rgba(90, 43, 125, 0.7);
+  --base-btn-text: #e3e3e3;
+  //Password modal icon
   --icon-size: 20px;
   --icon-hover-bg: #fff;
 }

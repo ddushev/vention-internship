@@ -10,6 +10,7 @@ import TextControl from "@/elements/controls/text";
 import TextareaControl from "@/elements/controls/textarea";
 import NumberControl from "@/elements/controls/number";
 
+import Button from "@/elements/button/button";
 import styles from "./userDetailsForm.module.scss";
 
 export default function UserDetailsForm({ setIsPassChangeOpen }: { setIsPassChangeOpen: (isClose: boolean) => void }) {
@@ -28,12 +29,10 @@ export default function UserDetailsForm({ setIsPassChangeOpen }: { setIsPassChan
         <NumberControl mask="+(000)-000-000-000" label="Phone Number" name="phone" validations={{ required: true }} />
         <TextareaControl label="Profile Description" name="description" validations={{ required: true }} />
         <div className={styles.btnContainer}>
-          <button className={styles.submitBtn} type="submit">
-            Save Profile
-          </button>
-          <button onClick={() => setIsPassChangeOpen(true)} className={styles.buttonBtn} type="button">
+          <Button submit>Save Profile</Button>
+          <Button submit={false} onClick={setIsPassChangeOpen}>
             Change password
-          </button>
+          </Button>
         </div>
       </Form>
     </SectionWrapper>
