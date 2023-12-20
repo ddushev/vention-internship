@@ -5,6 +5,7 @@ import Form from "@/elements/form/form";
 import PasswordControl from "@/elements/controls/password";
 
 import { changeUserPassword } from "@/api/apiUser";
+import Button from "@/elements/button/button";
 import styles from "./passwordModal.module.scss";
 
 export default function PasswordModal({ setIsPassChangeOpen }: { setIsPassChangeOpen: (isClose: boolean) => void }) {
@@ -24,9 +25,9 @@ export default function PasswordModal({ setIsPassChangeOpen }: { setIsPassChange
           }}
         />
         <PasswordControl name="repeatPassword" validations={{ required: true, confirm: true }} />
-        <button className={styles.submitBtn} type="submit">
-          Submit
-        </button>
+        <div className={styles.submitBtnContainer}>
+          <Button submit>Submit</Button>
+        </div>
       </Form>
     </Modal>
   );
