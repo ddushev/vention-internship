@@ -15,7 +15,7 @@ const gamesMockData = [
     minAge: 5,
     addDate: new Date("2023-01-01"),
     description:
-      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const gamesMockData = [
     minAge: 6,
     addDate: new Date("2023-01-02"),
     description:
-      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const gamesMockData = [
     minAge: 4,
     addDate: new Date("2023-01-03"),
     description:
-      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
     id: 4,
@@ -51,7 +51,7 @@ const gamesMockData = [
     minAge: 8,
     addDate: new Date("2023-01-01"),
     description:
-      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
     id: 5,
@@ -63,7 +63,7 @@ const gamesMockData = [
     minAge: 3,
     addDate: new Date("2023-01-05"),
     description:
-      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
     id: 6,
@@ -87,7 +87,7 @@ const gamesMockData = [
     minAge: 2,
     addDate: new Date("2023-01-01"),
     description:
-      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
     id: 8,
