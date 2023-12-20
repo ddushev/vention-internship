@@ -202,11 +202,13 @@ export default webpackMockServer.add((app) => {
     const { oldPassword, newPassword } = _req.body;
 
     usersMockData.forEach((user) => {
-      if (user.username === currentUser.username && user.password === oldPassword) {
-        user.password = newPassword;
-        res.json("success");
-      } else {
-        res.status(400).json("Password change failed: Old password is incorrect!");
+      if (user.username === currentUser.username) {
+        if (user.password === oldPassword) {
+          user.password = newPassword;
+          res.json("success");
+        } else {
+          res.status(400).json("Password change failed: Old password is incorrect!");
+        }
       }
     });
   });
