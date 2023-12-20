@@ -24,12 +24,14 @@ export default function PasswordModal({ onClose }: { onClose: (isClose: boolean)
   }
   return (
     <Modal onClose={() => onClose(false)} className={styles.modalContainer}>
-      <h2>Change password</h2>
+      <h2 className={styles.modalHeader}>Change password</h2>
       <Form onSubmit={(event) => handleFormSubmit(event)}>
         <PasswordControl name="oldPassword" validations={{ required: true }} />
         <PasswordControl name="newPassword" validations={{ required: true }} />
         <PasswordControl name="repeatPassword" validations={{ required: true }} />
-        <button type="submit">Submit</button>
+        <button className={styles.submitBtn} type="submit">
+          Submit
+        </button>
       </Form>
     </Modal>
   );
