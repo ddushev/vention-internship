@@ -9,11 +9,12 @@ export interface AuthState {
   setIsSignInOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export interface CurrentUser {
+export interface UserMockData {
   id?: number;
   username?: string;
   address?: string;
   phone?: string;
   description?: string;
-  password?: null;
+  password?: string | null;
+  image?: string;
 }
