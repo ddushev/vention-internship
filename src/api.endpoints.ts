@@ -6,6 +6,7 @@ const apiEndpoints = {
   getProfile: "/api/getProfile",
   saveProfile: "/api/saveProfile",
   changePassword: "/api/changePassword",
+  changeProfileImage: "/api/changeProfileImage",
 };
 
 export default apiEndpoints;
