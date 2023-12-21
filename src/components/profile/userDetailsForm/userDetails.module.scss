@@ -1,0 +1,11 @@
+.sectionContainer {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+
+  .btnContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+}
