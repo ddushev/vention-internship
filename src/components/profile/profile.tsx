@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import Page from "@/elements/page/page";
 
+import UserDetails from "./userDetailsForm/userDetails";
 import PasswordModal from "./passwordModal/passwordModal";
-import UserDetailsForm from "./userDetailsForm/userDetailsForm";
 
 export default function Profile() {
   // User details form
@@ -12,7 +12,7 @@ export default function Profile() {
   const [isPassChangeOpen, setIsPassChangeOpen] = useState(false);
   return (
     <Page title="Profile">
-      <UserDetailsForm setIsPassChangeOpen={setIsPassChangeOpen} />
+      <UserDetails setIsPassChangeOpen={setIsPassChangeOpen} />
       {isPassChangeOpen && <PasswordModal setIsPassChangeOpen={setIsPassChangeOpen} />}
     </Page>
   );
