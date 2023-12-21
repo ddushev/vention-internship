@@ -2,7 +2,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import webpackMockServer from "webpack-mock-server";
 import apiEndpoints from "./api.endpoints";
-import { CurrentUser } from "./types";
+import { UserMockData } from "./types";
 
 const gamesMockData = [
   {
@@ -103,7 +103,7 @@ const gamesMockData = [
   },
 ];
 
-const usersMockData = [
+const usersMockData: UserMockData[] = [
   {
     id: 1,
     username: "ddushev",
@@ -122,7 +122,7 @@ const usersMockData = [
   },
 ];
 
-let currentUser: CurrentUser = {};
+let currentUser: UserMockData = {};
 
 export default webpackMockServer.add((app) => {
   app.get(apiEndpoints.searchMock, (_req, res) => {
@@ -164,13 +164,16 @@ export default webpackMockServer.add((app) => {
       res.status(400).json("Register failed: Passwords must match!");
       return;
     }
+    const lastUser = usersMockData[usersMockData.length - 1];
+    const id = lastUser?.id ? lastUser.id + 1 : 1;
     const user = {
-      id: usersMockData[usersMockData.length - 1].id + 1,
+      id,
       username: username.toLowerCase(),
       address: "",
       phone: "",
       description: "",
       password,
+      image: "",
     };
     currentUser = { ...user, password: null };
     usersMockData.push(user);
@@ -211,5 +214,16 @@ export default webpackMockServer.add((app) => {
         }
       }
     });
+  });
+
+  app.put(apiEndpoints.changeProfileImage, (_req, res) => {
+    const image = _req.fileDownloadUrls && _req.fileDownloadUrls[0];
+    usersMockData.forEach((user, index) => {
+      if (user.username === currentUser.username) {
+        usersMockData[index] = { ...user, image };
+        currentUser = { ...currentUser, image };
+      }
+    });
+    res.json({});
   });
 });
