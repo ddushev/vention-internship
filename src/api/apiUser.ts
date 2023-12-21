@@ -1,8 +1,11 @@
+import { RefObject } from "react";
+
 import apiEndpoints from "@/api.endpoints";
-import { CurrentUser } from "@/types";
+import { UserMockData } from "@/types";
 import { dispatch } from "@/redux/store";
 import { setAuthState } from "@/redux/authSlice";
 import handleErrors from "@/utils/handleErrors";
+
 import * as api from "./requests";
 
 export async function getUserProfile() {
@@ -10,7 +13,7 @@ export async function getUserProfile() {
   return userData;
 }
 
-export async function updateUserProfile({ username, address, phone, description }: CurrentUser) {
+export async function updateUserProfile({ username, address, phone, description }: UserMockData) {
   try {
     const updatedUserName = await api.update(apiEndpoints.saveProfile, { username, address, phone, description });
     dispatch(setAuthState(updatedUserName));
@@ -24,5 +27,23 @@ export async function changeUserPassword({ oldPassword, newPassword }: { oldPass
     await api.update(apiEndpoints.changePassword, { oldPassword, newPassword });
   } catch (error) {
     handleErrors(error);
+  }
+}
+
+export async function updateImage(fileInputRef: RefObject<HTMLInputElement>) {
+  const fileInput = fileInputRef.current;
+
+  if (fileInput && fileInput.files && fileInput.files.length > 0) {
+    const imageFile = fileInput.files[0];
+
+    const formData = new FormData();
+    formData.append("image", imageFile);
+    const response = await fetch(apiEndpoints.changeProfileImage, {
+      method: "put",
+      body: formData,
+    });
+    await response.json();
+  } else {
+    console.log("No file selected");
   }
 }
