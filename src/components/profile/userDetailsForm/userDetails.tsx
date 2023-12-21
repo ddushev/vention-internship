@@ -25,7 +25,7 @@ export default function UserDetails({ setIsPassChangeOpen }: { setIsPassChangeOp
   return (
     <SectionWrapper heading={`${authData.username} profile page`}>
       <div className={styles.sectionContainer}>
-        <UserImage image={userData?.image} />
+        <UserImage profileImg={userData?.profileImg} />
         <Form initModel={userData} onSubmit={updateUserProfile}>
           <TextControl name="username" validations={{ required: true }} />
           <TextControl name="address" validations={{ required: true }} />

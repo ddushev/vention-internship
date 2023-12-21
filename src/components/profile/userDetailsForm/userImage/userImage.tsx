@@ -1,41 +1,42 @@
+import userIcon from "images/icons/userIcon.png";
+
 import { useRef, useState } from "react";
 
 import { updateImage } from "@/api/apiUser";
+import Form from "@/elements/form/form";
+import Button from "@/elements/button/button";
 import styles from "./userImage.module.scss";
 
-export default function UserImage({ image }: { image?: string }) {
-  console.log(image);
-  const [userImage, setUserImg] = useState<File | null>(null);
+export default function UserImage({ profileImg }: { profileImg?: string }) {
+  const [profileImage, setProfileImage] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const handleUpload = () => {
+  const handleUpload = async () => {
     const fileInput = fileInputRef.current;
     if (fileInput && fileInput.files && fileInput.files.length > 0) {
-      console.log(fileInput.files[0]);
-      setUserImg(fileInput.files[0]);
+      setProfileImage(fileInput.files[0]);
+      const profileImgUrl = URL.createObjectURL(fileInput.files[0]);
+      // First approach
+      await updateImage(profileImgUrl);
+      // Second approach
+      // await updateImage(fileInputRef);
     } else {
-      console.log("No file selected");
+      alert("Please select a file!");
     }
   };
 
   return (
     <div className="temp">
       <div className={styles.imageContainer}>
-        {userImage ? (
-          <img className={styles.profileImage} src={URL.createObjectURL(userImage)} alt="user-img" />
-        ) : (
-          <img className={styles.profileImage} src={image} alt="user-default-icon" />
-        )}
+        {profileImage && <img className={styles.profileImage} src={URL.createObjectURL(profileImage)} alt="profile-img" />}
+        {!profileImage && profileImg && <img className={styles.profileImage} src={profileImg} alt="profile-img" />}
+        {!profileImage && !profileImg && <img className={styles.profileImage} src={userIcon} alt="user-default-icon" />}
       </div>
-      <form>
-        <input type="file" name="image" ref={fileInputRef} />
-        {/* <Button submit={false}>Change profile image</Button> */}
-        <button onClick={() => updateImage(fileInputRef)} type="button">
+      <Form>
+        <input type="file" name="profileImg" ref={fileInputRef} />
+        <Button onClick={() => handleUpload()} submit={false}>
           Change profile image
-        </button>
-        <button onClick={() => handleUpload()} type="button">
-          Update image
-        </button>
-      </form>
+        </Button>
+      </Form>
     </div>
   );
 }

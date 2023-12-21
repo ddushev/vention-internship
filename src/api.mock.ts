@@ -173,7 +173,7 @@ export default webpackMockServer.add((app) => {
       phone: "",
       description: "",
       password,
-      image: "",
+      profileImg: "",
     };
     currentUser = { ...user, password: null };
     usersMockData.push(user);
@@ -215,15 +215,26 @@ export default webpackMockServer.add((app) => {
       }
     });
   });
-
+  // First approach
   app.put(apiEndpoints.changeProfileImage, (_req, res) => {
-    const image = _req.fileDownloadUrls && _req.fileDownloadUrls[0];
+    const profileImg = _req.body.img;
     usersMockData.forEach((user, index) => {
       if (user.username === currentUser.username) {
-        usersMockData[index] = { ...user, image };
-        currentUser = { ...currentUser, image };
+        usersMockData[index] = { ...user, profileImg };
+        currentUser = { ...currentUser, profileImg };
       }
     });
     res.json({});
   });
+  // Second approach
+  // app.put(apiEndpoints.changeProfileImage, (_req, res) => {
+  //   const profileImg = _req.fileDownloadUrls && _req.fileDownloadUrls[0];
+  //   usersMockData.forEach((user, index) => {
+  //     if (user.username === currentUser.username) {
+  //       usersMockData[index] = { ...user, profileImg };
+  //       currentUser = { ...currentUser, profileImg };
+  //     }
+  //   });
+  //   res.json({});
+  // });
 });

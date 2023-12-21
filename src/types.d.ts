@@ -16,5 +16,5 @@ export interface UserMockData {
   phone?: string;
   description?: string;
   password?: string | null;
-  image?: string;
+  profileImg?: string;
 }

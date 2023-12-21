@@ -1,5 +1,3 @@
-import { RefObject } from "react";
-
 import apiEndpoints from "@/api.endpoints";
 import { UserMockData } from "@/types";
 import { dispatch } from "@/redux/store";
@@ -30,20 +28,26 @@ export async function changeUserPassword({ oldPassword, newPassword }: { oldPass
   }
 }
 
-export async function updateImage(fileInputRef: RefObject<HTMLInputElement>) {
-  const fileInput = fileInputRef.current;
-
-  if (fileInput && fileInput.files && fileInput.files.length > 0) {
-    const imageFile = fileInput.files[0];
-
-    const formData = new FormData();
-    formData.append("image", imageFile);
-    const response = await fetch(apiEndpoints.changeProfileImage, {
-      method: "put",
-      body: formData,
-    });
-    await response.json();
-  } else {
-    console.log("No file selected");
-  }
+// First approach
+export async function updateImage(img: string) {
+  await api.update(apiEndpoints.changeProfileImage, { img });
 }
+
+// Second approach
+// export async function updateImage(fileInputRef: RefObject<HTMLInputElement>) {
+//   const fileInput = fileInputRef.current;
+
+//   if (fileInput && fileInput.files && fileInput.files.length > 0) {
+//     const imageFile = fileInput.files[0];
+
+//     const formData = new FormData();
+//     formData.append("profileImg", imageFile);
+//     const response = await fetch(apiEndpoints.changeProfileImage, {
+//       method: "put",
+//       body: formData,
+//     });
+//     await response.json();
+//   } else {
+//     console.log("No file selected");
+//   }
+// }
