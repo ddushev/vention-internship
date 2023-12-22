@@ -29,11 +29,15 @@ export async function changeUserPassword({ oldPassword, newPassword }: { oldPass
 }
 
 export async function updateImage(imgFile: File) {
-  const formData = new FormData();
-  formData.append("profileImg", imgFile);
-  const response = await fetch(apiEndpoints.changeProfileImage, {
-    method: "put",
-    body: formData,
-  });
-  await response.json();
+  try {
+    const formData = new FormData();
+    formData.append("profileImg", imgFile);
+    const response = await fetch(apiEndpoints.changeProfileImage, {
+      method: "put",
+      body: formData,
+    });
+    await response.json();
+  } catch (error) {
+    handleErrors(error);
+  }
 }
