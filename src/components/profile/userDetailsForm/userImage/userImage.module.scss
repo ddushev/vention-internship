@@ -10,6 +10,10 @@
     height: 250px;
     overflow: hidden;
 
+    .loader {
+      width: 100px;
+    }
+
     .profileImage {
       object-fit: cover;
       width: 100%;
