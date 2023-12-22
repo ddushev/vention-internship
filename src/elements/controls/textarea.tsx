@@ -1,3 +1,5 @@
+import cx from "classnames";
+
 import { WUPTextareaControl } from "web-ui-pack";
 
 import BaseControl, { BaseControlProps } from "./baseControl";
@@ -11,6 +13,6 @@ interface Props extends BaseControlProps<string, WUPTextareaControl, WUP.Textare
 
 export default class TextareaControl extends BaseControl<WUPTextareaControl, Props> {
   goRender(props: Record<string, unknown>): JSX.Element {
-    return <wup-textarea {...props} class={`${styles.ctrl} ${props.className}`.trim()} />;
+    return <wup-textarea {...props} class={cx(styles.ctrl, this.props.className)} />;
   }
 }

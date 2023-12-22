@@ -1,3 +1,5 @@
+import cx from "classnames";
+
 import { WUPPasswordControl } from "web-ui-pack";
 import BaseControl, { BaseControlProps } from "./baseControl";
 import styles from "./text.m.scss";
@@ -28,6 +30,6 @@ export default class PasswordControl extends BaseControl<WUPPasswordControl, Pro
   }
 
   goRender(props: Record<string, unknown>): React.ReactElement {
-    return <wup-pwd {...props} class={`${styles.ctrl} ${props.className}`.trim()} />;
+    return <wup-pwd {...props} class={cx(styles.ctrl, this.props.className)} />;
   }
 }

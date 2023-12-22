@@ -1,3 +1,5 @@
+import cx from "classnames";
+
 import { WUPNumberControl } from "web-ui-pack";
 
 import BaseControl, { BaseControlProps } from "./baseControl";
@@ -11,6 +13,6 @@ interface Props extends BaseControlProps<number, WUPNumberControl, WUP.Number.Op
 
 export default class NumberControl extends BaseControl<WUPNumberControl, Props> {
   goRender(props: Record<string, unknown>): JSX.Element {
-    return <wup-num {...props} class={`${styles.ctrl} ${props.className}`.trim()} />;
+    return <wup-num {...props} class={cx(styles.ctrl, this.props.className)} />;
   }
 }
