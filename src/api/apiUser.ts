@@ -28,26 +28,12 @@ export async function changeUserPassword({ oldPassword, newPassword }: { oldPass
   }
 }
 
-// First approach
-export async function updateImage(img: string) {
-  await api.update(apiEndpoints.changeProfileImage, { img });
+export async function updateImage(imgFile: File) {
+  const formData = new FormData();
+  formData.append("profileImg", imgFile);
+  const response = await fetch(apiEndpoints.changeProfileImage, {
+    method: "put",
+    body: formData,
+  });
+  await response.json();
 }
-
-// Second approach
-// export async function updateImage(fileInputRef: RefObject<HTMLInputElement>) {
-//   const fileInput = fileInputRef.current;
-
-//   if (fileInput && fileInput.files && fileInput.files.length > 0) {
-//     const imageFile = fileInput.files[0];
-
-//     const formData = new FormData();
-//     formData.append("profileImg", imageFile);
-//     const response = await fetch(apiEndpoints.changeProfileImage, {
-//       method: "put",
-//       body: formData,
-//     });
-//     await response.json();
-//   } else {
-//     console.log("No file selected");
-//   }
-// }

@@ -215,9 +215,9 @@ export default webpackMockServer.add((app) => {
       }
     });
   });
-  // First approach
+
   app.put(apiEndpoints.changeProfileImage, (_req, res) => {
-    const profileImg = _req.body.img;
+    const profileImg = _req.fileDownloadUrls && _req.fileDownloadUrls[0];
     usersMockData.forEach((user, index) => {
       if (user.username === currentUser.username) {
         usersMockData[index] = { ...user, profileImg };
@@ -226,15 +226,4 @@ export default webpackMockServer.add((app) => {
     });
     res.json({});
   });
-  // Second approach
-  // app.put(apiEndpoints.changeProfileImage, (_req, res) => {
-  //   const profileImg = _req.fileDownloadUrls && _req.fileDownloadUrls[0];
-  //   usersMockData.forEach((user, index) => {
-  //     if (user.username === currentUser.username) {
-  //       usersMockData[index] = { ...user, profileImg };
-  //       currentUser = { ...currentUser, profileImg };
-  //     }
-  //   });
-  //   res.json({});
-  // });
 });
