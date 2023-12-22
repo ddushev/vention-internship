@@ -60,9 +60,7 @@ export default function UserImage({ profileImg }: { profileImg?: string }) {
       <Form>
         <div className={styles.fileFormContainer}>
           <input className={styles.fileUploadInput} type="file" name="profileImg" ref={fileInputRef} />
-          <Button onClick={() => handleUpload()} submit={false}>
-            Change profile image
-          </Button>
+          <Button onClick={() => handleUpload()}>Change profile image</Button>
         </div>
       </Form>
     </div>

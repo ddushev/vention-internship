@@ -2,7 +2,7 @@ import styles from "./button.module.scss";
 
 interface ButtonProps {
   children: string;
-  submit: boolean;
+  submit?: boolean;
   onClick?: (param: boolean) => void;
 }
 

@@ -33,9 +33,7 @@ export default function UserDetails({ setIsPassChangeOpen }: { setIsPassChangeOp
           <TextareaControl label="Profile Description" name="description" validations={{ required: true }} />
           <div className={styles.btnContainer}>
             <Button submit>Save Profile</Button>
-            <Button submit={false} onClick={setIsPassChangeOpen}>
-              Change password
-            </Button>
+            <Button onClick={setIsPassChangeOpen}>Change password</Button>
           </div>
         </Form>
       </div>
