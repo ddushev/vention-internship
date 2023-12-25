@@ -17,7 +17,6 @@ import Profile from "./components/profile/profile";
 
 function AppContainer() {
   return (
-    // keep the ball rolling
     // <StrictMode>
     <BrowserRouter>
       <ErrorBoundary>
