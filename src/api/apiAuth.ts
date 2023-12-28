@@ -1,22 +1,16 @@
 import { NavigateFunction } from "react-router-dom";
 
 import apiEndpoints from "@/api.endpoints";
+import { AuthData } from "@/types";
 import PATHS from "@/utils/paths";
 import authFormValidations from "@/utils/authFormValidations";
-import { AuthData } from "@/types";
+import handleErrors from "@/utils/handleErrors";
+
 import * as api from "./requests";
 
 interface RequestParams {
   [key: string]: string;
 }
-
-const handleAuthError = (error: unknown) => {
-  if (Array.isArray(error)) {
-    alert(error.join("\n"));
-  } else {
-    alert(error);
-  }
-};
 
 export async function onLoginSubmit({ username, password }: RequestParams, dispatchSetAuthState: (data: AuthData) => void) {
   try {
@@ -24,7 +18,7 @@ export async function onLoginSubmit({ username, password }: RequestParams, dispa
     const data = await api.post(apiEndpoints.loginMock, { username, password });
     dispatchSetAuthState(data);
   } catch (error: unknown) {
-    handleAuthError(error);
+    handleErrors(error);
   }
 }
 
@@ -39,7 +33,7 @@ export async function onRegisterSubmit(
     dispatchSetAuthState(data);
     navigate(PATHS.PROFILE);
   } catch (error) {
-    handleAuthError(error);
+    handleErrors(error);
   }
 }
 
