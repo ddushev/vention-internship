@@ -15,7 +15,15 @@
 }
 
 :root {
+  // Common
   --base-margin: 1.6rem;
+  --base-focus: #fff;
+  //Submit button
+  --base-btn-bg: rgba(90, 43, 125, 0.7);
+  --base-btn-text: #e3e3e3;
+  //Password modal icon
+  --icon-size: 20px;
+  --icon-hover-bg: #fff;
 }
 
 body {
@@ -23,7 +31,6 @@ body {
   // prettier-ignore
   font: 16px "OpenSans-Regular", sans-serif;
   min-height: 100vh;
-  line-height: 1;
   -webkit-font-smoothing: antialiased;
 }
 

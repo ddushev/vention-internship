@@ -2,6 +2,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import webpackMockServer from "webpack-mock-server";
 import apiEndpoints from "./api.endpoints";
+import { UserMockData } from "./types";
 
 const gamesMockData = [
   {
@@ -14,7 +15,7 @@ const gamesMockData = [
     minAge: 5,
     addDate: new Date("2023-01-01"),
     description:
-      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
     id: 2,
@@ -26,7 +27,7 @@ const gamesMockData = [
     minAge: 6,
     addDate: new Date("2023-01-02"),
     description:
-      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
     id: 3,
@@ -38,7 +39,7 @@ const gamesMockData = [
     minAge: 4,
     addDate: new Date("2023-01-03"),
     description:
-      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
     id: 4,
@@ -50,7 +51,7 @@ const gamesMockData = [
     minAge: 8,
     addDate: new Date("2023-01-01"),
     description:
-      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
     id: 5,
@@ -62,7 +63,7 @@ const gamesMockData = [
     minAge: 3,
     addDate: new Date("2023-01-05"),
     description:
-      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
     id: 6,
@@ -86,7 +87,7 @@ const gamesMockData = [
     minAge: 2,
     addDate: new Date("2023-01-01"),
     description:
-      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle. Experience epic adventures solo or with friends, there’s no wrong way to play.Unless you’re digging straight down.",
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
     id: 8,
@@ -102,20 +103,28 @@ const gamesMockData = [
   },
 ];
 
-const userMockData = [
+const usersMockData: UserMockData[] = [
   {
     id: 1,
     username: "ddushev",
+    address: "Sofia city, Bulgaria",
+    phone: "359897357818",
+    description: "Profile description for username ddushev",
     password: "123",
   },
   {
     id: 2,
     username: "ddushev2",
+    address: "Burgas, Bulgaria",
+    phone: "359896457213",
+    description: "Profile description for username ddushev2",
     password: "qwe",
   },
 ];
 
-export default webpackMockServer.add((app, helper) => {
+let currentUser: UserMockData = {};
+
+export default webpackMockServer.add((app) => {
   app.get(apiEndpoints.searchMock, (_req, res) => {
     const searchText = (_req.query.text as string).toLowerCase();
     const matchingProducts = gamesMockData.filter((game) => game.name.toLowerCase().includes(searchText));
@@ -131,9 +140,10 @@ export default webpackMockServer.add((app, helper) => {
     const { username, password } = _req.body;
     let isAuthenticated = false;
 
-    userMockData.forEach((user) => {
+    usersMockData.forEach((user) => {
       if (user.username === username.toLowerCase() && user.password === password) {
         isAuthenticated = true;
+        currentUser = { ...user, password: null };
         res.status(201).json({ username: user.username });
       }
     });
@@ -145,7 +155,7 @@ export default webpackMockServer.add((app, helper) => {
 
   app.put(apiEndpoints.registerMock, (_req, res) => {
     const { username, password, rePassword } = _req.body;
-    if (userMockData.some((user) => user.username === username.toLowerCase())) {
+    if (usersMockData.some((user) => user.username === username.toLowerCase())) {
       res.status(400).json("Register failed: Username already exists!");
       return;
     }
@@ -154,13 +164,66 @@ export default webpackMockServer.add((app, helper) => {
       res.status(400).json("Register failed: Passwords must match!");
       return;
     }
+    const lastUser = usersMockData[usersMockData.length - 1];
+    const id = lastUser?.id ? lastUser.id + 1 : 1;
     const user = {
-      id: helper.getUniqueIdInt(),
+      id,
       username: username.toLowerCase(),
+      address: "",
+      phone: "",
+      description: "",
       password,
+      profileImg: "",
     };
-
-    userMockData.push(user);
+    currentUser = { ...user, password: null };
+    usersMockData.push(user);
     res.status(200).json({ username: user.username });
+  });
+
+  app.get(apiEndpoints.getProfile, (_req, res) => {
+    res.json(currentUser);
+  });
+
+  app.put(apiEndpoints.saveProfile, (_req, res) => {
+    const { username, address, phone, description } = _req.body;
+    if (currentUser.username !== username && usersMockData.some((user) => user.username === username.toLowerCase())) {
+      res.status(400).json("Update failed: Username already exists!");
+      return;
+    }
+
+    usersMockData.forEach((user, index) => {
+      if (user.username === currentUser.username) {
+        usersMockData[index] = { ...user, username, address, phone, description };
+        currentUser = { ...currentUser, username, address, phone, description };
+      }
+    });
+
+    res.json({ username: currentUser.username });
+  });
+
+  app.put(apiEndpoints.changePassword, (_req, res) => {
+    const { oldPassword, newPassword } = _req.body;
+
+    usersMockData.forEach((user) => {
+      if (user.username === currentUser.username) {
+        if (user.password === oldPassword) {
+          user.password = newPassword;
+          res.json("success");
+        } else {
+          res.status(400).json("Password change failed: Old password is incorrect!");
+        }
+      }
+    });
+  });
+
+  app.put(apiEndpoints.changeProfileImage, (_req, res) => {
+    const profileImg = _req.fileDownloadUrls && _req.fileDownloadUrls[0];
+    usersMockData.forEach((user, index) => {
+      if (user.username === currentUser.username) {
+        usersMockData[index] = { ...user, profileImg };
+        currentUser = { ...currentUser, profileImg };
+      }
+    });
+    res.json({});
   });
 });

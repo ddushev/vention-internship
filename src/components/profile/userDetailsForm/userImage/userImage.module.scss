@@ -1,0 +1,59 @@
+.userImageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 27px;
+
+  .imageSectionContainer {
+    width: 200px;
+    height: 250px;
+    overflow: hidden;
+
+    .profileImage {
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .noImageContainer {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ababab;
+
+      .noImageBox {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: inherit;
+        border: 2px solid #fff;
+
+        .noImageText {
+          font-size: 16px;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .fileFormContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: 90px;
+
+    .fileUploadInput {
+      width: 70%;
+      margin: auto;
+      font-size: 14px;
+      background-color: $inheritPinkBackground;
+      color: $whitTextColor;
+      cursor: pointer;
+    }
+  }
+}
