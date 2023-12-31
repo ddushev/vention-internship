@@ -2,10 +2,10 @@
   display: flex;
 
   .filtersContainer {
-    flex: 1;
+    flex: 0 0 30%;
   }
 
   .catalogContainer {
-    flex: 2;
+    flex: 0 0 70%;
   }
 }
