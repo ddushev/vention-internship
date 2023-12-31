@@ -1,8 +1,22 @@
+import Page from "@/elements/page/page";
+import SearchField from "@/elements/searchField/searchField";
+import GamesCatalog from "./gamesCatalog/gamesCatalog";
+import FiltersSection from "./filtersSection/filtersSection";
+
+import styles from "./products.module.scss";
+
 export default function Products() {
   return (
-    <div className="center-text">
-      <h2>Products page</h2>
-      <p>This is the products page</p>
-    </div>
+    <Page title="Products">
+      <SearchField />
+      <div className={styles.filtersCatalogContainer}>
+        <div className={styles.filtersContainer}>
+          <FiltersSection />
+        </div>
+        <div className={styles.catalogContainer}>
+          <GamesCatalog />
+        </div>
+      </div>
+    </Page>
   );
 }

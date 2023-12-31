@@ -1,0 +1,11 @@
+.filtersCatalogContainer {
+  display: flex;
+
+  .filtersContainer {
+    flex: 0.5;
+  }
+
+  .catalogContainer {
+    flex: 2;
+  }
+}
