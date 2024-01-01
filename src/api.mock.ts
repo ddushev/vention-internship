@@ -228,7 +228,6 @@ export default webpackMockServer.add((app) => {
   });
 
   app.get(apiEndpoints.getProducts, (_req, res) => {
-    console.log(_req.path);
     res.json(gamesMockData);
   });
 });
