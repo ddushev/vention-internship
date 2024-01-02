@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import GameCard, { Game } from "@/components/gameCard/gameCard";
 
@@ -7,10 +8,11 @@ import getProducts from "@/api/apiProducts";
 
 export default function GamesCatalog() {
   const [games, setGames] = useState<Game[]>([]);
+  const category = useLocation().search;
 
   useEffect(() => {
-    getProducts().then((data) => setGames(data));
-  }, []);
+    getProducts({ category }).then((data) => setGames(data));
+  }, [category]);
 
   return (
     <SectionWrapper heading="Products">

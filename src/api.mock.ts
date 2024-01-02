@@ -11,7 +11,7 @@ const gamesMockData = [
     price: 30.99,
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/battlefield1.jpg",
     rating: 5,
-    platforms: ["pc"],
+    platforms: ["pc", "ps5"],
     minAge: 5,
     addDate: new Date("2023-01-01"),
     description:
@@ -23,7 +23,7 @@ const gamesMockData = [
     price: 29.99,
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/cs.jpg",
     rating: 5,
-    platforms: ["pc"],
+    platforms: ["pc", "xbox"],
     minAge: 6,
     addDate: new Date("2023-01-02"),
     description:
@@ -47,7 +47,7 @@ const gamesMockData = [
     price: 18.99,
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/gta.jpg",
     rating: 5,
-    platforms: ["pc"],
+    platforms: ["pc", "xbox", "ps5"],
     minAge: 8,
     addDate: new Date("2023-01-01"),
     description:
@@ -71,7 +71,7 @@ const gamesMockData = [
     price: 23.99,
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/overwatch.jpg",
     rating: 4,
-    platforms: ["pc"],
+    platforms: ["pc", "xbox"],
     minAge: 5,
     addDate: new Date("2023-01-06"),
     description:
@@ -228,6 +228,9 @@ export default webpackMockServer.add((app) => {
   });
 
   app.get(apiEndpoints.getProducts, (_req, res) => {
-    res.json(gamesMockData);
+    const { category } = _req.query;
+
+    const matchingProducts = gamesMockData.filter((game) => game.platforms.includes(category as string));
+    res.json(matchingProducts);
   });
 });
