@@ -1,9 +1,11 @@
 import loadingAnimation from "images/loading.svg";
 
-import { ChangeEvent, useCallback, useState } from "react";
-import apiEndpoints from "@/api.endpoints";
-import debounce from "@/helpers/debounce";
+import { useCallback, useState } from "react";
+import { WUPTextControl } from "web-ui-pack";
 
+import apiEndpoints from "@/api.endpoints";
+
+import SearchField from "@/elements/searchField/searchField";
 import styles from "./homeSearch.module.scss";
 
 interface Game {
@@ -15,7 +17,6 @@ export default function HomeSearch() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [searchResults, setSearchResults] = useState<Game[]>([]);
-  const [isTyping, setIsTyping] = useState(false);
 
   const fetchSearchResults = useCallback(async (query: string): Promise<void> => {
     if (!query) {
@@ -35,19 +36,10 @@ export default function HomeSearch() {
     }
   }, []);
 
-  const debouncedFetchSearchResults = useCallback(
-    debounce((query: string) => {
-      fetchSearchResults(query);
-      setIsTyping(false);
-    }, 300),
-    [fetchSearchResults],
-  );
-
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setSearchTerm(value);
-    setIsTyping(true);
-    debouncedFetchSearchResults(value);
+  const handleInputChange = (event: CustomEvent) => {
+    const search = (event.target as WUPTextControl).$value as string;
+    setSearchTerm(search);
+    fetchSearchResults(search);
   };
 
   const handleGameSelect = (game: string) => {
@@ -56,7 +48,7 @@ export default function HomeSearch() {
 
   return (
     <div className={styles.searchField}>
-      <input value={searchTerm} onChange={handleInputChange} type="text" placeholder="Search" />
+      <SearchField handleInputChange={handleInputChange} />
       <div className={styles.resultsDropDown}>
         {isLoading && (
           <div className={styles.loader}>
@@ -73,7 +65,7 @@ export default function HomeSearch() {
                   </button>
                 </li>
               ))}
-            {!searchResults.length && !!searchTerm.length && !isTyping && (
+            {searchTerm && !searchResults.length && !!searchTerm.length && (
               <li className={styles.listItem}>
                 <button className={styles.buttonItem} type="button">
                   No items found

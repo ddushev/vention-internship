@@ -1,27 +1,13 @@
 .searchField {
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px 0;
+  width: 500px;
+  margin: auto;
+  padding: 5px 0;
 
   .resultsDropDown {
-    width: 40%;
-    height: auto;
+    width: 500px;
     position: absolute;
     z-index: 10;
-    top: 135px;
-  }
-
-  input {
-    width: 40%;
-    height: 40px;
-    border: 1px solid #fff;
-    border-radius: 40px;
-    font-size: 16px;
-    background-color: $inheritDarkerBackground;
-    color: $whitTextColor;
-    padding-left: 20px;
+    top: 150px;
   }
 
   .loader {
@@ -41,7 +27,7 @@
       text-align: left;
       width: 100%;
       padding: 10px;
-      border-radius: 20px;
+      border-radius: 6px;
       font-size: 16px;
       background-color: $backgroundColor;
       color: $whitTextColor;
