@@ -4,14 +4,14 @@ import { ChangeEvent, useCallback, useState } from "react";
 import apiEndpoints from "@/api.endpoints";
 import debounce from "@/helpers/debounce";
 
-import styles from "./searchField.module.scss";
+import styles from "./homeSearch.module.scss";
 
 interface Game {
   id: number;
   name: string;
 }
 
-export default function SearchField() {
+export default function HomeSearch() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [searchResults, setSearchResults] = useState<Game[]>([]);
