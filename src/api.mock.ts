@@ -228,9 +228,12 @@ export default webpackMockServer.add((app) => {
   });
 
   app.get(apiEndpoints.getProducts, (_req, res) => {
-    const { category } = _req.query;
-
-    const matchingProducts = gamesMockData.filter((game) => game.platforms.includes(category as string));
+    const { category, searchText } = _req.query;
+    console.log(searchText);
+    let matchingProducts = gamesMockData.filter((game) => game.platforms.includes(category as string));
+    if (searchText) {
+      matchingProducts = matchingProducts.filter((game) => game.name.toLowerCase().includes(searchText as string));
+    }
     res.json(matchingProducts);
   });
 });

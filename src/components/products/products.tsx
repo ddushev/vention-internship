@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { WUPTextControl } from "web-ui-pack";
 
 import getProducts from "@/api/apiProducts";
@@ -12,17 +12,23 @@ import GamesCatalog from "./gamesCatalog/gamesCatalog";
 import styles from "./products.module.scss";
 
 export default function Products() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [games, setGames] = useState<Game[]>([]);
-  const category = useLocation().search;
 
   const handleInputChange = (event: CustomEvent) => {
-    const search = (event.target as WUPTextControl).$value;
-    console.log(search);
+    const search = (event.target as WUPTextControl).$value as string;
+    if (search) {
+      searchParams.set("searchText", search);
+    } else {
+      searchParams.set("searchText", "");
+    }
+    setSearchParams(searchParams);
   };
 
   useEffect(() => {
-    getProducts({ category }).then((data) => setGames(data));
-  }, [category]);
+    getProducts({ urlParams: searchParams.toString() }).then((data) => setGames(data));
+  }, [searchParams]);
+
   return (
     <Page title="Products">
       <CatalogSearch handleInputChange={handleInputChange} />
