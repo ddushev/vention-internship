@@ -1,4 +1,4 @@
-import TextControl from "@/elements/controls/text";
+import SearchField from "@/elements/searchField/searchField";
 
 import styles from "./catalogSearch.module.scss";
 
@@ -9,7 +9,7 @@ interface CatalogSearchProps {
 export default function CatalogSearch({ handleInputChange }: CatalogSearchProps) {
   return (
     <div className={styles.searchFieldContainer}>
-      <TextControl onChange={handleInputChange} name="search" />
+      <SearchField handleInputChange={handleInputChange} />
     </div>
   );
 }
