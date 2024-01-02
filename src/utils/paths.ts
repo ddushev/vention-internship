@@ -1,17 +1,13 @@
 interface Paths {
-  HOME: string;
-  PRODUCTS: string;
-  ABOUT: string;
-  PROFILE: string;
-  CART: string;
-  SIGN_IN: string;
-  SIGN_UP: string;
-  ERROR: string;
+  [key: string]: string;
 }
 
 const PATHS: Paths = {
   HOME: "/",
   PRODUCTS: "/products",
+  PC: "/products?category=pc",
+  PS5: "/products?category=ps5",
+  XBOX: "/products?category=xbox",
   ABOUT: "/about",
   PROFILE: "/profile",
   CART: "/cart",
