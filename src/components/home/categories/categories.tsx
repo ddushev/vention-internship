@@ -12,19 +12,19 @@ import styles from "./categories.module.scss";
 export default function Categories() {
   return (
     <SectionWrapper heading="Categories">
-      <Link className={styles.categoriesLink} to={`${PATHS.PRODUCTS}/pc`}>
+      <Link className={styles.categoriesLink} to={PATHS.PC}>
         <li className={styles.categoryCardBox}>
           <img className={styles.categoryIcon} src={pc} alt="pc" />
           <h4 className={styles.categoryTitle}>PC</h4>
         </li>
       </Link>
-      <Link className={styles.categoriesLink} to={`${PATHS.PRODUCTS}/ps5`}>
+      <Link className={styles.categoriesLink} to={PATHS.PS5}>
         <li className={styles.categoryCardBox}>
           <img className={styles.categoryIcon} src={ps5} alt="ps5" />
           <h4 className={styles.categoryTitle}>Playstation 5</h4>
         </li>
       </Link>
-      <Link className={styles.categoriesLink} to={`${PATHS.PRODUCTS}/xbox`}>
+      <Link className={styles.categoriesLink} to={PATHS.XBOX}>
         <li className={styles.categoryCardBox}>
           <img className={styles.categoryIcon} src={xbox} alt="xbox" />
           <h4 className={styles.categoryTitle}>XBox One 5</h4>

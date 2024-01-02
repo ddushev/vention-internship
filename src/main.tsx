@@ -27,7 +27,7 @@ function AppContainer() {
             <Route path={PATHS.HOME} element={<Home />} />
             <Route element={<UserRouteGuard />}>
               <Route path={PATHS.ABOUT} element={<Page title="About" />} />
-              <Route path={`${PATHS.PRODUCTS}/:category`} element={<Products />} />
+              <Route path={PATHS.PRODUCTS} element={<Products />} />
               <Route path={PATHS.PROFILE} element={<Profile />} />
               <Route path={PATHS.CART} element={<Page title="Cart" />} />
             </Route>

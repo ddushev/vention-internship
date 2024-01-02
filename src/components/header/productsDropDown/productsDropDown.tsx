@@ -25,13 +25,13 @@ export default function ProductsDropDown({ isProductsDropdownVisible, authData }
         authData?.username && styles.loggedIn,
       )}
     >
-      <button type="button" className={styles.linkItem} onClick={() => handleNavigation(`${PATHS.PRODUCTS}/pc`)}>
+      <button type="button" className={styles.linkItem} onClick={() => handleNavigation(PATHS.PC)}>
         PC
       </button>
-      <button type="button" className={styles.linkItem} onClick={() => handleNavigation(`${PATHS.PRODUCTS}/ps5`)}>
+      <button type="button" className={styles.linkItem} onClick={() => handleNavigation(PATHS.PS5)}>
         Playstation 5
       </button>
-      <button type="button" className={styles.linkItem} onClick={() => handleNavigation(`${PATHS.PRODUCTS}/xbox`)}>
+      <button type="button" className={styles.linkItem} onClick={() => handleNavigation(PATHS.XBOX)}>
         XBox One
       </button>
     </ul>
