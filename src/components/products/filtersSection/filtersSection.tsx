@@ -7,7 +7,12 @@ import SelectWrapper from "@/elements/selectWrapper/selectWrapper";
 
 import styles from "./filtersSection.module.scss";
 
-export default function FiltersSection() {
+interface FilterSectionProps {
+  handleCriteriaInputChange: (event: CustomEvent) => void;
+  handleTypeInputChange: (event: CustomEvent) => void;
+}
+
+export default function FiltersSection({ handleCriteriaInputChange, handleTypeInputChange }: FilterSectionProps) {
   const [searchParams] = useSearchParams();
   return (
     <div className={styles.alignTextCenter}>
@@ -15,6 +20,8 @@ export default function FiltersSection() {
         <FilterWrapper heading="Sort">
           <SelectWrapper heading="Criteria">
             <SelectControl
+              initValue="name"
+              onChange={handleCriteriaInputChange}
               items={[
                 { text: "Name", value: "name" },
                 { text: "Price", value: "price" },
@@ -24,6 +31,8 @@ export default function FiltersSection() {
           </SelectWrapper>
           <SelectWrapper heading="Type">
             <SelectControl
+              initValue="ascending"
+              onChange={handleTypeInputChange}
               items={[
                 { text: "Ascending", value: "ascending" },
                 { text: "Descending", value: "descending" },
