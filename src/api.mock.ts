@@ -6,26 +6,38 @@ import { UserMockData } from "./types";
 
 const gamesMockData = [
   {
+    id: 2,
+    name: "Counter-Strike",
+    price: 29.99,
+    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/cs.jpg",
+    rating: 3,
+    platforms: ["pc"],
+    minAge: 6,
+    addDate: new Date("2023-01-02"),
+    description:
+      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
+  },
+  {
     id: 1,
     name: "Battlefield",
     price: 30.99,
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/battlefield1.jpg",
-    rating: 5,
-    platforms: ["pc", "ps5"],
+    rating: 3,
+    platforms: ["ps5"],
     minAge: 5,
     addDate: new Date("2023-01-01"),
     description:
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
-    id: 2,
-    name: "Counter-Strike",
-    price: 29.99,
-    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/cs.jpg",
-    rating: 5,
-    platforms: ["pc", "xbox"],
-    minAge: 6,
-    addDate: new Date("2023-01-02"),
+    id: 4,
+    name: "GTA",
+    price: 18.99,
+    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/gta.jpg",
+    rating: 3,
+    platforms: ["xbox"],
+    minAge: 8,
+    addDate: new Date("2023-01-01"),
     description:
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
@@ -35,20 +47,20 @@ const gamesMockData = [
     price: 13.99,
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/genshinimpact.jpg",
     rating: 5,
-    platforms: ["pc"],
+    platforms: ["pc", "xbox"],
     minAge: 4,
     addDate: new Date("2023-01-03"),
     description:
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
-    id: 4,
-    name: "GTA",
-    price: 18.99,
-    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/gta.jpg",
+    id: 7,
+    name: "Sims 4",
+    price: 30.99,
+    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/sims4.jpg",
     rating: 5,
-    platforms: ["pc", "xbox", "ps5"],
-    minAge: 8,
+    platforms: ["pc", "ps5"],
+    minAge: 2,
     addDate: new Date("2023-01-01"),
     description:
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
@@ -66,40 +78,28 @@ const gamesMockData = [
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
-    id: 6,
-    name: "Overwatch",
-    price: 23.99,
-    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/overwatch.jpg",
-    rating: 4,
-    platforms: ["pc", "xbox"],
-    minAge: 5,
-    addDate: new Date("2023-01-06"),
-    description:
-      "Overwatch 2 is a free-to-play shooter featuring 30+ epic heroes, each with game-changing abilities. Choose your hero, group up with your friends and battle across all-new maps and modes in the ultimate team-based shooter.",
-  },
-  {
-    id: 7,
-    name: "Sims 4",
-    price: 30.99,
-    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/sims4.jpg",
-    rating: 5,
-    platforms: ["pc"],
-    minAge: 2,
-    addDate: new Date("2023-01-01"),
-    description:
-      "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
-  },
-  {
     id: 8,
     name: "Terraria",
     price: 4.99,
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/terraria.jpg",
-    rating: 3,
+    rating: 1,
     platforms: ["pc", "ps5", "xbox"],
     minAge: 4,
     addDate: new Date("2023-01-04"),
     description:
       "The very world is at your fingertips as you fight for survival, fortune, and glory. Delve deep into cavernous expanses, seek out ever-greater foes to test your mettle in combat, or construct your own city - In the World of Terraria, the choice is yours!",
+  },
+  {
+    id: 6,
+    name: "Overwatch",
+    price: 23.99,
+    image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/overwatch.jpg",
+    rating: 1,
+    platforms: ["pc", "xbox"],
+    minAge: 5,
+    addDate: new Date("2023-01-06"),
+    description:
+      "Overwatch 2 is a free-to-play shooter featuring 30+ epic heroes, each with game-changing abilities. Choose your hero, group up with your friends and battle across all-new maps and modes in the ultimate team-based shooter.",
   },
 ];
 
@@ -228,11 +228,28 @@ export default webpackMockServer.add((app) => {
   });
 
   app.get(apiEndpoints.getProducts, (_req, res) => {
-    const { category, searchText } = _req.query;
+    const { category, searchText, sortCriteria, sortType } = _req.query;
+
     let matchingProducts = gamesMockData.filter((game) => game.platforms.includes(category as string));
+
+    if (sortCriteria === "name" && sortType === "ascending") {
+      matchingProducts.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortCriteria === "price" && sortType === "ascending") {
+      matchingProducts.sort((a, b) => a.price - b.price);
+    } else if (sortCriteria === "rating" && sortType === "ascending") {
+      matchingProducts.sort((a, b) => a.rating - b.rating);
+    } else if (sortCriteria === "name" && sortType === "descending") {
+      matchingProducts.sort((a, b) => b.name.localeCompare(a.name));
+    } else if (sortCriteria === "price" && sortType === "descending") {
+      matchingProducts.sort((a, b) => b.price - a.price);
+    } else if (sortCriteria === "rating" && sortType === "descending") {
+      matchingProducts.sort((a, b) => b.rating - a.rating);
+    }
+
     if (searchText) {
       matchingProducts = matchingProducts.filter((game) => game.name.toLowerCase().includes(searchText as string));
     }
+
     res.json(matchingProducts);
   });
 });
