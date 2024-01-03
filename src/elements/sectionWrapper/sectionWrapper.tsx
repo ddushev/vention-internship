@@ -2,7 +2,7 @@ import styles from "./sectionWrapper.module.scss";
 
 interface SectionWrapperProps {
   children: React.ReactNode;
-  heading: string | undefined;
+  heading: string | undefined | null;
 }
 
 export default function SectionWrapper({ children, heading }: SectionWrapperProps) {
