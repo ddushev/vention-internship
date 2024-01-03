@@ -13,21 +13,27 @@ import styles from "./products.module.scss";
 
 export default function Products() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [searchTerm, setSearchTerm] = useState("");
   const [games, setGames] = useState<Game[]>([]);
 
   const handleInputChange = (event: CustomEvent) => {
     const search = (event.target as WUPTextControl).$value as string;
-    if (search) {
-      searchParams.set("searchText", search);
-    } else {
-      searchParams.set("searchText", "");
-    }
-    setSearchParams(searchParams);
+    setSearchTerm(search);
   };
 
   useEffect(() => {
-    getProducts({ urlParams: searchParams.toString() }).then((data) => setGames(data));
-  }, [searchParams]);
+    const updatedSearchParams = new URLSearchParams(searchParams);
+    if (searchTerm) {
+      updatedSearchParams.set("searchText", searchTerm);
+    } else {
+      updatedSearchParams.delete("searchText");
+    }
+    if (updatedSearchParams.toString() !== searchParams.toString()) {
+      setSearchParams(() => updatedSearchParams);
+
+      getProducts({ urlParams: updatedSearchParams.toString() }).then((data) => setGames(data));
+    }
+  }, [searchParams, searchTerm]);
 
   return (
     <Page title="Products">
