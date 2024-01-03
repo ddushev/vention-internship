@@ -29,7 +29,6 @@ export default function Products() {
       updatedSearchParams.set("searchText", "");
     }
     if (updatedSearchParams.toString() !== searchParams.toString()) {
-      console.log(updatedSearchParams.size);
       setSearchParams(() => updatedSearchParams);
 
       getProducts({ urlParams: updatedSearchParams.toString() }).then((data) => setGames(data));

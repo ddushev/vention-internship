@@ -1,0 +1,7 @@
+.ctrl {
+  // override here only element-specific styles. Common styles override in main.scss
+  max-width: 200px;
+  margin: 0 0 15px 0;
+  color: $whitTextColor;
+  background-color: $inheritDarkerBackground;
+}

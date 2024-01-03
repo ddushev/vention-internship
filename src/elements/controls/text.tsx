@@ -3,7 +3,7 @@ import { WUPTextControl } from "web-ui-pack";
 
 import BaseControl, { BaseControlProps } from "./baseControl";
 
-import styles from "./text.m.scss";
+import styles from "./controls.m.scss";
 
 WUPTextControl.$use(); // register control in the browser
 // WUPTextControl.$defaults.clearButton = false;
