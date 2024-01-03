@@ -1,0 +1,22 @@
+.filterWrapper {
+  width: 95%;
+  margin: 0 auto 30px auto;
+
+  .filterHeading {
+    width: 95%;
+    margin: 0 auto 30px auto;
+    padding: 0 0 15px 15px;
+    color: $whitTextColor;
+    border-bottom: 1px solid #fff;
+    font-weight: normal;
+  }
+
+  .filterContainer {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+  }
+}
