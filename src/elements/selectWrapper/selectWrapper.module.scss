@@ -1,0 +1,12 @@
+.selectFilterContainer {
+  width: 100%;
+  padding-left: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .selectName {
+    width: 60px;
+    color: $whitTextColor;
+  }
+}
