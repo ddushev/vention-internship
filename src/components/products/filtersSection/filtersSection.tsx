@@ -20,7 +20,7 @@ export default function FiltersSection({ handleCriteriaInputChange, handleTypeIn
         <FilterWrapper heading="Sort">
           <SelectWrapper heading="Criteria">
             <SelectControl
-              initValue="name"
+              initValue={searchParams.get("sortCriteria") || "name"}
               onChange={handleCriteriaInputChange}
               items={[
                 { text: "Name", value: "name" },
@@ -31,7 +31,7 @@ export default function FiltersSection({ handleCriteriaInputChange, handleTypeIn
           </SelectWrapper>
           <SelectWrapper heading="Type">
             <SelectControl
-              initValue="ascending"
+              initValue={searchParams.get("sortType") || "ascending"}
               onChange={handleTypeInputChange}
               items={[
                 { text: "Ascending", value: "ascending" },

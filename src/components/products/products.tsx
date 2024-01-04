@@ -14,10 +14,10 @@ import styles from "./products.module.scss";
 export default function Products() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortCriteria, setSortCriteria] = useState("name");
-  const [sortType, setSortType] = useState("ascending");
+  const [sortCriteria, setSortCriteria] = useState(searchParams.get("sortCriteria") || "name");
+  const [sortType, setSortType] = useState(searchParams.get("sortType") || "ascending");
+  const [isFirstRender, setIsFirstRender] = useState(true);
   const [games, setGames] = useState<Game[]>([]);
-
   const handleSearchInputChange = (event: CustomEvent) => {
     const search = (event.target as WUPTextControl).$value as string;
     setSearchTerm(search);
@@ -44,6 +44,10 @@ export default function Products() {
       updatedSearchParams.delete("searchText");
     }
 
+    if (isFirstRender) {
+      getProducts({ urlParams: updatedSearchParams.toString() }).then((data) => setGames(data));
+      setIsFirstRender(false);
+    }
     if (updatedSearchParams.toString() !== searchParams.toString()) {
       setSearchParams(() => updatedSearchParams);
       getProducts({ urlParams: updatedSearchParams.toString() }).then((data) => setGames(data));
