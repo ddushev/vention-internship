@@ -38,13 +38,11 @@ export default function Products() {
 
   const handleGenreInputChange = (event: CustomEvent) => {
     const genre = (event.target as WUPRadioControl).$value as string;
-    console.log(genre);
     setGenre(genre);
   };
 
   const handleAgeInputChange = (event: CustomEvent) => {
     const age = (event.target as WUPRadioControl).$value as string;
-    console.log(age);
     setAge(age);
   };
 
