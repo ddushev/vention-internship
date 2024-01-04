@@ -12,9 +12,16 @@ import styles from "./filtersSection.module.scss";
 interface FilterSectionProps {
   handleCriteriaInputChange: (event: CustomEvent) => void;
   handleTypeInputChange: (event: CustomEvent) => void;
+  handleGenreInputChange: (event: CustomEvent) => void;
+  handleAgeInputChange: (event: CustomEvent) => void;
 }
 
-export default function FiltersSection({ handleCriteriaInputChange, handleTypeInputChange }: FilterSectionProps) {
+export default function FiltersSection({
+  handleCriteriaInputChange,
+  handleTypeInputChange,
+  handleGenreInputChange,
+  handleAgeInputChange,
+}: FilterSectionProps) {
   const [searchParams] = useSearchParams();
   return (
     <div className={styles.alignTextCenter}>
@@ -44,6 +51,8 @@ export default function FiltersSection({ handleCriteriaInputChange, handleTypeIn
         </SelectFilterWrapper>
         <RadioFilterWrapper heading="Genre">
           <RadioControl
+            initValue={searchParams.get("genre") || "all"}
+            onChange={handleGenreInputChange}
             items={[
               { text: "All genres", value: "all" },
               { text: "Shooter", value: "shooter" },
@@ -54,12 +63,14 @@ export default function FiltersSection({ handleCriteriaInputChange, handleTypeIn
         </RadioFilterWrapper>
         <RadioFilterWrapper heading="Age">
           <RadioControl
+            initValue={searchParams.get("minAge") || "all"}
+            onChange={handleAgeInputChange}
             items={[
               { text: "All ages", value: "all" },
               { text: "3+", value: "3" },
               { text: "6+", value: "6" },
-              { text: "12", value: "12+" },
-              { text: "18", value: "18+" },
+              { text: "12+", value: "12" },
+              { text: "18+", value: "18" },
             ]}
           />
         </RadioFilterWrapper>

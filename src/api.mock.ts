@@ -12,7 +12,8 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/cs.jpg",
     rating: 3,
     platforms: ["pc"],
-    minAge: 6,
+    genre: "shooter",
+    minAge: 18,
     addDate: new Date("2023-01-02"),
     description:
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
@@ -24,7 +25,8 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/battlefield1.jpg",
     rating: 3,
     platforms: ["ps5"],
-    minAge: 5,
+    genre: "shooter",
+    minAge: 12,
     addDate: new Date("2023-01-01"),
     description:
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
@@ -36,6 +38,7 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/gta.jpg",
     rating: 3,
     platforms: ["xbox"],
+    genre: "arcade",
     minAge: 8,
     addDate: new Date("2023-01-01"),
     description:
@@ -48,6 +51,7 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/genshinimpact.jpg",
     rating: 5,
     platforms: ["pc", "xbox"],
+    genre: "survive",
     minAge: 4,
     addDate: new Date("2023-01-03"),
     description:
@@ -60,6 +64,7 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/sims4.jpg",
     rating: 5,
     platforms: ["pc", "ps5"],
+    genre: "arcade",
     minAge: 2,
     addDate: new Date("2023-01-01"),
     description:
@@ -72,6 +77,7 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/minecraft.jpg",
     rating: 5,
     platforms: ["pc", "ps5", "xbox"],
+    genre: "arcade",
     minAge: 3,
     addDate: new Date("2023-01-05"),
     description:
@@ -84,6 +90,7 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/terraria.jpg",
     rating: 1,
     platforms: ["pc", "ps5", "xbox"],
+    genre: "arcade",
     minAge: 4,
     addDate: new Date("2023-01-04"),
     description:
@@ -96,6 +103,7 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/overwatch.jpg",
     rating: 1,
     platforms: ["pc", "xbox"],
+    genre: "shooter",
     minAge: 5,
     addDate: new Date("2023-01-06"),
     description:
@@ -228,7 +236,7 @@ export default webpackMockServer.add((app) => {
   });
 
   app.get(apiEndpoints.getProducts, (_req, res) => {
-    const { category, searchText, sortCriteria, sortType } = _req.query;
+    const { category, searchText, sortCriteria, sortType, genre, minAge } = _req.query;
 
     let matchingProducts = gamesMockData.filter((game) => game.platforms.includes(category as string));
 
@@ -248,6 +256,14 @@ export default webpackMockServer.add((app) => {
 
     if (searchText) {
       matchingProducts = matchingProducts.filter((game) => game.name.toLowerCase().includes(searchText as string));
+    }
+
+    if (genre !== "all") {
+      matchingProducts = matchingProducts.filter((game) => game.genre === genre);
+    }
+
+    if (minAge !== "all") {
+      matchingProducts = matchingProducts.filter((game) => game.minAge >= Number(minAge));
     }
 
     res.json(matchingProducts);

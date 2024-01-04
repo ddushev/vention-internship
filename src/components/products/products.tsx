@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { WUPSelectControl, WUPTextControl } from "web-ui-pack";
+import { WUPRadioControl, WUPSelectControl, WUPTextControl } from "web-ui-pack";
 
 import getProducts from "@/api/apiProducts";
 import Page from "@/elements/page/page";
@@ -16,8 +16,11 @@ export default function Products() {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortCriteria, setSortCriteria] = useState(searchParams.get("sortCriteria") || "name");
   const [sortType, setSortType] = useState(searchParams.get("sortType") || "ascending");
+  const [genreFilter, setGenre] = useState(searchParams.get("genre") || "all");
+  const [ageFilter, setAge] = useState(searchParams.get("minAge") || "all");
   const [isFirstRender, setIsFirstRender] = useState(true);
   const [games, setGames] = useState<Game[]>([]);
+
   const handleSearchInputChange = (event: CustomEvent) => {
     const search = (event.target as WUPTextControl).$value as string;
     setSearchTerm(search);
@@ -33,10 +36,24 @@ export default function Products() {
     setSortType(sort);
   };
 
+  const handleGenreInputChange = (event: CustomEvent) => {
+    const genre = (event.target as WUPRadioControl).$value as string;
+    console.log(genre);
+    setGenre(genre);
+  };
+
+  const handleAgeInputChange = (event: CustomEvent) => {
+    const age = (event.target as WUPRadioControl).$value as string;
+    console.log(age);
+    setAge(age);
+  };
+
   useEffect(() => {
     const updatedSearchParams = new URLSearchParams(searchParams);
     updatedSearchParams.set("sortCriteria", sortCriteria);
     updatedSearchParams.set("sortType", sortType);
+    updatedSearchParams.set("genre", genreFilter);
+    updatedSearchParams.set("minAge", ageFilter);
 
     if (searchTerm) {
       updatedSearchParams.set("searchText", searchTerm);
@@ -52,14 +69,19 @@ export default function Products() {
       setSearchParams(() => updatedSearchParams);
       getProducts({ urlParams: updatedSearchParams.toString() }).then((data) => setGames(data));
     }
-  }, [searchParams, searchTerm, sortCriteria, sortType]);
+  }, [searchParams, searchTerm, sortCriteria, sortType, genreFilter, ageFilter]);
 
   return (
     <Page title="Products">
       <CatalogSearch handleInputChange={handleSearchInputChange} />
       <div className={styles.filtersCatalogContainer}>
         <div className={styles.filtersContainer}>
-          <FiltersSection handleCriteriaInputChange={handleCriteriaInputChange} handleTypeInputChange={handleTypeInputChange} />
+          <FiltersSection
+            handleCriteriaInputChange={handleCriteriaInputChange}
+            handleTypeInputChange={handleTypeInputChange}
+            handleGenreInputChange={handleGenreInputChange}
+            handleAgeInputChange={handleAgeInputChange}
+          />
         </div>
         <div className={styles.catalogContainer}>
           <GamesCatalog games={games} />
