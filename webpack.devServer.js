@@ -56,7 +56,7 @@ module.exports = (env, argv) => {
             //   console.log(`Sent response: ${req.method} ${req.url}`);
             // });
             if (req.url.startsWith("/api")) {
-              setTimeout(next, 500);
+              setTimeout(next, 1000);
             } else {
               next();
             }
