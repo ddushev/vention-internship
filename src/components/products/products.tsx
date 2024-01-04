@@ -41,7 +41,7 @@ export default function Products() {
     if (searchTerm) {
       updatedSearchParams.set("searchText", searchTerm);
     } else {
-      updatedSearchParams.set("searchText", "");
+      updatedSearchParams.delete("searchText");
     }
 
     if (updatedSearchParams.toString() !== searchParams.toString()) {
