@@ -1,10 +1,12 @@
 import { useSearchParams } from "react-router-dom";
 
 import SectionWrapper from "@/elements/sectionWrapper/sectionWrapper";
-import FilterWrapper from "@/elements/filterWrapper/filterWrapper";
+import SelectFilterWrapper from "@/elements/selectFilterWrapper/selectFilterWrapper";
 import SelectControl from "@/elements/controls/select/select";
 import SelectWrapper from "@/elements/selectWrapper/selectWrapper";
 
+import RadioControl from "@/elements/controls/radio/radio";
+import RadioFilterWrapper from "@/elements/radioFilterWrapper/radioFilterWrapper";
 import styles from "./filtersSection.module.scss";
 
 interface FilterSectionProps {
@@ -17,7 +19,7 @@ export default function FiltersSection({ handleCriteriaInputChange, handleTypeIn
   return (
     <div className={styles.alignTextCenter}>
       <SectionWrapper heading={searchParams.get("category")?.toUpperCase()}>
-        <FilterWrapper heading="Sort">
+        <SelectFilterWrapper heading="Sort">
           <SelectWrapper heading="Criteria">
             <SelectControl
               initValue={searchParams.get("sortCriteria") || "name"}
@@ -39,9 +41,28 @@ export default function FiltersSection({ handleCriteriaInputChange, handleTypeIn
               ]}
             />
           </SelectWrapper>
-        </FilterWrapper>
-        <FilterWrapper heading="Genre">Genre filter placeholder</FilterWrapper>
-        <FilterWrapper heading="Age">Age filter placeholder</FilterWrapper>
+        </SelectFilterWrapper>
+        <RadioFilterWrapper heading="Genre">
+          <RadioControl
+            items={[
+              { text: "All genres", value: "all" },
+              { text: "Shooter", value: "shooter" },
+              { text: "Arcade", value: "arcade" },
+              { text: "Survive", value: "survive" },
+            ]}
+          />
+        </RadioFilterWrapper>
+        <RadioFilterWrapper heading="Age">
+          <RadioControl
+            items={[
+              { text: "All ages", value: "all" },
+              { text: "3+", value: "3" },
+              { text: "6+", value: "6" },
+              { text: "12", value: "12+" },
+              { text: "18", value: "18+" },
+            ]}
+          />
+        </RadioFilterWrapper>
       </SectionWrapper>
     </div>
   );

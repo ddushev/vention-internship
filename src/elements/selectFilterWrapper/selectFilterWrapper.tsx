@@ -1,11 +1,11 @@
-import styles from "./filterWrapper.module.scss";
+import styles from "./selectFilterWrapper.module.scss";
 
 interface FilterWrapperProps {
   children: React.ReactNode;
   heading: string | undefined;
 }
 
-export default function FilterWrapper({ children, heading }: FilterWrapperProps) {
+export default function SelectFilterWrapper({ children, heading }: FilterWrapperProps) {
   return (
     <div className={styles.filterWrapper}>
       <h4 className={styles.filterHeading}>{heading}</h4>
