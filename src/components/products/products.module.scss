@@ -1,11 +1,12 @@
-.filtersCatalogContainer {
+.productsContainer {
   display: flex;
 
   .filtersContainer {
-    flex: 0 0 30%;
+    width: 20%;
+    margin-top: 35px;
   }
 
-  .catalogContainer {
-    flex: 0 0 70%;
+  .searchCatalogContainer {
+    width: 80%;
   }
 }

@@ -22,8 +22,7 @@ export default function Products() {
 
   return (
     <Page title="Products">
-      <CatalogSearch handleInputChange={handleSearchInputChange} />
-      <div className={styles.filtersCatalogContainer}>
+      <div className={styles.productsContainer}>
         <div className={styles.filtersContainer}>
           <FiltersSection
             handleCriteriaInputChange={handleCriteriaInputChange}
@@ -32,7 +31,9 @@ export default function Products() {
             handleAgeInputChange={handleAgeInputChange}
           />
         </div>
-        <div className={styles.catalogContainer}>
+
+        <div className={styles.searchCatalogContainer}>
+          <CatalogSearch handleInputChange={handleSearchInputChange} />
           <SectionWrapper heading="Products">{loading ? <Loading /> : <GamesCatalog games={games} />}</SectionWrapper>
         </div>
       </div>
