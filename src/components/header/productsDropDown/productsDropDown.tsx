@@ -30,7 +30,7 @@ export default function ProductsDropDown({ isProductsDropdownVisible, authData }
         { path: PATHS.PS5, text: "Playstation 5" },
         { path: PATHS.XBOX, text: "XBox One" },
       ].map((button) => (
-        <button type="button" className={styles.linkItem} onClick={() => handleNavigation(button.path)}>
+        <button key={button.text} type="button" className={styles.linkItem} onClick={() => handleNavigation(button.path)}>
           {button.text}
         </button>
       ))}

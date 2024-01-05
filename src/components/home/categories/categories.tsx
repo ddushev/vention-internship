@@ -17,7 +17,7 @@ export default function Categories() {
         { path: PATHS.PS5, src: ps5, alt: "ps5", text: "Playstation 5" },
         { path: PATHS.XBOX, src: xbox, alt: "xbox", text: "XBox One" },
       ].map((link) => (
-        <Link className={styles.categoriesLink} to={link.path}>
+        <Link key={link.text} className={styles.categoriesLink} to={link.path}>
           <li className={styles.categoryCardBox}>
             <img className={styles.categoryIcon} src={link.src} alt={link.alt} />
             <h4 className={styles.categoryTitle}>{link.text}</h4>
