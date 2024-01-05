@@ -59,24 +59,36 @@
       }
 
       .detailsContainer {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
+        width: 100%;
+        padding: 0 10px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
         gap: 15px;
+
+        .gameTitle {
+          font-weight: normal;
+          text-align: left;
+        }
+      }
+
+      .starsWrapper {
+        width: 100%;
+        padding: 0 10px;
+        display: flex;
+        justify-content: flex-start;
 
         .starsContainer {
           width: 17px;
           height: 17px;
           display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
 
           .starIcon {
             width: 100%;
             filter: invert(30%) sepia(86%) saturate(6000%) hue-rotate(60deg) brightness(200%) contrast(50%);
           }
-        }
-
-        .gameTitle {
-          font-weight: normal;
         }
       }
     }
