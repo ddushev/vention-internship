@@ -8,4 +8,12 @@
   fieldset {
     display: block;
   }
+
+  span {
+    background-color: #fff;
+  }
+
+  input:checked + [icon]:after {
+    background: blue;
+  }
 }
