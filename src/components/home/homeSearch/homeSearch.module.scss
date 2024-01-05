@@ -1,10 +1,10 @@
 .searchField {
-  width: 500px;
+  max-width: 500px;
   margin: auto;
   padding: 5px 0;
 
   .resultsDropDown {
-    width: 500px;
+    max-width: 500px;
     position: absolute;
     z-index: 10;
     top: 150px;
