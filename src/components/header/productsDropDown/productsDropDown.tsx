@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
-import PATHS from "@/utils/paths";
 import cx from "classnames";
 import { AuthData } from "@/types";
+import PATHS from "@/utils/paths";
 
 import styles from "./productsDropDown.module.scss";
 
@@ -25,15 +25,15 @@ export default function ProductsDropDown({ isProductsDropdownVisible, authData }
         authData?.username && styles.loggedIn,
       )}
     >
-      <button type="button" className={styles.linkItem} onClick={() => handleNavigation(PATHS.PC)}>
-        PC
-      </button>
-      <button type="button" className={styles.linkItem} onClick={() => handleNavigation(PATHS.PS5)}>
-        Playstation 5
-      </button>
-      <button type="button" className={styles.linkItem} onClick={() => handleNavigation(PATHS.XBOX)}>
-        XBox One
-      </button>
+      {[
+        { path: PATHS.PC, text: "PC" },
+        { path: PATHS.PS5, text: "Playstation 5" },
+        { path: PATHS.XBOX, text: "XBox One" },
+      ].map((button) => (
+        <button type="button" className={styles.linkItem} onClick={() => handleNavigation(button.path)}>
+          {button.text}
+        </button>
+      ))}
     </ul>
   );
 }
