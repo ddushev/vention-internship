@@ -4,6 +4,7 @@
   padding: 0 0 0 15px;
   color: $whitTextColor;
   background-color: inherit;
+  box-shadow: none;
 
   fieldset {
     display: block;
@@ -20,4 +21,12 @@
   strong {
     display: none;
   }
+}
+
+.ctrl:hover {
+  box-shadow: none;
+}
+
+.ctrl:not(:hover) {
+  box-shadow: none;
 }
