@@ -20,7 +20,7 @@ export default function FiltersSection({ handleFilterChange }: FilterSectionProp
   return (
     <Form onChange={handleFilterChange}>
       <div className={styles.alignTextCenter}>
-        <SectionWrapper heading={searchParams.get("category")?.toUpperCase()}>
+        <SectionWrapper isNarrow heading={searchParams.get("category")?.toUpperCase()}>
           <SelectFilterWrapper heading="Sort">
             <SelectWrapper heading="Criteria">
               <SelectControl
