@@ -16,4 +16,8 @@
   input:checked + [icon]:after {
     background: blue;
   }
+
+  strong {
+    display: none;
+  }
 }

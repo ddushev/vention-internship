@@ -10,26 +10,13 @@ import Loading from "../loading/loading";
 import styles from "./products.module.scss";
 
 export default function Products() {
-  const {
-    games,
-    loading,
-    handleSearchInputChange,
-    handleCriteriaInputChange,
-    handleTypeInputChange,
-    handleGenreInputChange,
-    handleAgeInputChange,
-  } = useLoadingGamesCatalog();
+  const { games, loading, handleFilterChange, handleSearchInputChange } = useLoadingGamesCatalog();
 
   return (
     <Page title="Products">
       <div className={styles.productsContainer}>
         <div className={styles.filtersContainer}>
-          <FiltersSection
-            handleCriteriaInputChange={handleCriteriaInputChange}
-            handleTypeInputChange={handleTypeInputChange}
-            handleGenreInputChange={handleGenreInputChange}
-            handleAgeInputChange={handleAgeInputChange}
-          />
+          <FiltersSection handleFilterChange={handleFilterChange} />
         </div>
 
         <div className={styles.searchCatalogContainer}>
