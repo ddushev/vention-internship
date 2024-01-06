@@ -21,6 +21,12 @@
   strong {
     display: none;
   }
+
+  label {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: left;
+  }
 }
 
 .ctrl:hover {
