@@ -8,7 +8,9 @@ interface SelectWrapperProps {
 export default function SelectWrapper({ children, heading }: SelectWrapperProps) {
   return (
     <div className={styles.selectFilterContainer}>
-      <span className={styles.selectName}>{heading}</span>
+      <label className={styles.selectLabel} htmlFor={`input${heading}`}>
+        {heading}
+      </label>
       {children}
     </div>
   );

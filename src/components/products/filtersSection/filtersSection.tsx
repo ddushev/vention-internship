@@ -24,6 +24,11 @@ export default function FiltersSection({ handleFilterChange }: FilterSectionProp
           <SelectFilterWrapper heading="Sort">
             <SelectWrapper heading="Criteria">
               <SelectControl
+                ref={(el) => {
+                  if (el) {
+                    el.domEl.$refInput.id = "inputCriteria";
+                  }
+                }}
                 name="criteria"
                 initValue={searchParams.get("sortCriteria") || "name"}
                 items={[
@@ -35,6 +40,11 @@ export default function FiltersSection({ handleFilterChange }: FilterSectionProp
             </SelectWrapper>
             <SelectWrapper heading="Type">
               <SelectControl
+                ref={(el) => {
+                  if (el) {
+                    el.domEl.$refInput.id = "inputType";
+                  }
+                }}
                 name="type"
                 initValue={searchParams.get("sortType") || "ascending"}
                 items={[

@@ -4,9 +4,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 
-  .selectName {
+  .selectLabel {
     width: 60px;
     color: $whitTextColor;
+    padding-bottom: 15px;
   }
 }
