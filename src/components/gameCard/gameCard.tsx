@@ -20,7 +20,7 @@ export interface Game {
 export default function GameCard({ game }: { game: Game }) {
   const rating = Array.from({ length: game?.rating }, (_, index) => index + 1);
   const onAddToCart = () => {
-    alert(`${game} added to cart`);
+    alert(`${game.name} added to cart`);
   };
 
   return (
