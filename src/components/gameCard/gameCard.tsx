@@ -35,6 +35,8 @@ export default function GameCard({ game }: { game: Game }) {
           <div className={styles.detailsContainer}>
             <h4 className={styles.gameTitle}>{game?.name}</h4>
             <p>{game?.price}$</p>
+          </div>
+          <div className={styles.starsWrapper}>
             <div className={styles.starsContainer}>
               {rating.map((star) => (
                 <img className={styles.starIcon} key={star} src={starFilled} alt={`${star}star`} />

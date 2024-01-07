@@ -1,0 +1,12 @@
+.productsContainer {
+  display: flex;
+
+  .filtersContainer {
+    width: 20%;
+    margin-top: 35px;
+  }
+
+  .searchCatalogContainer {
+    width: 80%;
+  }
+}

@@ -2,7 +2,7 @@ import cx from "classnames";
 
 import { WUPPasswordControl } from "web-ui-pack";
 import BaseControl, { BaseControlProps } from "./baseControl";
-import styles from "./text.m.scss";
+import styles from "./controls.m.scss";
 
 WUPPasswordControl.$use(); // register control in the browser
 // WUPPasswordControl.$defaults.clearButton = true;

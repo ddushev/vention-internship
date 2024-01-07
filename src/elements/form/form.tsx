@@ -1,3 +1,4 @@
+import cx from "classnames";
 import { WUPFormElement } from "web-ui-pack";
 import BaseWUP from "../baseWUP";
 import styles from "./form.m.scss";
@@ -11,6 +12,7 @@ interface Props extends React.PropsWithChildren<Partial<WUP.Form.Options>> {
   model?: WUPFormElement["$model"];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSubmit?: (model: any, ev: WUP.Form.EventMap["$submit"]) => Promise<any>;
+  onChange?: (model: object, ev: WUP.BaseControl.EventMap["$change"]) => void;
 }
 
 export default class Form extends BaseWUP<WUPFormElement, Props> {
@@ -27,9 +29,15 @@ export default class Form extends BaseWUP<WUPFormElement, Props> {
     }
   }
 
+  componentDidMount(): void {
+    this.domEl.addEventListener("$change", (ev) => {
+      this.props.onChange?.(this.domEl.$model, ev as CustomEvent);
+    });
+  }
+
   goRender(props: Record<string, unknown>): JSX.Element {
     return (
-      <wup-form {...props} class={`${styles.form} ${props.className}`.trim()}>
+      <wup-form {...props} class={cx(styles.form, this.props.className)}>
         {this.props.children}
       </wup-form>
     );

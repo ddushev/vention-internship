@@ -1,5 +1,5 @@
 .sectionWrapper {
-  width: 95vw;
+  width: 95%;
   margin: 0 auto 30px auto;
   background-color: $inheritDarkerBackground;
   border-radius: 50px;
@@ -13,9 +13,19 @@
     font-weight: normal;
   }
 
+  .sectionHeadingNarrow {
+    width: 75%;
+    margin: 0 auto 30px auto;
+    padding: 35px 0 15px 15px;
+    color: $whitTextColor;
+    border-bottom: 1px solid #fff;
+    font-weight: normal;
+  }
+
   .sectionContainer {
     display: flex;
     gap: 50px;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     padding-bottom: 30px;

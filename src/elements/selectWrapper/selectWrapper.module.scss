@@ -1,0 +1,14 @@
+.selectFilterContainer {
+  width: 100%;
+  padding-left: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  .selectLabel {
+    width: 60px;
+    color: $whitTextColor;
+    padding-bottom: 15px;
+  }
+}
