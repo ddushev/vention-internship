@@ -1,0 +1,19 @@
+.ctrl {
+  // override here only element-specific styles. Common styles override in main.scss
+  max-width: 175px;
+  margin: 0 0 15px 0;
+  color: $whitTextColor;
+  background-color: $inheritDarkerBackground;
+
+  input {
+    padding: 5px 0;
+  }
+
+  ul li {
+    padding: 5px;
+  }
+
+  strong {
+    display: none;
+  }
+}

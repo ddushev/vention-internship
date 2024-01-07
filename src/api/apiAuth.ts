@@ -6,7 +6,7 @@ import PATHS from "@/utils/paths";
 import authFormValidations from "@/utils/authFormValidations";
 import handleErrors from "@/utils/handleErrors";
 
-import * as api from "./requests";
+import { post, update } from "./requests";
 
 interface RequestParams {
   [key: string]: string;
@@ -15,7 +15,7 @@ interface RequestParams {
 export async function onLoginSubmit({ username, password }: RequestParams, dispatchSetAuthState: (data: AuthData) => void) {
   try {
     authFormValidations({ username, password });
-    const data = await api.post(apiEndpoints.loginMock, { username, password });
+    const data = await post(apiEndpoints.loginMock, { username, password });
     dispatchSetAuthState(data);
   } catch (error: unknown) {
     handleErrors(error);
@@ -29,7 +29,7 @@ export async function onRegisterSubmit(
 ) {
   try {
     authFormValidations({ username, password, rePassword });
-    const data = await api.update(apiEndpoints.registerMock, { username, password, rePassword });
+    const data = await update(apiEndpoints.registerMock, { username, password, rePassword });
     dispatchSetAuthState(data);
     navigate(PATHS.PROFILE);
   } catch (error) {

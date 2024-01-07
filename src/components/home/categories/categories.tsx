@@ -12,24 +12,18 @@ import styles from "./categories.module.scss";
 export default function Categories() {
   return (
     <SectionWrapper heading="Categories">
-      <Link className={styles.categoriesLink} to={`${PATHS.PRODUCTS}/pc`}>
-        <li className={styles.categoryCardBox}>
-          <img className={styles.categoryIcon} src={pc} alt="pc" />
-          <h4 className={styles.categoryTitle}>PC</h4>
-        </li>
-      </Link>
-      <Link className={styles.categoriesLink} to={`${PATHS.PRODUCTS}/ps5`}>
-        <li className={styles.categoryCardBox}>
-          <img className={styles.categoryIcon} src={ps5} alt="ps5" />
-          <h4 className={styles.categoryTitle}>Playstation 5</h4>
-        </li>
-      </Link>
-      <Link className={styles.categoriesLink} to={`${PATHS.PRODUCTS}/xbox`}>
-        <li className={styles.categoryCardBox}>
-          <img className={styles.categoryIcon} src={xbox} alt="xbox" />
-          <h4 className={styles.categoryTitle}>XBox One 5</h4>
-        </li>
-      </Link>
+      {[
+        { path: PATHS.PC, src: pc, alt: "pc", text: "PC" },
+        { path: PATHS.PS5, src: ps5, alt: "ps5", text: "Playstation 5" },
+        { path: PATHS.XBOX, src: xbox, alt: "xbox", text: "XBox One" },
+      ].map((link) => (
+        <Link key={link.text} className={styles.categoriesLink} to={link.path}>
+          <li className={styles.categoryCardBox}>
+            <img className={styles.categoryIcon} src={link.src} alt={link.alt} />
+            <h4 className={styles.categoryTitle}>{link.text}</h4>
+          </li>
+        </Link>
+      ))}
     </SectionWrapper>
   );
 }

@@ -12,8 +12,8 @@ import DefaultLayout from "./elements/defaultLayout";
 import Page from "./elements/page/page";
 import Home from "./components/home/home";
 import ErrorPage from "./components/error/errorPage/errorPage";
-import UserRouteGuard from "./components/guards/userRouteGuard";
 import Profile from "./components/profile/profile";
+import Products from "./components/products/products";
 
 function AppContainer() {
   return (
@@ -24,12 +24,12 @@ function AppContainer() {
         <DefaultLayout>
           <Routes>
             <Route path={PATHS.HOME} element={<Home />} />
-            <Route element={<UserRouteGuard />}>
-              <Route path={PATHS.ABOUT} element={<Page title="About" />} />
-              <Route path={`${PATHS.PRODUCTS}/:category`} element={<Page title="Products" />} />
-              <Route path={PATHS.PROFILE} element={<Profile />} />
-              <Route path={PATHS.CART} element={<Page title="Cart" />} />
-            </Route>
+            {/* <Route element={<UserRouteGuard />}> */}
+            <Route path={PATHS.ABOUT} element={<Page title="About" />} />
+            <Route path={PATHS.PRODUCTS} element={<Products />} />
+            <Route path={PATHS.PROFILE} element={<Profile />} />
+            <Route path={PATHS.CART} element={<Page title="Cart" />} />
+            {/* </Route> */}
             <Route path={PATHS.SIGN_IN} element={<Page title="Sign In" />} />
             <Route path={PATHS.SIGN_UP} element={<Page title="Sign Up" />} />
             <Route path={PATHS.ERROR} element={<ErrorPage onResetError={() => {}} />} />
