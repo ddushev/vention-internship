@@ -19,39 +19,44 @@ export interface Game {
 
 export default function GameCard({ game }: { game: Game }) {
   const rating = Array.from({ length: game?.rating }, (_, index) => index + 1);
+  const onAddToCart = () => {
+    alert(`${game} added to cart`);
+  };
 
   return (
-    <div role="button" className={styles.gameCardBox} tabIndex={0}>
-      <div className={styles.gameCardContainer}>
-        <div className={styles.frontSide}>
-          <div className={styles.imageContainer}>
-            <div className={styles.platformsContainer}>
-              {game?.platforms.includes("pc") && <img className={styles.platformIcon} src={pc} alt="pc" />}
-              {game?.platforms.includes("ps5") && <img className={styles.platformIcon} src={ps5} alt="ps5" />}
-              {game?.platforms.includes("xbox") && <img className={styles.platformIcon} src={xbox} alt="xbox" />}
+    <li>
+      <div role="option" className={styles.gameCardBox} tabIndex={0} aria-selected>
+        <div className={styles.gameCardContainer}>
+          <div className={styles.frontSide}>
+            <div className={styles.imageContainer}>
+              <div className={styles.platformsContainer}>
+                {game?.platforms.includes("pc") && <img className={styles.platformIcon} src={pc} alt="pc" />}
+                {game?.platforms.includes("ps5") && <img className={styles.platformIcon} src={ps5} alt="ps5" />}
+                {game?.platforms.includes("xbox") && <img className={styles.platformIcon} src={xbox} alt="xbox" />}
+              </div>
+              <img className={styles.gameImage} src={game?.image} alt={game?.name} />
             </div>
-            <img className={styles.gameImage} src={game?.image} alt={game?.name} />
-          </div>
-          <div className={styles.detailsContainer}>
-            <h4 className={styles.gameTitle}>{game?.name}</h4>
-            <p>{game?.price}$</p>
-          </div>
-          <div className={styles.starsWrapper}>
-            <div className={styles.starsContainer}>
-              {rating.map((star) => (
-                <img className={styles.starIcon} key={star} src={starFilled} alt={`${star}star`} />
-              ))}
+            <div className={styles.detailsContainer}>
+              <h4 className={styles.gameTitle}>{game?.name}</h4>
+              <p>{game?.price}$</p>
+            </div>
+            <div className={styles.starsWrapper}>
+              <div className={styles.starsContainer}>
+                {rating.map((star) => (
+                  <img className={styles.starIcon} key={star} src={starFilled} alt={`${star}star`} />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-        <div className={styles.backSide}>
-          <p className={styles.description}>{game?.description}</p>
-          <p>{game?.minAge}+</p>
-          <button className={styles.addToCartButton} type="button">
-            Add to Cart
-          </button>
+          <div className={styles.backSide}>
+            <p className={styles.description}>{game?.description}</p>
+            <p>{game?.minAge}+</p>
+            <button onClick={onAddToCart} className={styles.addToCartButton} type="button">
+              Add to Cart
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </li>
   );
 }
