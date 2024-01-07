@@ -4,7 +4,7 @@ import { WUPTextareaControl } from "web-ui-pack";
 
 import BaseControl, { BaseControlProps } from "./baseControl";
 
-import styles from "./text.m.scss";
+import styles from "./controls.m.scss";
 
 WUPTextareaControl.$use(); // register control in the browser
 // WUPTextareaControl.$defaults.clearButton = false;

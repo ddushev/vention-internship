@@ -4,7 +4,7 @@ import { WUPNumberControl } from "web-ui-pack";
 
 import BaseControl, { BaseControlProps } from "./baseControl";
 
-import styles from "./text.m.scss";
+import styles from "./controls.m.scss";
 
 WUPNumberControl.$use(); // register control in the browser
 // WUPNumberControl.$defaults.clearButton = false;

@@ -18,12 +18,16 @@
   // Common
   --base-margin: 1.6rem;
   --base-focus: #fff;
+  --ctrl-border-radius: 0px;
   //Submit button
   --base-btn-bg: rgba(90, 43, 125, 0.7);
   --base-btn-text: #e3e3e3;
   //Password modal icon
   --icon-size: 20px;
   --icon-hover-bg: #fff;
+  //Select control
+  --popup-bg: black;
+  --menu-hover-bg: rgba(122, 122, 122, 0.7);
 }
 
 body {

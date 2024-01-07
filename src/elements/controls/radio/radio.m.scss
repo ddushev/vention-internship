@@ -1,0 +1,38 @@
+.ctrl {
+  // override here only element-specific styles. Common styles override in main.scss
+  margin: 0;
+  padding: 0 0 0 15px;
+  color: $whitTextColor;
+  background-color: inherit;
+  box-shadow: none;
+
+  fieldset {
+    display: block;
+  }
+
+  span {
+    background-color: #fff;
+  }
+
+  input:checked + [icon]:after {
+    background: blue;
+  }
+
+  strong {
+    display: none;
+  }
+
+  label {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: left;
+  }
+}
+
+.ctrl:hover {
+  box-shadow: none;
+}
+
+.ctrl:not(:hover) {
+  box-shadow: none;
+}

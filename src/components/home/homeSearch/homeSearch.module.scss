@@ -1,0 +1,41 @@
+.searchField {
+  max-width: 40%;
+  margin: auto;
+  padding: 5px 0;
+
+  .resultsDropDown {
+    width: 40%;
+    position: absolute;
+    z-index: 10;
+    top: 150px;
+  }
+
+  .loader {
+    width: 50px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .resultsList {
+    color: $whitTextColor;
+  }
+
+  .listItem {
+    .buttonItem {
+      text-align: left;
+      width: 100%;
+      padding: 10px;
+      border-radius: 20px;
+      font-size: 16px;
+      background-color: $backgroundColor;
+      color: $whitTextColor;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $darkHoverColor;
+      }
+    }
+  }
+}
