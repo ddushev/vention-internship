@@ -16,7 +16,7 @@ export default function useLoadingGamesCatalog() {
   });
   const [isFirstRender, setIsFirstRender] = useState(true);
   const [games, setGames] = useState<Game[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleFilterChange = (model: object) => {
     setFilters((state) => ({ ...state, ...model }));
@@ -41,12 +41,12 @@ export default function useLoadingGamesCatalog() {
     }
 
     const fetchData = async () => {
-      setLoading(true);
+      setIsLoading(true);
       try {
         const data = await getProducts({ urlParams: updatedSearchParams.toString() });
         setGames(data);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
@@ -62,7 +62,7 @@ export default function useLoadingGamesCatalog() {
 
   return {
     games,
-    loading,
+    isLoading,
     handleFilterChange,
     handleSearchInputChange,
   };

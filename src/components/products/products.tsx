@@ -10,7 +10,7 @@ import Loading from "../loading/loading";
 import styles from "./products.module.scss";
 
 export default function Products() {
-  const { games, loading, handleFilterChange, handleSearchInputChange } = useLoadingGamesCatalog();
+  const { games, isLoading, handleFilterChange, handleSearchInputChange } = useLoadingGamesCatalog();
 
   return (
     <Page title="Products">
@@ -21,7 +21,7 @@ export default function Products() {
 
         <div className={styles.searchCatalogContainer}>
           <CatalogSearch handleInputChange={handleSearchInputChange} />
-          <SectionWrapper heading="Products">{loading ? <Loading /> : <GamesCatalog games={games} />}</SectionWrapper>
+          <SectionWrapper heading="Products">{isLoading ? <Loading /> : <GamesCatalog games={games} />}</SectionWrapper>
         </div>
       </div>
     </Page>
