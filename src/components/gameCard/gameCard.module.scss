@@ -1,3 +1,5 @@
+$animT: 1s;
+
 .gameCardBox {
   width: 195px;
   height: 350px;
@@ -11,10 +13,10 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 1s;
+    transition: transform $animT;
     transform-style: preserve-3d;
-    backface-visibility: visible;
-    -moz-backface-visibility: visible;
+    backface-visibility: hidden;
+
 
     .frontSide,
     .backSide {
@@ -125,6 +127,10 @@
         border-radius: 5px;
         margin-bottom: 15px;
         cursor: pointer;
+
+        &:hover {
+          box-shadow: inset 0 0 0 99999px rgba(0, 0, 0, 0.3);
+        }
       }
     }
   }
@@ -134,9 +140,32 @@
   outline: 0;
 }
 
-.gameCardBox:hover .gameCardContainer,
-.gameCardBox:focus .gameCardContainer {
-  transform: rotateY(180deg);
+.gameCardBox:hover,
+.gameCardBox:focus-within {
+  .gameCardContainer {
+    transform: rotateY(180deg);
+    animation: fixFlipClick $animT forwards linear;
+  }
+
+  .frontSide {
+    animation: fixFlipClick2 $animT forwards linear;
+  }
+}
+
+@keyframes fixFlipClick {
+  99% {
+    backface-visibility: hidden;
+  }
+
+  100% {
+    backface-visibility: visible;
+  }
+}
+
+@keyframes fixFlipClick2 {
+  100% {
+    z-index: 4;
+  }
 }
 
 .gameCardBox:hover .frontSide,
