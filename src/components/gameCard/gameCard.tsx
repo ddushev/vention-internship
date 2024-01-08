@@ -1,7 +1,9 @@
-import starFilled from "images/icons/starFilled.svg";
 import pc from "images/platforms/pc.png";
 import ps5 from "images/platforms/ps.png";
 import xbox from "images/platforms/xbox.png";
+
+import Rating from "@mui/material/Rating";
+import StarIcon from "@mui/icons-material/Star";
 
 import styles from "./gameCard.module.scss";
 
@@ -18,11 +20,9 @@ export interface Game {
 }
 
 export default function GameCard({ game }: { game: Game }) {
-  const rating = Array.from({ length: game?.rating }, (_, index) => index + 1);
   const onAddToCart = () => {
     alert(`${game.name} added to cart`);
   };
-
   return (
     <li>
       <div role="option" className={styles.gameCardBox} tabIndex={0} aria-selected>
@@ -41,11 +41,7 @@ export default function GameCard({ game }: { game: Game }) {
               <p>{game?.price}$</p>
             </div>
             <div className={styles.starsWrapper}>
-              <div className={styles.starsContainer}>
-                {rating.map((star) => (
-                  <img className={styles.starIcon} key={star} src={starFilled} alt={`${star}star`} />
-                ))}
-              </div>
+              <Rating value={game.rating} size="small" readOnly emptyIcon={<StarIcon className={styles["MuiRating-iconEmpty"]} />} />
             </div>
           </div>
           <div className={styles.backSide}>
