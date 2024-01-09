@@ -10,7 +10,7 @@ export default function SectionWrapper({ children, heading, isNarrow }: SectionW
   return (
     <div className={styles.sectionWrapper}>
       <h3 className={isNarrow ? styles.sectionHeadingNarrow : styles.sectionHeading}>{heading}</h3>
-      <ul className={styles.sectionContainer}>{children}</ul>
+      <div className={styles.sectionContainer}>{children}</div>
     </div>
   );
 }
