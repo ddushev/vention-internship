@@ -1,13 +1,25 @@
+import { useEffect, useState } from "react";
+
 import Page from "@/elements/page/page";
 import SectionWrapper from "@/elements/sectionWrapper/sectionWrapper";
 import TableRow from "@/elements/tableRow/tableRow";
 import TableHeading from "@/elements/tableHeading/tableHeading";
-import TableData from "@/elements/tableData/tableData";
 
-import { MenuItem, Select } from "@mui/material";
+import { Game } from "@/types";
+
 import style from "./cart.module.scss";
+import TableBodyRow from "./tableBodyRow/tableBodyRow";
 
 export default function Cart() {
+  const [gamesInCart, setGamesInCart] = useState<Game[]>([]);
+
+  useEffect(() => {
+    const games = localStorage.getItem("cart");
+    if (games) {
+      setGamesInCart(JSON.parse(games));
+    }
+  }, []);
+  console.log(gamesInCart);
   const headings = [
     { heading: "Name" },
     { heading: "Platform" },
@@ -28,32 +40,9 @@ export default function Cart() {
               </TableRow>
             </thead>
             <tbody>
-              <TableRow>
-                <TableData>Counter-Strike</TableData>
-                <TableData>
-                  <Select className={style.muiSelect} value="pc">
-                    <MenuItem value="pc">PC</MenuItem>
-                    <MenuItem value="ps5">PS5</MenuItem>
-                    <MenuItem value="xbox">XBOX</MenuItem>
-                  </Select>
-                </TableData>
-                <TableData>01/09/24</TableData>
-                <TableData>1</TableData>
-                <TableData>10</TableData>
-              </TableRow>
-              <TableRow>
-                <TableData>Minecraft</TableData>
-                <TableData>
-                  <Select className={style.muiSelect} value="pc">
-                    <MenuItem value="pc">PC</MenuItem>
-                    <MenuItem value="ps5">PS5</MenuItem>
-                    <MenuItem value="xbox">XBOX</MenuItem>
-                  </Select>
-                </TableData>
-                <TableData>01/09/24</TableData>
-                <TableData>1</TableData>
-                <TableData>25.99</TableData>
-              </TableRow>
+              {gamesInCart.map((game) => (
+                <TableBodyRow key={game.id} game={game} />
+              ))}
             </tbody>
           </table>
         </SectionWrapper>
