@@ -1,8 +1,9 @@
 import Page from "@/elements/page/page";
 import SectionWrapper from "@/elements/sectionWrapper/sectionWrapper";
 import TableRow from "@/elements/tableRow/tableRow";
-
 import TableHeading from "@/elements/tableHeading/tableHeading";
+import TableData from "@/elements/tableData/tableData";
+
 import style from "./cart.module.scss";
 
 export default function Cart() {
@@ -27,18 +28,18 @@ export default function Cart() {
             </thead>
             <tbody>
               <TableRow>
-                <td>Counter-Strike</td>
-                <td>PC</td>
-                <td>01/09/24</td>
-                <td>1</td>
-                <td>10</td>
+                <TableData>Counter-Strike</TableData>
+                <TableData>PC</TableData>
+                <TableData>01/09/24</TableData>
+                <TableData>1</TableData>
+                <TableData>10</TableData>
               </TableRow>
               <TableRow>
-                <td>Minecraft</td>
-                <td>PC</td>
-                <td>01/09/24</td>
-                <td>1</td>
-                <td>25.99</td>
+                <TableData>Minecraft</TableData>
+                <TableData>PC</TableData>
+                <TableData>01/09/24</TableData>
+                <TableData>1</TableData>
+                <TableData>25.99</TableData>
               </TableRow>
             </tbody>
           </table>
