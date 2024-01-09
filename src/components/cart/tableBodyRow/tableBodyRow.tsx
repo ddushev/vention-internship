@@ -1,4 +1,4 @@
-import { MenuItem, Select } from "@mui/material";
+import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 
 import TableData from "@/elements/tableData/tableData";
 import TableRow from "@/elements/tableRow/tableRow";
@@ -6,18 +6,44 @@ import TableRow from "@/elements/tableRow/tableRow";
 import { Game } from "@/types";
 import createDate from "@/utils/createDate";
 
+import { useState } from "react";
 import style from "./tableBodyRow.module.scss";
 
 export default function TableBodyRow({ game }: { game: Game }) {
+  const [platform, setPlatform] = useState(game.platforms[0]);
+  const onSelectChange = (event: SelectChangeEvent) => {
+    setPlatform(event.target.value);
+  };
   const currentDate = createDate();
   return (
     <TableRow>
       <TableData>{game.name}</TableData>
       <TableData>
-        <Select className={style.muiSelect} value="pc">
-          <MenuItem value="pc">PC</MenuItem>
-          <MenuItem value="ps5">PS5</MenuItem>
-          <MenuItem value="xbox">XBOX</MenuItem>
+        <Select
+          onChange={onSelectChange}
+          className={style["MuiSelect-select"]}
+          value={platform}
+          sx={{
+            color: "white",
+            "& .MuiOutlinedInput-notchedOutline": { border: "0" },
+          }}
+          MenuProps={{
+            slotProps: {
+              paper: {
+                style: {
+                  backgroundColor: "black",
+                  color: "white",
+                  width: "200px",
+                },
+              },
+            },
+          }}
+        >
+          {game.platforms.map((p) => (
+            <MenuItem key={p} value={p}>
+              {p.toUpperCase()}
+            </MenuItem>
+          ))}
         </Select>
       </TableData>
       <TableData>{currentDate}</TableData>
