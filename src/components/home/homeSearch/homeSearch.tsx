@@ -6,12 +6,10 @@ import { WUPTextControl } from "web-ui-pack";
 import apiEndpoints from "@/api.endpoints";
 
 import SearchField from "@/elements/searchField/searchField";
-import styles from "./homeSearch.module.scss";
+import saveToLocalStorage from "@/utils/saveToLocalStorage";
+import { Game } from "@/types";
 
-interface Game {
-  id: number;
-  name: string;
-}
+import styles from "./homeSearch.module.scss";
 
 export default function HomeSearch() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -42,10 +40,6 @@ export default function HomeSearch() {
     fetchSearchResults(search);
   };
 
-  const handleGameSelect = (game: string) => {
-    alert(`Got product - ${game}`);
-  };
-
   return (
     <div className={styles.searchField}>
       <SearchField handleInputChange={handleInputChange} />
@@ -60,7 +54,7 @@ export default function HomeSearch() {
             {!!searchResults.length &&
               searchResults.map((game) => (
                 <li className={styles.listItem} key={game.id}>
-                  <button className={styles.buttonItem} onClick={() => handleGameSelect(game.name)} type="button">
+                  <button className={styles.buttonItem} onClick={() => saveToLocalStorage("cart", game)} type="button">
                     {game.name}
                   </button>
                 </li>
