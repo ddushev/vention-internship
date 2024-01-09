@@ -4,7 +4,7 @@ import TableData from "@/elements/tableData/tableData";
 import TableRow from "@/elements/tableRow/tableRow";
 
 import { Game } from "@/types";
-import createDate from "@/utils/dateFormatter";
+import createDate from "@/utils/createDate";
 
 import style from "./tableBodyRow.module.scss";
 
