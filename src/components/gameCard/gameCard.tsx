@@ -5,24 +5,12 @@ import xbox from "images/platforms/xbox.png";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
 
+import { Game } from "@/types";
+import saveToLocalStorage from "@/utils/saveToLocalStorage";
+
 import styles from "./gameCard.module.scss";
 
-export interface Game {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  rating: number;
-  platforms: string[];
-  minAge: number;
-  addDate: Date;
-  description: string;
-}
-
 export default function GameCard({ game }: { game: Game }) {
-  const onAddToCart = () => {
-    alert(`${game.name} added to cart`);
-  };
   return (
     <div role="option" className={styles.gameCardBox} tabIndex={0} aria-selected>
       <div className={styles.gameCardContainer}>
@@ -46,7 +34,7 @@ export default function GameCard({ game }: { game: Game }) {
         <div className={styles.backSide}>
           <p className={styles.description}>{game?.description}</p>
           <p>{game?.minAge}+</p>
-          <button onClick={onAddToCart} className={styles.addToCartButton} type="button">
+          <button onClick={() => saveToLocalStorage("cart", game)} className={styles.addToCartButton} type="button">
             Add to Cart
           </button>
         </div>

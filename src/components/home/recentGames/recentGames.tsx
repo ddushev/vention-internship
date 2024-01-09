@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
 import SectionWrapper from "@/elements/sectionWrapper/sectionWrapper";
-import GameCard, { Game } from "@/components/gameCard/gameCard";
+import GameCard from "@/components/gameCard/gameCard";
+import { Game } from "@/types";
 
 import apiEndpoints from "@/api.endpoints";
 

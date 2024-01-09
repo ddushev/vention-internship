@@ -1,7 +1,7 @@
 import apiEndpoints from "@/api.endpoints";
 
 import handleErrors from "@/utils/handleErrors";
-import { Game } from "@/components/gameCard/gameCard";
+import { Game } from "@/types";
 import { get } from "./requests";
 
 interface GetProductsParams {

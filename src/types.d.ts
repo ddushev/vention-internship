@@ -18,3 +18,15 @@ export interface UserMockData {
   password?: string | null;
   profileImg?: string;
 }
+
+export interface Game {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  rating: number;
+  platforms: string[];
+  minAge: number;
+  addDate: Date;
+  description: string;
+}
