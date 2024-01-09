@@ -1,0 +1,11 @@
+.muiSelect {
+  width: 200px;
+  background-color: $inheritDarkerBackground;
+  color: $whitTextColor;
+  border: 1px solid #fff;
+  text-align: left;
+
+  div {
+    padding: 10px;
+  }
+}
