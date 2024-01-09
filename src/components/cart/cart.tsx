@@ -4,6 +4,7 @@ import TableRow from "@/elements/tableRow/tableRow";
 import TableHeading from "@/elements/tableHeading/tableHeading";
 import TableData from "@/elements/tableData/tableData";
 
+import { MenuItem, Select } from "@mui/material";
 import style from "./cart.module.scss";
 
 export default function Cart() {
@@ -29,14 +30,26 @@ export default function Cart() {
             <tbody>
               <TableRow>
                 <TableData>Counter-Strike</TableData>
-                <TableData>PC</TableData>
+                <TableData>
+                  <Select className={style.muiSelect} value="pc">
+                    <MenuItem value="pc">PC</MenuItem>
+                    <MenuItem value="ps5">PS5</MenuItem>
+                    <MenuItem value="xbox">XBOX</MenuItem>
+                  </Select>
+                </TableData>
                 <TableData>01/09/24</TableData>
                 <TableData>1</TableData>
                 <TableData>10</TableData>
               </TableRow>
               <TableRow>
                 <TableData>Minecraft</TableData>
-                <TableData>PC</TableData>
+                <TableData>
+                  <Select className={style.muiSelect} value="pc">
+                    <MenuItem value="pc">PC</MenuItem>
+                    <MenuItem value="ps5">PS5</MenuItem>
+                    <MenuItem value="xbox">XBOX</MenuItem>
+                  </Select>
+                </TableData>
                 <TableData>01/09/24</TableData>
                 <TableData>1</TableData>
                 <TableData>25.99</TableData>
