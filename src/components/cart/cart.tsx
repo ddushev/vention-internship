@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 
+import removeFromLocalStorage from "@/utils/removeFromLocalStorage";
+import { getUserProfile, updateUserBalance } from "@/api/apiUser";
+
 import Page from "@/elements/page/page";
 import SectionWrapper from "@/elements/sectionWrapper/sectionWrapper";
 import TableHeading from "@/elements/tableHeading/tableHeading";
 import TableData from "@/elements/tableData/tableData";
 import Button from "@/elements/button/button";
 import { Game, UserMockData } from "@/types";
-import { getUserProfile, updateUserBalance } from "@/api/apiUser";
 import TableBodyRow from "./tableBodyRow/tableBodyRow";
 
 import style from "./cart.module.scss";
@@ -43,7 +45,7 @@ export default function Cart() {
       const updatedGamesInCart = prevState.filter(
         (gameInCart) => !selectedGames.some((selectedGame) => selectedGame.name === gameInCart.name),
       );
-
+      removeFromLocalStorage("cart", selectedGames);
       setSelectedGames([]);
 
       return updatedGamesInCart;

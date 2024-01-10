@@ -274,7 +274,6 @@ export default webpackMockServer.add((app) => {
   app.put(apiEndpoints.updateBalance, (_req, res) => {
     const { balance } = _req.body;
 
-    console.log(balance);
     usersMockData.forEach((user, index) => {
       if (user.username === currentUser.username) {
         usersMockData[index] = { ...user, balance };
@@ -282,6 +281,6 @@ export default webpackMockServer.add((app) => {
       }
     });
 
-    res.json({ username: currentUser.username });
+    res.json("success");
   });
 });
