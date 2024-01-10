@@ -5,8 +5,12 @@
     color: $whitTextColor;
     width: 99%;
 
-    .tableRow {
+    .tableRowHeading {
       border-bottom: 1px solid #fff;
+    }
+
+    .tableRowRemove {
+      border-bottom: 1px solid gray;
     }
   }
 }
