@@ -13,4 +13,13 @@
       border-bottom: 1px solid gray;
     }
   }
+
+  .balanceContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: $whitTextColor;
+    font-size: 18px;
+  }
 }

@@ -5,7 +5,8 @@ import SectionWrapper from "@/elements/sectionWrapper/sectionWrapper";
 import TableHeading from "@/elements/tableHeading/tableHeading";
 import TableData from "@/elements/tableData/tableData";
 import Button from "@/elements/button/button";
-import { Game } from "@/types";
+import { Game, UserMockData } from "@/types";
+import { getUserProfile } from "@/api/apiUser";
 import TableBodyRow from "./tableBodyRow/tableBodyRow";
 
 import style from "./cart.module.scss";
@@ -13,13 +14,21 @@ import style from "./cart.module.scss";
 export default function Cart() {
   const [gamesInCart, setGamesInCart] = useState<Game[]>([]);
   const [selectedGames, setSelectedGames] = useState<Game[]>([]);
+  const [userData, setUserData] = useState<UserMockData>();
+  const totalGameCost = gamesInCart.reduce((sum, game) => {
+    sum += game.price;
+    return sum;
+  }, 0);
 
   useEffect(() => {
     const games = localStorage.getItem("cart");
     if (games) {
       setGamesInCart(JSON.parse(games));
     }
+    getUserProfile().then((data) => setUserData(data));
   }, []);
+
+  console.log(userData);
 
   const headings = [
     { heading: "Name" },
@@ -69,6 +78,11 @@ export default function Cart() {
               </tr>
             </tbody>
           </table>
+          <div className={style.balanceContainer}>
+            <p>Game cost: {totalGameCost} $</p>
+            <p>Your balance: {userData?.balance || 0} $</p>
+            <Button>Buy</Button>
+          </div>
         </SectionWrapper>
       </div>
     </Page>
