@@ -1,4 +1,4 @@
-import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { Checkbox, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { Unstable_NumberInput as NumberInput } from "@mui/base/Unstable_NumberInput";
 
 import TableData from "@/elements/tableData/tableData";
@@ -55,24 +55,36 @@ const numberInputSlotProps = {
   },
 };
 
+const checkBoxStyles = {
+  color: "white",
+  "& .MuiSvgIcon-root": { backgroundColor: "white", fontSize: "16px", borderRadius: "2px" },
+};
+
 export default function TableBodyRow({ game }: { game: Game }) {
   const [platform, setPlatform] = useState(game.platforms[0]);
   const [amount, setAmount] = useState(1);
-  const onSelectChange = (event: SelectChangeEvent) => {
+  const [checked, setChecked] = useState(false);
+
+  const handleSelectChange = (event: SelectChangeEvent) => {
     setPlatform(event.target.value);
   };
-  const onNumberInputChange = (
+  const handleNumberInputChange = (
     _event: React.FocusEvent<HTMLInputElement, Element> | React.PointerEvent<Element> | React.KeyboardEvent<Element>,
     value: number | undefined,
   ) => {
     setAmount(value || 1);
   };
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(event.target.checked);
+  };
+
   const currentDate = createDate();
   return (
     <TableRow>
       <TableData>{game.name}</TableData>
       <TableData>
-        <Select onChange={onSelectChange} value={platform} sx={selectStyles} MenuProps={menuProps}>
+        <Select onChange={handleSelectChange} value={platform} sx={selectStyles} MenuProps={menuProps}>
           {game.platforms.map((p) => (
             <MenuItem key={p} value={p}>
               {p.toUpperCase()}
@@ -82,9 +94,12 @@ export default function TableBodyRow({ game }: { game: Game }) {
       </TableData>
       <TableData>{currentDate}</TableData>
       <TableData>
-        <NumberInput onChange={onNumberInputChange} value={amount} slotProps={numberInputSlotProps} />
+        <NumberInput onChange={handleNumberInputChange} value={amount} slotProps={numberInputSlotProps} />
       </TableData>
       <TableData>{game.price}</TableData>
+      <TableData>
+        <Checkbox onChange={handleCheckboxChange} checked={checked} sx={checkBoxStyles} />
+      </TableData>
     </TableRow>
   );
 }

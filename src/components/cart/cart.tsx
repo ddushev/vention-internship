@@ -19,7 +19,6 @@ export default function Cart() {
       setGamesInCart(JSON.parse(games));
     }
   }, []);
-  console.log(gamesInCart);
   const headings = [
     { heading: "Name" },
     { heading: "Platform" },
