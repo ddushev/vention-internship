@@ -119,6 +119,7 @@ const usersMockData: UserMockData[] = [
     phone: "359897357818",
     description: "Profile description for username ddushev",
     password: "123",
+    balance: 500,
   },
   {
     id: 2,
@@ -127,6 +128,7 @@ const usersMockData: UserMockData[] = [
     phone: "359896457213",
     description: "Profile description for username ddushev2",
     password: "qwe",
+    balance: 100,
   },
 ];
 

@@ -17,6 +17,7 @@ export interface UserMockData {
   description?: string;
   password?: string | null;
   profileImg?: string;
+  balance?: number;
 }
 
 export interface Game {
