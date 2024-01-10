@@ -21,6 +21,7 @@ export default function Cart() {
     sum += game.price * (game.amount || 1);
     return sum;
   }, 0);
+
   useEffect(() => {
     const games = localStorage.getItem("cart");
     if (games) {

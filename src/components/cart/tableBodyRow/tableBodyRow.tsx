@@ -80,10 +80,9 @@ export default function TableBodyRow({
     value: number | undefined,
   ) => {
     if (value !== amount) {
-      setGamesInCart((state) => {
-        const updatedState = state.map((gameInState) => (gameInState.name === game.name ? { ...game, amount: value || 1 } : gameInState));
-        return updatedState;
-      });
+      setGamesInCart((state) =>
+        state.map((gameInCartState) => (gameInCartState.name === game.name ? { ...game, amount: value || 1 } : gameInCartState)),
+      );
     }
 
     setAmount(value || 1);
@@ -91,7 +90,11 @@ export default function TableBodyRow({
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
-    setSelectedGames((state) => [...state, game]);
+    if (event.target.checked) {
+      setSelectedGames((state) => [...state, game]);
+    } else {
+      setSelectedGames((state) => state.filter((gameInSelectState) => gameInSelectState.name !== game.name));
+    }
   };
 
   const currentDate = createDate();
