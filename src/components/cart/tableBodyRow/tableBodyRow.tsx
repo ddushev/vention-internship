@@ -7,7 +7,28 @@ import { Game } from "@/types";
 import createDate from "@/utils/createDate";
 
 import { useState } from "react";
-import style from "./tableBodyRow.module.scss";
+
+const selectStyles = {
+  width: "200px",
+  color: "white",
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  border: "1px solid white",
+  textAlign: "left",
+  "& .MuiSelect-select": { padding: "10px" },
+  "& .MuiOutlinedInput-notchedOutline": { border: "none" },
+};
+
+const menuProps = {
+  slotProps: {
+    paper: {
+      style: {
+        width: "200px",
+        color: "white",
+        backgroundColor: "black",
+      },
+    },
+  },
+};
 
 export default function TableBodyRow({ game }: { game: Game }) {
   const [platform, setPlatform] = useState(game.platforms[0]);
@@ -19,26 +40,7 @@ export default function TableBodyRow({ game }: { game: Game }) {
     <TableRow>
       <TableData>{game.name}</TableData>
       <TableData>
-        <Select
-          onChange={onSelectChange}
-          className={style["MuiSelect-select"]}
-          value={platform}
-          sx={{
-            color: "white",
-            "& .MuiOutlinedInput-notchedOutline": { border: "0" },
-          }}
-          MenuProps={{
-            slotProps: {
-              paper: {
-                style: {
-                  backgroundColor: "black",
-                  color: "white",
-                  width: "200px",
-                },
-              },
-            },
-          }}
-        >
+        <Select onChange={onSelectChange} value={platform} sx={selectStyles} MenuProps={menuProps}>
           {game.platforms.map((p) => (
             <MenuItem key={p} value={p}>
               {p.toUpperCase()}
