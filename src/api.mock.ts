@@ -127,7 +127,7 @@ const usersMockData: UserMockData[] = [
     address: "Burgas, Bulgaria",
     phone: "359896457213",
     description: "Profile description for username ddushev2",
-    password: "qwe",
+    password: "123",
     balance: 100,
   },
 ];
@@ -269,5 +269,19 @@ export default webpackMockServer.add((app) => {
     }
 
     res.json(matchingProducts);
+  });
+
+  app.put(apiEndpoints.updateBalance, (_req, res) => {
+    const { balance } = _req.body;
+
+    console.log(balance);
+    usersMockData.forEach((user, index) => {
+      if (user.username === currentUser.username) {
+        usersMockData[index] = { ...user, balance };
+        currentUser = { ...currentUser, balance };
+      }
+    });
+
+    res.json({ username: currentUser.username });
   });
 });

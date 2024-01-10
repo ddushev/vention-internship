@@ -8,6 +8,7 @@ const apiEndpoints = {
   changePassword: "/api/changePassword",
   changeProfileImage: "/api/changeProfileImage",
   getProducts: "/api/getProducts",
+  updateBalance: "/api/updateBalance",
 };
 
 export default apiEndpoints;

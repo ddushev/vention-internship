@@ -6,7 +6,7 @@ import TableHeading from "@/elements/tableHeading/tableHeading";
 import TableData from "@/elements/tableData/tableData";
 import Button from "@/elements/button/button";
 import { Game, UserMockData } from "@/types";
-import { getUserProfile } from "@/api/apiUser";
+import { getUserProfile, updateUserBalance } from "@/api/apiUser";
 import TableBodyRow from "./tableBodyRow/tableBodyRow";
 
 import style from "./cart.module.scss";
@@ -28,8 +28,6 @@ export default function Cart() {
     getUserProfile().then((data) => setUserData(data));
   }, []);
 
-  console.log(userData);
-
   const headings = [
     { heading: "Name" },
     { heading: "Platform" },
@@ -50,6 +48,19 @@ export default function Cart() {
 
       return updatedGamesInCart;
     });
+  };
+
+  const handleBuyClick = () => {
+    if (userData?.balance && userData.balance >= totalGameCost) {
+      updateUserBalance({ balance: userData.balance ? userData.balance - totalGameCost : 0 });
+
+      setUserData((state) => ({
+        ...state,
+        balance: state?.balance ? state.balance - totalGameCost : 0,
+      }));
+      setGamesInCart([]);
+      localStorage.removeItem("cart");
+    }
   };
 
   return (
@@ -79,9 +90,9 @@ export default function Cart() {
             </tbody>
           </table>
           <div className={style.balanceContainer}>
-            <p>Game cost: {totalGameCost} $</p>
-            <p>Your balance: {userData?.balance || 0} $</p>
-            <Button>Buy</Button>
+            <p>Game cost: {totalGameCost.toFixed(2)} $</p>
+            <p>Your balance: {(userData?.balance || 0).toFixed(2)} $</p>
+            <Button onClick={handleBuyClick}>Buy</Button>
           </div>
         </SectionWrapper>
       </div>
