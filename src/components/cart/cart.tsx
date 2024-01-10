@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 import Page from "@/elements/page/page";
 import SectionWrapper from "@/elements/sectionWrapper/sectionWrapper";
-import TableRow from "@/elements/tableRow/tableRow";
 import TableHeading from "@/elements/tableHeading/tableHeading";
 
 import { Game } from "@/types";
@@ -32,11 +31,11 @@ export default function Cart() {
         <SectionWrapper heading="Cart page">
           <table className={style.table}>
             <thead>
-              <TableRow>
+              <tr className={style.tableRow}>
                 {headings.map((th) => (
                   <TableHeading key={th.heading}>{th.heading}</TableHeading>
                 ))}
-              </TableRow>
+              </tr>
             </thead>
             <tbody>
               {gamesInCart.map((game) => (

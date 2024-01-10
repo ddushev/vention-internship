@@ -4,5 +4,9 @@
   .table {
     color: $whitTextColor;
     width: 99%;
+
+    .tableRow {
+      border-bottom: 1px solid #fff;
+    }
   }
 }
