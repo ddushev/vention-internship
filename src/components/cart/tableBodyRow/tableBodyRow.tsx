@@ -62,9 +62,11 @@ const checkBoxStyles = {
 export default function TableBodyRow({
   game,
   setSelectedGames,
+  setGamesInCart,
 }: {
   game: Game;
   setSelectedGames: React.Dispatch<React.SetStateAction<Game[]>>;
+  setGamesInCart: React.Dispatch<React.SetStateAction<Game[]>>;
 }) {
   const [platform, setPlatform] = useState(game.platforms[0]);
   const [amount, setAmount] = useState(1);
@@ -77,6 +79,13 @@ export default function TableBodyRow({
     _event: React.FocusEvent<HTMLInputElement, Element> | React.PointerEvent<Element> | React.KeyboardEvent<Element>,
     value: number | undefined,
   ) => {
+    if (value !== amount) {
+      setGamesInCart((state) => {
+        const updatedState = state.map((gameInState) => (gameInState.name === game.name ? { ...game, amount: value || 1 } : gameInState));
+        return updatedState;
+      });
+    }
+
     setAmount(value || 1);
   };
 
@@ -100,7 +109,7 @@ export default function TableBodyRow({
       </TableData>
       <TableData>{currentDate}</TableData>
       <TableData>
-        <NumberInput onChange={handleNumberInputChange} value={amount} slotProps={numberInputSlotProps} />
+        <NumberInput onChange={handleNumberInputChange} value={amount} slotProps={numberInputSlotProps} min={1} max={10} />
       </TableData>
       <TableData>{game.price}</TableData>
       <TableData>

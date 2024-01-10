@@ -30,4 +30,5 @@ export interface Game {
   minAge: number;
   addDate: Date;
   description: string;
+  amount?: number;
 }

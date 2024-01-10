@@ -18,10 +18,9 @@ export default function Cart() {
   const [selectedGames, setSelectedGames] = useState<Game[]>([]);
   const [userData, setUserData] = useState<UserMockData>();
   const totalGameCost = gamesInCart.reduce((sum, game) => {
-    sum += game.price;
+    sum += game.price * (game.amount || 1);
     return sum;
   }, 0);
-
   useEffect(() => {
     const games = localStorage.getItem("cart");
     if (games) {
@@ -79,7 +78,7 @@ export default function Cart() {
             </thead>
             <tbody>
               {gamesInCart.map((game) => (
-                <TableBodyRow key={game.id} game={game} setSelectedGames={setSelectedGames} />
+                <TableBodyRow key={game.id} game={game} setSelectedGames={setSelectedGames} setGamesInCart={setGamesInCart} />
               ))}
               <tr className={style.tableRowRemove}>
                 {tdPlaceholders.map((key) => (
