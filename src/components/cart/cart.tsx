@@ -3,16 +3,16 @@ import { useEffect, useState } from "react";
 import Page from "@/elements/page/page";
 import SectionWrapper from "@/elements/sectionWrapper/sectionWrapper";
 import TableHeading from "@/elements/tableHeading/tableHeading";
-
-import { Game } from "@/types";
-
 import TableData from "@/elements/tableData/tableData";
 import Button from "@/elements/button/button";
-import style from "./cart.module.scss";
+import { Game } from "@/types";
 import TableBodyRow from "./tableBodyRow/tableBodyRow";
+
+import style from "./cart.module.scss";
 
 export default function Cart() {
   const [gamesInCart, setGamesInCart] = useState<Game[]>([]);
+  const [selectedGames, setSelectedGames] = useState<Game[]>([]);
 
   useEffect(() => {
     const games = localStorage.getItem("cart");
@@ -20,6 +20,7 @@ export default function Cart() {
       setGamesInCart(JSON.parse(games));
     }
   }, []);
+
   const headings = [
     { heading: "Name" },
     { heading: "Platform" },
@@ -27,7 +28,21 @@ export default function Cart() {
     { heading: "Amount" },
     { heading: "Price($)" },
   ];
+
   const tdPlaceholders = [1, 2, 3, 4, 5];
+
+  const handleRemoveClick = () => {
+    setGamesInCart((prevState) => {
+      const updatedGamesInCart = prevState.filter(
+        (gameInCart) => !selectedGames.some((selectedGame) => selectedGame.name === gameInCart.name),
+      );
+
+      setSelectedGames([]);
+
+      return updatedGamesInCart;
+    });
+  };
+
   return (
     <Page title="Cart">
       <div className={style.cartPageContainer}>
@@ -42,14 +57,14 @@ export default function Cart() {
             </thead>
             <tbody>
               {gamesInCart.map((game) => (
-                <TableBodyRow key={game.id} game={game} />
+                <TableBodyRow key={game.id} game={game} setSelectedGames={setSelectedGames} />
               ))}
               <tr className={style.tableRowRemove}>
                 {tdPlaceholders.map((key) => (
                   <TableData key={key} />
                 ))}
                 <TableData>
-                  <Button>Remove</Button>
+                  <Button onClick={handleRemoveClick}>Remove</Button>
                 </TableData>
               </tr>
             </tbody>

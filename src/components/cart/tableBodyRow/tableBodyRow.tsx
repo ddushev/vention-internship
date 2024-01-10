@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Checkbox, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { Unstable_NumberInput as NumberInput } from "@mui/base/Unstable_NumberInput";
 
@@ -6,8 +7,6 @@ import TableRow from "@/elements/tableRow/tableRow";
 
 import { Game } from "@/types";
 import createDate from "@/utils/createDate";
-
-import { useState } from "react";
 
 const selectStyles = {
   width: "200px",
@@ -60,7 +59,13 @@ const checkBoxStyles = {
   "& .MuiSvgIcon-root": { backgroundColor: "white", fontSize: "16px", borderRadius: "2px" },
 };
 
-export default function TableBodyRow({ game }: { game: Game }) {
+export default function TableBodyRow({
+  game,
+  setSelectedGames,
+}: {
+  game: Game;
+  setSelectedGames: React.Dispatch<React.SetStateAction<Game[]>>;
+}) {
   const [platform, setPlatform] = useState(game.platforms[0]);
   const [amount, setAmount] = useState(1);
   const [checked, setChecked] = useState(false);
@@ -77,6 +82,7 @@ export default function TableBodyRow({ game }: { game: Game }) {
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
+    setSelectedGames((state) => [...state, game]);
   };
 
   const currentDate = createDate();
