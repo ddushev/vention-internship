@@ -2,62 +2,14 @@ import { useState } from "react";
 import { Checkbox, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { Unstable_NumberInput as NumberInput } from "@mui/base/Unstable_NumberInput";
 
+import createDate from "@/utils/createDate";
+
 import TableData from "@/elements/tableData/tableData";
 import TableRow from "@/elements/tableRow/tableRow";
 
 import { Game } from "@/types";
-import createDate from "@/utils/createDate";
-
-const selectStyles = {
-  width: "200px",
-  color: "white",
-  backgroundColor: "rgba(0, 0, 0, 0.5)",
-  border: "1px solid white",
-  textAlign: "left",
-  borderRadius: "0",
-  "& .MuiSelect-select": { padding: "10px" },
-  "& .MuiOutlinedInput-notchedOutline": { border: "none" },
-  "& .MuiSelect-icon": { color: "white" },
-};
-
-const menuProps = {
-  slotProps: {
-    paper: {
-      style: {
-        width: "200px",
-        color: "white",
-        backgroundColor: "black",
-      },
-    },
-  },
-};
-
-const numberInputSlotProps = {
-  input: {
-    style: {
-      maxWidth: "100px",
-      padding: "10px",
-      border: "1px solid white",
-      color: "white",
-      backgroundColor: "rgba(0, 0, 0, 0.5)",
-    },
-  },
-  decrementButton: {
-    style: {
-      display: "none",
-    },
-  },
-  incrementButton: {
-    style: {
-      display: "none",
-    },
-  },
-};
-
-const checkBoxStyles = {
-  color: "white",
-  "& .MuiSvgIcon-root": { backgroundColor: "white", fontSize: "16px", borderRadius: "2px" },
-};
+import { checkBoxStyles, selectStyles } from "@/mui/muiStyles";
+import { menuProps, numberInputSlotProps } from "@/mui/muiProps";
 
 export default function TableBodyRow({
   game,
