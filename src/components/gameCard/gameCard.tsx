@@ -34,7 +34,7 @@ export default function GameCard({ game }: { game: Game }) {
         <div className={styles.backSide}>
           <p className={styles.description}>{game?.description}</p>
           <p>{game?.minAge}+</p>
-          <button onClick={() => saveToCart("cart", game)} className={styles.addToCartButton} type="button">
+          <button onClick={() => saveToCart(game)} className={styles.addToCartButton} type="button">
             Add to Cart
           </button>
         </div>

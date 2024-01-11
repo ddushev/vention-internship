@@ -38,7 +38,7 @@ export default function TableBodyRow({
       if (gameIndex !== -1) {
         const updatedGameWithAmount = { ...gamesInCart[gameIndex], amount: value };
 
-        updateGameInCart("cart", updatedGameWithAmount);
+        updateGameInCart(updatedGameWithAmount);
         setAmount(value || 1);
       }
     }

@@ -54,7 +54,7 @@ export default function HomeSearch() {
             {!!searchResults.length &&
               searchResults.map((game) => (
                 <li className={styles.listItem} key={game.id}>
-                  <button className={styles.buttonItem} onClick={() => saveToCart("cart", game)} type="button">
+                  <button className={styles.buttonItem} onClick={() => saveToCart(game)} type="button">
                     {game.name}
                   </button>
                 </li>

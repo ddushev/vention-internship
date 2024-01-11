@@ -3,8 +3,8 @@ import { setCartState } from "@/redux/cartSlice";
 
 import { Game } from "@/types";
 
-const saveToCart = (key: string, game: Game) => {
-  const cartInStorage = localStorage.getItem(key);
+const saveToCart = (game: Game) => {
+  const cartInStorage = localStorage.getItem("cart");
 
   if (cartInStorage) {
     const parsedCart = JSON.parse(cartInStorage);
@@ -14,12 +14,12 @@ const saveToCart = (key: string, game: Game) => {
     const updatedCart = [...parsedCart, game];
     alert(`${game.name} added to cart`);
     dispatch(setCartState(updatedCart));
-    return localStorage.setItem(key, JSON.stringify(updatedCart));
+    return localStorage.setItem("cart", JSON.stringify(updatedCart));
   }
   const cart = [game];
   alert(`${game.name} added to cart`);
   dispatch(setCartState(cart));
-  return localStorage.setItem(key, JSON.stringify(cart));
+  return localStorage.setItem("cart", JSON.stringify(cart));
 };
 
 export default saveToCart;

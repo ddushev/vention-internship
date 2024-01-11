@@ -48,7 +48,7 @@ export default function Cart() {
       (gameInCart) => !selectedGames.some((selectedGame) => selectedGame.name === gameInCart.name),
     );
     // dispatch(setCartState(updatedGamesInCart));
-    removeFromCart("cart", selectedGames);
+    removeFromCart(selectedGames);
     setSelectedGames([]);
 
     return updatedGamesInCart;
