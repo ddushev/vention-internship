@@ -19,6 +19,7 @@ export default function Cart() {
   const [selectedGames, setSelectedGames] = useState<Game[]>([]);
   const [userData, setUserData] = useState<UserMockData>();
   const gamesInCart = useAppSelector((state) => state.cartReduxState);
+  const { username } = useAppSelector((state) => state.authReduxState);
   const dispatch = useAppDispatch();
   const totalGameCost = gamesInCart.reduce((sum, game) => {
     sum += game.price * (game.amount || 1);
@@ -26,10 +27,6 @@ export default function Cart() {
   }, 0);
 
   useEffect(() => {
-    const games = localStorage.getItem("cart");
-    if (games) {
-      dispatch(setCartState(JSON.parse(games)));
-    }
     getUserProfile().then((data) => setUserData(data));
   }, []);
 
@@ -64,7 +61,7 @@ export default function Cart() {
       }));
       dispatch(setCartState([]));
 
-      localStorage.removeItem("cart");
+      localStorage.removeItem(`${username}Cart`);
     }
   };
 

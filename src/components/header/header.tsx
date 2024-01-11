@@ -8,6 +8,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { onLogout } from "@/api/apiAuth";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setAuthState } from "@/redux/authSlice";
+import { setCartState } from "@/redux/cartSlice";
 import { AuthData } from "@/types";
 import cx from "classnames";
 import PATHS from "@/utils/paths";
@@ -31,6 +32,13 @@ export default function Header() {
   const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
+    const cart = localStorage.getItem(`${authData?.username}Cart`);
+    if (cart) {
+      dispatch(setCartState(JSON.parse(cart)));
+    } else {
+      dispatch(setCartState([]));
+    }
+
     if (authData?.username) {
       setIsSignInOpen(false);
       setIsSignUpOpen(false);
