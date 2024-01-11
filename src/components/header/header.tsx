@@ -24,7 +24,7 @@ export default function Header() {
     dispatch(setAuthState(data));
   };
   const authData = useAppSelector((state) => state.authReduxState);
-
+  const cartData = useAppSelector((state) => state.cartReduxState);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
 
@@ -117,7 +117,7 @@ export default function Header() {
             {authData?.username && (
               <NavLink className={({ isActive }) => cx(styles.linkItem, styles.onlyIcon, isActive && styles.active)} to={PATHS.CART}>
                 <img className={styles.icon} src={cartIcon} alt="cart-icon" />
-                {0}
+                {cartData.length}
               </NavLink>
             )}
             {authData?.username && (
