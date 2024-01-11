@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Checkbox, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { Unstable_NumberInput as NumberInput } from "@mui/base/Unstable_NumberInput";
 
-import { setCartState } from "@/redux/cartSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import updateGameInCart from "@/utils/updateGameInCart";
+import { useAppSelector } from "@/redux/hooks";
 import createDate from "@/utils/createDate";
 
 import TableData from "@/elements/tableData/tableData";
@@ -21,9 +21,8 @@ export default function TableBodyRow({
   setSelectedGames: React.Dispatch<React.SetStateAction<Game[]>>;
 }) {
   const [platform, setPlatform] = useState(game.platforms[0]);
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState(game.amount || 1);
   const [checked, setChecked] = useState(false);
-  const dispatch = useAppDispatch();
   const gamesInCart = useAppSelector((state) => state.cartReduxState);
 
   const handleSelectChange = (event: SelectChangeEvent) => {
@@ -34,13 +33,15 @@ export default function TableBodyRow({
     value: number | undefined,
   ) => {
     if (value !== amount) {
-      const updatedGamesInCart = gamesInCart.map((gameInCartState) =>
-        gameInCartState.name === game.name ? { ...game, amount: value || 1 } : gameInCartState,
-      );
-      dispatch(setCartState(updatedGamesInCart));
-    }
+      const gameIndex = gamesInCart.findIndex((gameInCartState) => gameInCartState.name === game.name);
 
-    setAmount(value || 1);
+      if (gameIndex !== -1) {
+        const updatedGameWithAmount = { ...gamesInCart[gameIndex], amount: value };
+
+        updateGameInCart("cart", updatedGameWithAmount);
+        setAmount(value || 1);
+      }
+    }
   };
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
