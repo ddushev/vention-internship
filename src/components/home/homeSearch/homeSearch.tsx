@@ -50,7 +50,7 @@ export default function HomeSearch() {
           </div>
         )}
         {!isLoading && (
-          <ul className={styles.resultsList}>
+          <ul>
             {!!searchResults.length &&
               searchResults.map((game) => (
                 <li className={styles.listItem} key={game.id}>
