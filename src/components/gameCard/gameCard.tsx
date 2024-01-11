@@ -6,7 +6,7 @@ import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
 
 import { Game } from "@/types";
-import saveToLocalStorage from "@/utils/saveToLocalStorage";
+import saveToCart from "@/utils/saveToCart";
 
 import styles from "./gameCard.module.scss";
 
@@ -34,7 +34,7 @@ export default function GameCard({ game }: { game: Game }) {
         <div className={styles.backSide}>
           <p className={styles.description}>{game?.description}</p>
           <p>{game?.minAge}+</p>
-          <button onClick={() => saveToLocalStorage("cart", game)} className={styles.addToCartButton} type="button">
+          <button onClick={() => saveToCart("cart", game)} className={styles.addToCartButton} type="button">
             Add to Cart
           </button>
         </div>

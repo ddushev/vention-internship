@@ -6,7 +6,7 @@ import { WUPTextControl } from "web-ui-pack";
 import apiEndpoints from "@/api.endpoints";
 
 import SearchField from "@/elements/searchField/searchField";
-import saveToLocalStorage from "@/utils/saveToLocalStorage";
+import saveToCart from "@/utils/saveToCart";
 import { Game } from "@/types";
 
 import styles from "./homeSearch.module.scss";
@@ -54,7 +54,7 @@ export default function HomeSearch() {
             {!!searchResults.length &&
               searchResults.map((game) => (
                 <li className={styles.listItem} key={game.id}>
-                  <button className={styles.buttonItem} onClick={() => saveToLocalStorage("cart", game)} type="button">
+                  <button className={styles.buttonItem} onClick={() => saveToCart("cart", game)} type="button">
                     {game.name}
                   </button>
                 </li>

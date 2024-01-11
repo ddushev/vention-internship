@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 
-import removeFromLocalStorage from "@/utils/removeFromLocalStorage";
+import removeFromCart from "@/utils/removeFromCart";
 import { getUserProfile, updateUserBalance } from "@/api/apiUser";
+import { useAppDispatch } from "@/redux/hooks";
+import { setCartState } from "@/redux/cartSlice";
 
 import Page from "@/elements/page/page";
 import SectionWrapper from "@/elements/sectionWrapper/sectionWrapper";
@@ -17,6 +19,8 @@ export default function Cart() {
   const [gamesInCart, setGamesInCart] = useState<Game[]>([]);
   const [selectedGames, setSelectedGames] = useState<Game[]>([]);
   const [userData, setUserData] = useState<UserMockData>();
+  // const gamesInCart = useAppSelector((state) => state.cartReduxState);
+  const dispatch = useAppDispatch();
   const totalGameCost = gamesInCart.reduce((sum, game) => {
     sum += game.price * (game.amount || 1);
     return sum;
@@ -45,7 +49,7 @@ export default function Cart() {
       const updatedGamesInCart = prevState.filter(
         (gameInCart) => !selectedGames.some((selectedGame) => selectedGame.name === gameInCart.name),
       );
-      removeFromLocalStorage("cart", selectedGames);
+      removeFromCart("cart", selectedGames);
       setSelectedGames([]);
 
       return updatedGamesInCart;
@@ -60,7 +64,9 @@ export default function Cart() {
         ...state,
         balance: state?.balance ? state.balance - totalGameCost : 0,
       }));
+      dispatch(setCartState([]));
       setGamesInCart([]);
+
       localStorage.removeItem("cart");
     }
   };
