@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import removeFromCart from "@/utils/removeFromCart";
 import { getUserProfile, updateUserBalance } from "@/api/apiUser";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setCartState } from "@/redux/cartSlice";
 
 import Page from "@/elements/page/page";
@@ -16,10 +16,9 @@ import TableBodyRow from "./tableBodyRow/tableBodyRow";
 import style from "./cart.module.scss";
 
 export default function Cart() {
-  const [gamesInCart, setGamesInCart] = useState<Game[]>([]);
   const [selectedGames, setSelectedGames] = useState<Game[]>([]);
   const [userData, setUserData] = useState<UserMockData>();
-  // const gamesInCart = useAppSelector((state) => state.cartReduxState);
+  const gamesInCart = useAppSelector((state) => state.cartReduxState);
   const dispatch = useAppDispatch();
   const totalGameCost = gamesInCart.reduce((sum, game) => {
     sum += game.price * (game.amount || 1);
@@ -29,7 +28,7 @@ export default function Cart() {
   useEffect(() => {
     const games = localStorage.getItem("cart");
     if (games) {
-      setGamesInCart(JSON.parse(games));
+      dispatch(setCartState(JSON.parse(games)));
     }
     getUserProfile().then((data) => setUserData(data));
   }, []);
@@ -45,15 +44,14 @@ export default function Cart() {
   const tdPlaceholders = [1, 2, 3, 4, 5];
 
   const handleRemoveClick = () => {
-    setGamesInCart((prevState) => {
-      const updatedGamesInCart = prevState.filter(
-        (gameInCart) => !selectedGames.some((selectedGame) => selectedGame.name === gameInCart.name),
-      );
-      removeFromCart("cart", selectedGames);
-      setSelectedGames([]);
+    const updatedGamesInCart = gamesInCart.filter(
+      (gameInCart) => !selectedGames.some((selectedGame) => selectedGame.name === gameInCart.name),
+    );
+    // dispatch(setCartState(updatedGamesInCart));
+    removeFromCart("cart", selectedGames);
+    setSelectedGames([]);
 
-      return updatedGamesInCart;
-    });
+    return updatedGamesInCart;
   };
 
   const handleBuyClick = () => {
@@ -65,7 +63,6 @@ export default function Cart() {
         balance: state?.balance ? state.balance - totalGameCost : 0,
       }));
       dispatch(setCartState([]));
-      setGamesInCart([]);
 
       localStorage.removeItem("cart");
     }
@@ -85,7 +82,7 @@ export default function Cart() {
             </thead>
             <tbody>
               {gamesInCart.map((game) => (
-                <TableBodyRow key={game.id} game={game} setSelectedGames={setSelectedGames} setGamesInCart={setGamesInCart} />
+                <TableBodyRow key={game.id} game={game} setSelectedGames={setSelectedGames} />
               ))}
               <tr className={style.tableRowRemove}>
                 {tdPlaceholders.map((key) => (
