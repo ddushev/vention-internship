@@ -1,10 +1,11 @@
-import { dispatch } from "@/redux/store";
+import { dispatch, store } from "@/redux/store";
 import { setCartState } from "@/redux/cartSlice";
 
 import { Game } from "@/types";
 
 const saveToCart = (game: Game) => {
-  const cartInStorage = localStorage.getItem("cart");
+  const { username } = store.getState().authReduxState;
+  const cartInStorage = localStorage.getItem(`${username}Cart`);
 
   if (cartInStorage) {
     const parsedCart = JSON.parse(cartInStorage);
@@ -14,12 +15,12 @@ const saveToCart = (game: Game) => {
     const updatedCart = [...parsedCart, game];
     alert(`${game.name} added to cart`);
     dispatch(setCartState(updatedCart));
-    return localStorage.setItem("cart", JSON.stringify(updatedCart));
+    return localStorage.setItem(`${username}Cart`, JSON.stringify(updatedCart));
   }
   const cart = [game];
   alert(`${game.name} added to cart`);
   dispatch(setCartState(cart));
-  return localStorage.setItem("cart", JSON.stringify(cart));
+  return localStorage.setItem(`${username}Cart`, JSON.stringify(cart));
 };
 
 export default saveToCart;
