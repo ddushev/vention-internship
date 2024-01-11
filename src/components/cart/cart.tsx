@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Box, Modal, Typography, Button as ButtonMui } from "@mui/material";
 
 import removeFromCart from "@/utils/removeFromCart";
 import { getUserProfile, updateUserBalance } from "@/api/apiUser";
@@ -9,8 +10,9 @@ import Page from "@/elements/page/page";
 import SectionWrapper from "@/elements/sectionWrapper/sectionWrapper";
 import TableHeading from "@/elements/tableHeading/tableHeading";
 import TableData from "@/elements/tableData/tableData";
-import Button from "@/elements/button/button";
 import { Game, UserMockData } from "@/types";
+import Button from "@/elements/button/button";
+import { boxStyles, buttonStyles, typographyStyles } from "@/mui/muiStyles";
 import TableBodyRow from "./tableBodyRow/tableBodyRow";
 
 import style from "./cart.module.scss";
@@ -18,6 +20,8 @@ import style from "./cart.module.scss";
 export default function Cart() {
   const [selectedGames, setSelectedGames] = useState<Game[]>([]);
   const [userData, setUserData] = useState<UserMockData>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalText, setModalText] = useState("");
   const gamesInCart = useAppSelector((state) => state.cartReduxState);
   const { username } = useAppSelector((state) => state.authReduxState);
   const dispatch = useAppDispatch();
@@ -44,7 +48,6 @@ export default function Cart() {
     const updatedGamesInCart = gamesInCart.filter(
       (gameInCart) => !selectedGames.some((selectedGame) => selectedGame.name === gameInCart.name),
     );
-    // dispatch(setCartState(updatedGamesInCart));
     removeFromCart(selectedGames);
     setSelectedGames([]);
 
@@ -59,9 +62,13 @@ export default function Cart() {
         ...state,
         balance: state?.balance ? state.balance - totalGameCost : 0,
       }));
+      setModalText("You have successfully finished your order!");
+      setIsModalOpen(true);
       dispatch(setCartState([]));
-
       localStorage.removeItem(`${username}Cart`);
+    } else {
+      setIsModalOpen(true);
+      setModalText("Not enough funds to finish your order!");
     }
   };
 
@@ -98,6 +105,16 @@ export default function Cart() {
           </div>
         </SectionWrapper>
       </div>
+      <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <Box sx={boxStyles}>
+          <Typography sx={typographyStyles} component="h1">
+            {modalText}
+          </Typography>
+          <ButtonMui sx={buttonStyles} variant="contained" onClick={() => setIsModalOpen(false)}>
+            Close
+          </ButtonMui>
+        </Box>
+      </Modal>
     </Page>
   );
 }
