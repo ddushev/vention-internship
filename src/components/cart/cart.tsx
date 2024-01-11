@@ -88,20 +88,23 @@ export default function Cart() {
               {gamesInCart.map((game) => (
                 <TableBodyRow key={game.id} game={game} setSelectedGames={setSelectedGames} />
               ))}
-              <tr className={style.tableRowRemove}>
-                {tdPlaceholders.map((key) => (
-                  <TableData key={key} />
-                ))}
-                <TableData>
-                  <Button onClick={handleRemoveClick}>Remove</Button>
-                </TableData>
-              </tr>
+              {!!gamesInCart.length && (
+                <tr className={style.tableRowRemove}>
+                  {tdPlaceholders.map((key) => (
+                    <TableData key={key} />
+                  ))}
+
+                  <TableData>
+                    <Button onClick={handleRemoveClick}>Remove</Button>
+                  </TableData>
+                </tr>
+              )}
             </tbody>
           </table>
           <div className={style.balanceContainer}>
             <p>Game cost: {totalGameCost.toFixed(2)} $</p>
             <p>Your balance: {(userData?.balance || 0).toFixed(2)} $</p>
-            <Button onClick={handleBuyClick}>Buy</Button>
+            {!!gamesInCart.length && <Button onClick={handleBuyClick}>Buy</Button>}
           </div>
         </SectionWrapper>
       </div>
