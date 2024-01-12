@@ -5,8 +5,8 @@ import xbox from "images/platforms/xbox.png";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
 
+import ButtonAddToCart from "@/elements/buttonAddToCart/buttonAddToCart";
 import { Game } from "@/types";
-import saveToCart from "@/utils/saveToCart";
 
 import styles from "./gameCard.module.scss";
 
@@ -34,9 +34,9 @@ export default function GameCard({ game }: { game: Game }) {
         <div className={styles.backSide}>
           <p className={styles.description}>{game?.description}</p>
           <p>{game?.minAge}+</p>
-          <button onClick={() => saveToCart(game)} className={styles.addToCartButton} type="button">
+          <ButtonAddToCart className={styles.addToCartButton} game={game}>
             Add to Cart
-          </button>
+          </ButtonAddToCart>
         </div>
       </div>
     </div>

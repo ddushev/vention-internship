@@ -6,9 +6,9 @@ import { WUPTextControl } from "web-ui-pack";
 import apiEndpoints from "@/api.endpoints";
 
 import SearchField from "@/elements/searchField/searchField";
-import saveToCart from "@/utils/saveToCart";
 import { Game } from "@/types";
 
+import ButtonAddToCart from "@/elements/buttonAddToCart/buttonAddToCart";
 import styles from "./homeSearch.module.scss";
 
 export default function HomeSearch() {
@@ -54,9 +54,9 @@ export default function HomeSearch() {
             {!!searchResults.length &&
               searchResults.map((game) => (
                 <li className={styles.listItem} key={game.id}>
-                  <button className={styles.buttonItem} onClick={() => saveToCart(game)} type="button">
+                  <ButtonAddToCart className={styles.buttonItem} game={game}>
                     {game.name}
-                  </button>
+                  </ButtonAddToCart>
                 </li>
               ))}
             {searchTerm && !searchResults.length && !!searchTerm.length && (
