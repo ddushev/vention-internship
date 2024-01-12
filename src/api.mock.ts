@@ -190,6 +190,11 @@ export default webpackMockServer.add((app) => {
     res.status(200).json({ username: user.username });
   });
 
+  app.delete(apiEndpoints.logoutMock, (_req, res) => {
+    currentUser = {};
+    res.json("success");
+  });
+
   app.get(apiEndpoints.getProfile, (_req, res) => {
     res.json(currentUser);
   });

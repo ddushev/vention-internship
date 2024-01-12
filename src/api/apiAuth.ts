@@ -6,7 +6,7 @@ import PATHS from "@/utils/paths";
 import authFormValidations from "@/utils/authFormValidations";
 import handleErrors from "@/utils/handleErrors";
 
-import { post, update } from "./requests";
+import { post, update, del } from "./requests";
 
 interface RequestParams {
   [key: string]: string;
@@ -37,12 +37,13 @@ export async function onRegisterSubmit(
   }
 }
 
-export function onLogout(
+export async function onLogout(
   event: React.MouseEvent<HTMLAnchorElement>,
   dispatchSetAuthState: (data: AuthData) => void,
   navigate: NavigateFunction,
 ) {
   event.preventDefault();
+  await del(apiEndpoints.logoutMock);
   dispatchSetAuthState({ username: "" });
   navigate(PATHS.HOME);
 }
