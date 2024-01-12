@@ -147,20 +147,14 @@ export default webpackMockServer.add((app) => {
   });
 
   app.post(apiEndpoints.loginMock, (_req, res) => {
-    const { username, password } = _req.body;
-    let isAuthenticated = false;
-
-    usersMockData.forEach((user) => {
-      if (user.username === username.toLowerCase() && user.password === password) {
-        isAuthenticated = true;
-        currentUser = { ...user, password: null };
-        res.status(201).json({ username: user.username });
-      }
-    });
-
-    if (!isAuthenticated) {
-      res.status(400).json("Login failed: Username and/or password don't match!");
+    const { username } = _req.body;
+    const existingUser = usersMockData.find((user) => user.username === username.toLowerCase());
+    if (existingUser) {
+      currentUser = { ...existingUser, password: null };
+    } else {
+      currentUser = { ...usersMockData[0], password: null };
     }
+    res.status(201).json({ username: currentUser.username });
   });
 
   app.put(apiEndpoints.registerMock, (_req, res) => {
