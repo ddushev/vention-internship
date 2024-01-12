@@ -10,7 +10,7 @@ const saveToCart = (game: Game) => {
   if (cartInStorage) {
     const parsedCart = JSON.parse(cartInStorage);
     if (parsedCart.some((g: Game) => g.name === game.name)) {
-      return alert(`${game.name} already in cart`);
+      return {};
     }
     const updatedCart = [...parsedCart, game];
     alert(`${game.name} added to cart`);
