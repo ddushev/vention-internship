@@ -23,7 +23,7 @@ export default function HomeSearch() {
       try {
         setIsLoading(true);
 
-        const response = await fetch(`${apiEndpoints.searchMock}?text=${query}`);
+        const response = await fetch(`${apiEndpoints.search}?text=${query}`);
         const data = await response.json();
         setSearchResults(data);
       } catch (error) {

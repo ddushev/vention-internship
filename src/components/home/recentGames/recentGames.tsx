@@ -11,7 +11,7 @@ export default function RecentGames() {
   useEffect(() => {
     const fetchTopGames = async () => {
       try {
-        const response = await fetch(apiEndpoints.topGamesMock);
+        const response = await fetch(apiEndpoints.topGames);
         const data = await response.json();
         setTopGames(data);
       } catch (error) {

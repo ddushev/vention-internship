@@ -135,18 +135,18 @@ const usersMockData: UserMockData[] = [
 let currentUser: UserMockData = {};
 
 export default webpackMockServer.add((app) => {
-  app.get(apiEndpoints.searchMock, (_req, res) => {
+  app.get(apiEndpoints.search, (_req, res) => {
     const searchText = (_req.query.text as string).toLowerCase();
     const matchingProducts = gamesMockData.filter((game) => game.name.toLowerCase().includes(searchText));
     res.json(matchingProducts);
   });
 
-  app.get(apiEndpoints.topGamesMock, (_req, res) => {
+  app.get(apiEndpoints.topGames, (_req, res) => {
     const top3RecentlyAddedGames = gamesMockData.sort((a, b) => b.addDate.getTime() - a.addDate.getTime()).slice(0, 3);
     res.json(top3RecentlyAddedGames);
   });
 
-  app.post(apiEndpoints.loginMock, (_req, res) => {
+  app.post(apiEndpoints.login, (_req, res) => {
     const { username } = _req.body;
     const existingUser = usersMockData.find((user) => user.username === username.toLowerCase());
     if (existingUser) {
@@ -157,7 +157,7 @@ export default webpackMockServer.add((app) => {
     res.status(201).json({ username: currentUser.username });
   });
 
-  app.put(apiEndpoints.registerMock, (_req, res) => {
+  app.put(apiEndpoints.register, (_req, res) => {
     const { username, password, rePassword } = _req.body;
     if (usersMockData.some((user) => user.username === username.toLowerCase())) {
       res.status(400).json("Register failed: Username already exists!");
@@ -184,7 +184,7 @@ export default webpackMockServer.add((app) => {
     res.status(200).json({ username: user.username });
   });
 
-  app.delete(apiEndpoints.logoutMock, (_req, res) => {
+  app.delete(apiEndpoints.logout, (_req, res) => {
     currentUser = {};
     res.json("success");
   });
