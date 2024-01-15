@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 export interface AuthData {
   username?: string;
+  isAdmin?: boolean;
 }
 
 export interface AuthState {
@@ -18,6 +19,7 @@ export interface UserMockData {
   password?: string | null;
   profileImg?: string;
   balance?: number;
+  isAdmin?: boolean;
 }
 
 export interface Game {

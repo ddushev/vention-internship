@@ -16,10 +16,9 @@ export default function UserRouteGuard() {
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSession, setIsSession] = useState(true);
   const authData = useAppSelector((state) => state.authReduxState);
-
   useEffect(() => {
     if (!authData.username && isSession) {
-      getUserProfile().then((userData: UserMockData) => dispatchSetAuthState({ username: userData.username }));
+      getUserProfile().then((userData: UserMockData) => dispatchSetAuthState({ username: userData.username, isAdmin: userData.isAdmin }));
       setIsSession(false);
     }
 

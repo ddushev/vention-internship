@@ -120,6 +120,7 @@ const usersMockData: UserMockData[] = [
     description: "Profile description for username ddushev",
     password: "123",
     balance: 500,
+    isAdmin: true,
   },
   {
     id: 2,
@@ -129,6 +130,7 @@ const usersMockData: UserMockData[] = [
     description: "Profile description for username ddushev2",
     password: "123",
     balance: 100,
+    isAdmin: false,
   },
 ];
 
@@ -178,6 +180,8 @@ export default webpackMockServer.add((app) => {
       description: "",
       password,
       profileImg: "",
+      balance: 500,
+      isAdmin: false,
     };
     currentUser = { ...user, password: null };
     usersMockData.push(user);
