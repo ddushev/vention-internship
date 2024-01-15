@@ -6,7 +6,7 @@ import PATHS from "@/utils/paths";
 import authFormValidations from "@/utils/authFormValidations";
 import handleErrors from "@/utils/handleErrors";
 
-import { post, update, del } from "./requests";
+import { post, update } from "./requests";
 
 interface RequestParams {
   [key: string]: string;
@@ -43,7 +43,7 @@ export async function onLogout(
   navigate: NavigateFunction,
 ) {
   event.preventDefault();
-  await del(apiEndpoints.logout);
+  await post(apiEndpoints.logout);
   dispatchSetAuthState({ username: "" });
   navigate(PATHS.HOME);
 }
