@@ -26,7 +26,9 @@ export default function PasswordModal({ setIsPassChangeOpen }: { setIsPassChange
         />
         <PasswordControl name="repeatPassword" validations={{ required: true, confirm: true }} />
         <div className={styles.submitBtnContainer}>
-          <Button submit>Submit</Button>
+          <Button className={styles.submitButton} submit>
+            Submit
+          </Button>
         </div>
       </Form>
     </Modal>

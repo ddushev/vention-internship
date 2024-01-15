@@ -12,7 +12,7 @@ export default function authFormValidations(authFields: authFields) {
   }
 
   if (!/^[a-zA-Z0-9]{3,}$/.test(authFields.password)) {
-    errors.push("Password should be minimum 3 alphanumeric characters!");
+    errors.push("Password should contain only alphanumerics and have a length of 3 characters!");
   }
 
   if (authFields.rePassword && authFields.rePassword !== authFields.password) {

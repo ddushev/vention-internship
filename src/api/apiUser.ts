@@ -41,3 +41,11 @@ export async function updateImage(imgFile: File) {
     handleErrors(error);
   }
 }
+
+export async function updateUserBalance({ balance }: UserMockData) {
+  try {
+    await update(apiEndpoints.updateBalance, { balance });
+  } catch (error) {
+    handleErrors(error);
+  }
+}

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { WUPTextControl } from "web-ui-pack";
 
-import { Game } from "@/components/gameCard/gameCard";
+import { Game } from "@/types";
 import getProducts from "@/api/apiProducts";
 
 export default function useLoadingGamesCatalog() {

@@ -9,12 +9,12 @@
   font-size: 16px;
   padding: 11px;
   color: $whitTextColor;
-  background-color: $inheritPinkBackground;
+  background-color: $mainPinkColor;
   border-radius: 10px;
   border: none;
   cursor: pointer;
 }
 
 .button[type="button"]:hover {
-  background-color: rgba(90, 43, 125, 0.5);
+  background-color: $pinkHoverColor;
 }

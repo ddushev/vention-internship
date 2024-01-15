@@ -15,7 +15,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 20px;
-    color: $whitTextColor;
     background-color: $backgroundColor;
     text-align: center;
 
@@ -51,6 +50,10 @@
       border: none;
       border-radius: 10px;
       cursor: pointer;
+
+      &:hover {
+        background-color: $pinkHoverColor;
+      }
     }
   }
 }

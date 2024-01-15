@@ -51,9 +51,12 @@
       width: 70%;
       margin: auto;
       font-size: 14px;
-      background-color: $inheritPinkBackground;
-      color: $whitTextColor;
+      background-color: $mainPinkColor;
       cursor: pointer;
+
+      &:hover {
+        background-color: $pinkHoverColor;
+      }
     }
   }
 }
