@@ -1,5 +1,5 @@
 {
-  "files.eol": "\r\n",
+  "files.eol": "\n",
   // todo-watch: path-intellisense doesn't work with none-js-files https://github.com/ChristianKohler/PathIntellisense/issues/110
   "path-autocomplete.includeExtension": true,
   "path-autocomplete.extensionOnImport": true,

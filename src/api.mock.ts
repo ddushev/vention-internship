@@ -119,6 +119,7 @@ const usersMockData: UserMockData[] = [
     phone: "359897357818",
     description: "Profile description for username ddushev",
     password: "123",
+    balance: 500,
   },
   {
     id: 2,
@@ -126,42 +127,37 @@ const usersMockData: UserMockData[] = [
     address: "Burgas, Bulgaria",
     phone: "359896457213",
     description: "Profile description for username ddushev2",
-    password: "qwe",
+    password: "123",
+    balance: 100,
   },
 ];
 
 let currentUser: UserMockData = {};
 
 export default webpackMockServer.add((app) => {
-  app.get(apiEndpoints.searchMock, (_req, res) => {
+  app.get(apiEndpoints.search, (_req, res) => {
     const searchText = (_req.query.text as string).toLowerCase();
     const matchingProducts = gamesMockData.filter((game) => game.name.toLowerCase().includes(searchText));
     res.json(matchingProducts);
   });
 
-  app.get(apiEndpoints.topGamesMock, (_req, res) => {
+  app.get(apiEndpoints.topGames, (_req, res) => {
     const top3RecentlyAddedGames = gamesMockData.sort((a, b) => b.addDate.getTime() - a.addDate.getTime()).slice(0, 3);
     res.json(top3RecentlyAddedGames);
   });
 
-  app.post(apiEndpoints.loginMock, (_req, res) => {
-    const { username, password } = _req.body;
-    let isAuthenticated = false;
-
-    usersMockData.forEach((user) => {
-      if (user.username === username.toLowerCase() && user.password === password) {
-        isAuthenticated = true;
-        currentUser = { ...user, password: null };
-        res.status(201).json({ username: user.username });
-      }
-    });
-
-    if (!isAuthenticated) {
-      res.status(400).json("Login failed: Username and/or password don't match!");
+  app.post(apiEndpoints.login, (_req, res) => {
+    const { username } = _req.body;
+    const existingUser = usersMockData.find((user) => user.username === username.toLowerCase());
+    if (existingUser) {
+      currentUser = { ...existingUser, password: null };
+    } else {
+      currentUser = { ...usersMockData[0], password: null };
     }
+    res.status(201).json({ username: currentUser.username });
   });
 
-  app.put(apiEndpoints.registerMock, (_req, res) => {
+  app.put(apiEndpoints.register, (_req, res) => {
     const { username, password, rePassword } = _req.body;
     if (usersMockData.some((user) => user.username === username.toLowerCase())) {
       res.status(400).json("Register failed: Username already exists!");
@@ -186,6 +182,11 @@ export default webpackMockServer.add((app) => {
     currentUser = { ...user, password: null };
     usersMockData.push(user);
     res.status(200).json({ username: user.username });
+  });
+
+  app.post(apiEndpoints.logout, (_req, res) => {
+    currentUser = {};
+    res.json("success");
   });
 
   app.get(apiEndpoints.getProfile, (_req, res) => {
@@ -267,5 +268,18 @@ export default webpackMockServer.add((app) => {
     }
 
     res.json(matchingProducts);
+  });
+
+  app.put(apiEndpoints.updateBalance, (_req, res) => {
+    const { balance } = _req.body;
+
+    usersMockData.forEach((user, index) => {
+      if (user.username === currentUser.username) {
+        usersMockData[index] = { ...user, balance };
+        currentUser = { ...currentUser, balance };
+      }
+    });
+
+    res.json("success");
   });
 });

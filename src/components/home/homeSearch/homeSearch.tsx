@@ -6,12 +6,10 @@ import { WUPTextControl } from "web-ui-pack";
 import apiEndpoints from "@/api.endpoints";
 
 import SearchField from "@/elements/searchField/searchField";
-import styles from "./homeSearch.module.scss";
+import { Game } from "@/types";
 
-interface Game {
-  id: number;
-  name: string;
-}
+import ButtonAddToCart from "@/elements/buttonAddToCart/buttonAddToCart";
+import styles from "./homeSearch.module.scss";
 
 export default function HomeSearch() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -25,7 +23,7 @@ export default function HomeSearch() {
       try {
         setIsLoading(true);
 
-        const response = await fetch(`${apiEndpoints.searchMock}?text=${query}`);
+        const response = await fetch(`${apiEndpoints.search}?text=${query}`);
         const data = await response.json();
         setSearchResults(data);
       } catch (error) {
@@ -42,10 +40,6 @@ export default function HomeSearch() {
     fetchSearchResults(search);
   };
 
-  const handleGameSelect = (game: string) => {
-    alert(`Got product - ${game}`);
-  };
-
   return (
     <div className={styles.searchField}>
       <SearchField handleInputChange={handleInputChange} />
@@ -56,13 +50,13 @@ export default function HomeSearch() {
           </div>
         )}
         {!isLoading && (
-          <ul className={styles.resultsList}>
+          <ul>
             {!!searchResults.length &&
               searchResults.map((game) => (
                 <li className={styles.listItem} key={game.id}>
-                  <button className={styles.buttonItem} onClick={() => handleGameSelect(game.name)} type="button">
+                  <ButtonAddToCart className={styles.buttonItem} game={game}>
                     {game.name}
-                  </button>
+                  </ButtonAddToCart>
                 </li>
               ))}
             {searchTerm && !searchResults.length && !!searchTerm.length && (

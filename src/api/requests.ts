@@ -16,7 +16,7 @@ async function request(url: string, options: object): Promise<object> {
   return response.json();
 }
 
-function createOptions(method: string, data: object | null) {
+function createOptions(method: string, data: object | null | undefined) {
   const options: OptionsProps = {
     method,
     headers: {},
@@ -36,7 +36,7 @@ function get(endpoint: string) {
   return request(endpoint, createOptions("get", null));
 }
 
-function post(endpoint: string, data: object) {
+function post(endpoint: string, data?: object) {
   return request(endpoint, createOptions("post", data));
 }
 

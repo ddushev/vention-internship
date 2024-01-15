@@ -32,7 +32,9 @@ export default function UserDetails({ setIsPassChangeOpen }: { setIsPassChangeOp
           <NumberControl mask="+(000)-000-000-000" label="Phone Number" name="phone" validations={{ required: true }} />
           <TextareaControl label="Profile Description" name="description" validations={{ required: true }} />
           <div className={styles.btnContainer}>
-            <Button submit>Save Profile</Button>
+            <Button className={styles.submitButton} submit>
+              Save Profile
+            </Button>
             <Button onClick={setIsPassChangeOpen}>Change password</Button>
           </div>
         </Form>

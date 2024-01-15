@@ -1,13 +1,15 @@
 const apiEndpoints = {
-  searchMock: "/api/products/search",
-  topGamesMock: "/api/products/top",
-  loginMock: "/api/auth/signIn",
-  registerMock: "/api/auth/signUp",
+  search: "/api/products/search",
+  topGames: "/api/products/top",
+  login: "/api/auth/signIn",
+  register: "/api/auth/signUp",
+  logout: "/api/auth/logout",
   getProfile: "/api/getProfile",
   saveProfile: "/api/saveProfile",
   changePassword: "/api/changePassword",
   changeProfileImage: "/api/changeProfileImage",
   getProducts: "/api/getProducts",
+  updateBalance: "/api/updateBalance",
 };
 
 export default apiEndpoints;

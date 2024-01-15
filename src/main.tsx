@@ -14,6 +14,8 @@ import Home from "./components/home/home";
 import ErrorPage from "./components/error/errorPage/errorPage";
 import Profile from "./components/profile/profile";
 import Products from "./components/products/products";
+import Cart from "./components/cart/cart";
+import UserRouteGuard from "./components/guards/userRouteGuard";
 
 function AppContainer() {
   return (
@@ -24,12 +26,12 @@ function AppContainer() {
         <DefaultLayout>
           <Routes>
             <Route path={PATHS.HOME} element={<Home />} />
-            {/* <Route element={<UserRouteGuard />}> */}
-            <Route path={PATHS.ABOUT} element={<Page title="About" />} />
-            <Route path={PATHS.PRODUCTS} element={<Products />} />
-            <Route path={PATHS.PROFILE} element={<Profile />} />
-            <Route path={PATHS.CART} element={<Page title="Cart" />} />
-            {/* </Route> */}
+            <Route element={<UserRouteGuard />}>
+              <Route path={PATHS.ABOUT} element={<Page title="About" />} />
+              <Route path={PATHS.PRODUCTS} element={<Products />} />
+              <Route path={PATHS.PROFILE} element={<Profile />} />
+              <Route path={PATHS.CART} element={<Cart />} />
+            </Route>
             <Route path={PATHS.SIGN_IN} element={<Page title="Sign In" />} />
             <Route path={PATHS.SIGN_UP} element={<Page title="Sign Up" />} />
             <Route path={PATHS.ERROR} element={<ErrorPage onResetError={() => {}} />} />

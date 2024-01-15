@@ -2,6 +2,8 @@ import closeIcon from "images/icons/close.svg";
 
 import { createPortal } from "react-dom";
 import { FormEvent, KeyboardEvent } from "react";
+import Button from "../button/button";
+
 import styles from "./modal.module.scss";
 
 interface ModalProps {
@@ -31,9 +33,10 @@ export default function Modal({ title, isOpen, onClose, children, onSubmit }: Mo
         </div>
         <form onSubmit={(event) => onSubmit(event)}>
           {children}
-          <button className={styles.submitBtn} type="submit">
+          {/* <button type="submit">Submit</button> */}
+          <Button className={styles.submitBtn} submit>
             Submit
-          </button>
+          </Button>
         </form>
       </div>
     </div>,

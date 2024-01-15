@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
 import SectionWrapper from "@/elements/sectionWrapper/sectionWrapper";
-import GameCard, { Game } from "@/components/gameCard/gameCard";
+import GameCard from "@/components/gameCard/gameCard";
+import { Game } from "@/types";
 
 import apiEndpoints from "@/api.endpoints";
 
@@ -10,7 +11,7 @@ export default function RecentGames() {
   useEffect(() => {
     const fetchTopGames = async () => {
       try {
-        const response = await fetch(apiEndpoints.topGamesMock);
+        const response = await fetch(apiEndpoints.topGames);
         const data = await response.json();
         setTopGames(data);
       } catch (error) {
