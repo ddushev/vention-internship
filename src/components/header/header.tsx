@@ -9,13 +9,12 @@ import { onLogout } from "@/api/apiAuth";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setAuthState } from "@/redux/authSlice";
 import { setCartState } from "@/redux/cartSlice";
-import { AuthData, UserMockData } from "@/types";
+import { AuthData } from "@/types";
 import cx from "classnames";
 import PATHS from "@/utils/paths";
 import SignInModal from "@/components/account/signInModal";
 import SignUpModal from "@/components/account/signUpModal";
 
-import { getUserProfile } from "@/api/apiUser";
 import ProductsDropDown from "./productsDropDown/productsDropDown";
 
 import styles from "./header.module.scss";
@@ -29,16 +28,10 @@ export default function Header() {
   const cartData = useAppSelector((state) => state.cartReduxState);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-  const [isSession, setIsSession] = useState(true);
 
   const [isProductsDropdownVisible, setIsProductsDropdownVisible] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!authData.username && isSession) {
-      getUserProfile().then((userData: UserMockData) => dispatchSetAuthState({ username: userData.username }));
-      setIsSession(false);
-    }
-
     const cart = localStorage.getItem(`${authData?.username}Cart`);
     if (cart) {
       dispatch(setCartState(JSON.parse(cart)));
