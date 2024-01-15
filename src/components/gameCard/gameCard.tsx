@@ -8,6 +8,7 @@ import StarIcon from "@mui/icons-material/Star";
 import ButtonAddToCart from "@/elements/buttonAddToCart/buttonAddToCart";
 import { Game } from "@/types";
 
+import Button from "@/elements/button/button";
 import styles from "./gameCard.module.scss";
 
 export default function GameCard({ game }: { game: Game }) {
@@ -34,9 +35,12 @@ export default function GameCard({ game }: { game: Game }) {
         <div className={styles.backSide}>
           <p className={styles.description}>{game?.description}</p>
           <p>{game?.minAge}+</p>
-          <ButtonAddToCart className={styles.addToCartButton} game={game}>
-            Add to Cart
-          </ButtonAddToCart>
+          <div className={styles.buttonsContainer}>
+            <ButtonAddToCart className={styles.cardButtons} game={game}>
+              Add to Cart
+            </ButtonAddToCart>
+            <Button className={styles.cardButtons}>Edit</Button>
+          </div>
         </div>
       </div>
     </div>
