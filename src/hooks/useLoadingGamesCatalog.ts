@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { WUPTextControl } from "web-ui-pack";
 
 import { Game } from "@/types";
-import getProducts from "@/api/apiProducts";
+import { getProducts } from "@/api/apiProducts";
 
 export default function useLoadingGamesCatalog() {
   const [searchParams, setSearchParams] = useSearchParams();
