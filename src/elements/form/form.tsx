@@ -30,6 +30,7 @@ export default class Form extends BaseWUP<WUPFormElement, Props> {
   }
 
   componentDidMount(): void {
+    super.componentDidMount();
     this.domEl.addEventListener("$change", (ev) => {
       this.props.onChange?.(this.domEl.$model, ev as CustomEvent);
     });
