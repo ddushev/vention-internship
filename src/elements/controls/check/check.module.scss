@@ -1,0 +1,13 @@
+.ctrl {
+  box-shadow: none;
+
+  &:hover,
+  &:checked,
+  &:not(:focus) {
+    box-shadow: none;
+  }
+
+  strong {
+    display: none;
+  }
+}
