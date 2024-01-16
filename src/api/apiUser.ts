@@ -12,7 +12,6 @@ export async function getUserProfile() {
 }
 
 export async function updateUserProfile({ username, address, phone, description }: UserMockData) {
-  console.log(username);
   try {
     const updatedUserName = await update(apiEndpoints.saveProfile, { username, address, phone, description });
     dispatch(setAuthState(updatedUserName));
@@ -22,7 +21,6 @@ export async function updateUserProfile({ username, address, phone, description 
 }
 
 export async function changeUserPassword({ oldPassword, newPassword }: { oldPassword: string; newPassword: string }) {
-  console.log(oldPassword);
   try {
     await update(apiEndpoints.changePassword, { oldPassword, newPassword });
   } catch (error) {
