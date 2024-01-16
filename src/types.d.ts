@@ -37,10 +37,10 @@ export interface Game {
 
 export interface Product {
   name: string;
-  price?: number;
-  category?: string;
-  image?: string;
-  description?: string;
+  price: number;
+  category: string;
+  image: string;
+  description: string;
   minAge: string;
   pc: boolean;
   ps5: boolean;

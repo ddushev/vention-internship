@@ -2,11 +2,12 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import webpackMockServer from "webpack-mock-server";
 import apiEndpoints from "./api.endpoints";
-import { UserMockData } from "./types";
+import { Product, UserMockData } from "./types";
+import createDate from "./utils/createDate";
 
 const gamesMockData = [
   {
-    id: 2,
+    id: 1,
     name: "Counter-Strike",
     price: 29.99,
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/cs.jpg",
@@ -19,7 +20,7 @@ const gamesMockData = [
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
-    id: 1,
+    id: 2,
     name: "Battlefield",
     price: 30.99,
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/battlefield1.jpg",
@@ -32,7 +33,7 @@ const gamesMockData = [
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
-    id: 4,
+    id: 3,
     name: "GTA",
     price: 18.99,
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/gta.jpg",
@@ -45,7 +46,7 @@ const gamesMockData = [
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
-    id: 3,
+    id: 4,
     name: "Genshin Impact",
     price: 13.99,
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/genshinimpact.jpg",
@@ -58,7 +59,7 @@ const gamesMockData = [
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
-    id: 7,
+    id: 5,
     name: "Sims 4",
     price: 30.99,
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/sims4.jpg",
@@ -71,7 +72,7 @@ const gamesMockData = [
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
-    id: 5,
+    id: 6,
     name: "Minecraft",
     price: 25.99,
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/minecraft.jpg",
@@ -84,7 +85,7 @@ const gamesMockData = [
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
   },
   {
-    id: 8,
+    id: 7,
     name: "Terraria",
     price: 4.99,
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/terraria.jpg",
@@ -97,7 +98,7 @@ const gamesMockData = [
       "The very world is at your fingertips as you fight for survival, fortune, and glory. Delve deep into cavernous expanses, seek out ever-greater foes to test your mettle in combat, or construct your own city - In the World of Terraria, the choice is yours!",
   },
   {
-    id: 6,
+    id: 8,
     name: "Overwatch",
     price: 23.99,
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/overwatch.jpg",
@@ -285,5 +286,35 @@ export default webpackMockServer.add((app) => {
     });
 
     res.json("success");
+  });
+
+  app.post(apiEndpoints.product, (req, res) => {
+    const { name, category, description, image, minAge, price, pc, ps5, xbox }: Product = req.body;
+    const lastGame = gamesMockData.sort((a, b) => a.id - b.id)[gamesMockData.length - 1];
+    const id = lastGame?.id ? lastGame.id + 1 : 1;
+    const platforms: string[] = [];
+    if (pc) {
+      platforms.push("pc");
+    }
+    if (ps5) {
+      platforms.push("ps5");
+    }
+    if (xbox) {
+      platforms.push("xbox");
+    }
+    const newGame = {
+      id,
+      name,
+      price,
+      image,
+      rating: Math.round(Math.random() * 5),
+      platforms,
+      genre: category,
+      minAge: Number(minAge),
+      addDate: new Date(createDate("-")),
+      description,
+    };
+    gamesMockData.push(newGame);
+    res.json(newGame);
   });
 });
