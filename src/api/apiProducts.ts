@@ -8,7 +8,7 @@ interface GetProductsParams {
   urlParams: string;
 }
 
-export default async function getProducts({ urlParams }: GetProductsParams): Promise<Game[]> {
+export async function getProducts({ urlParams }: GetProductsParams): Promise<Game[]> {
   try {
     const data = await get(`${apiEndpoints.getProducts}?${urlParams}`);
     return data as Game[];
@@ -16,4 +16,8 @@ export default async function getProducts({ urlParams }: GetProductsParams): Pro
     handleErrors(error);
     return [];
   }
+}
+
+export function addProduct({ name, category }: { name: string; category: string }) {
+  console.log(name, category);
 }
