@@ -156,7 +156,7 @@ export default webpackMockServer.add((app) => {
     } else {
       currentUser = { ...usersMockData[0], password: null };
     }
-    res.status(201).json({ username: currentUser.username });
+    res.status(201).json({ username: currentUser.username, isAdmin: currentUser.isAdmin });
   });
 
   app.put(apiEndpoints.register, (_req, res) => {
@@ -185,7 +185,7 @@ export default webpackMockServer.add((app) => {
     };
     currentUser = { ...user, password: null };
     usersMockData.push(user);
-    res.status(200).json({ username: user.username });
+    res.status(200).json({ username: user.username, isAdmin: user.isAdmin });
   });
 
   app.post(apiEndpoints.logout, (_req, res) => {

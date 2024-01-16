@@ -2,6 +2,8 @@ import pc from "images/platforms/pc.png";
 import ps5 from "images/platforms/ps.png";
 import xbox from "images/platforms/xbox.png";
 
+import { useAppSelector } from "@/redux/hooks";
+
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
 
@@ -12,6 +14,7 @@ import Button from "@/elements/button/button";
 import styles from "./gameCard.module.scss";
 
 export default function GameCard({ game }: { game: Game }) {
+  const authData = useAppSelector((state) => state.authReduxState);
   return (
     <div role="option" className={styles.gameCardBox} tabIndex={0} aria-selected>
       <div className={styles.gameCardContainer}>
@@ -39,7 +42,7 @@ export default function GameCard({ game }: { game: Game }) {
             <ButtonAddToCart className={styles.cardButtons} game={game}>
               Add to Cart
             </ButtonAddToCart>
-            <Button className={styles.cardButtons}>Edit</Button>
+            {authData.isAdmin && <Button className={styles.cardButtons}>Edit</Button>}
           </div>
         </div>
       </div>

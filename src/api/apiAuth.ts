@@ -44,6 +44,6 @@ export async function onLogout(
 ) {
   event.preventDefault();
   await post(apiEndpoints.logout);
-  dispatchSetAuthState({ username: "" });
+  dispatchSetAuthState({ username: "", isAdmin: false });
   navigate(PATHS.HOME);
 }
