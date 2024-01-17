@@ -21,7 +21,7 @@ export default function filterGames(gamesMockData: Game[], { category, searchTex
   }
 
   if (genre !== "all") {
-    matchingProducts = matchingProducts.filter((game) => game.genre === genre);
+    matchingProducts = matchingProducts.filter((game) => game.genre?.toLowerCase() === genre);
   }
 
   if (minAge !== "all") {

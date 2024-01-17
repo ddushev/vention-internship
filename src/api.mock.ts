@@ -14,7 +14,7 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/cs.jpg",
     rating: 3,
     platforms: ["pc"],
-    genre: "shooter",
+    genre: "Shooter",
     minAge: 18,
     addDate: new Date("2023-01-02"),
     description:
@@ -27,7 +27,7 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/battlefield1.jpg",
     rating: 3,
     platforms: ["ps5"],
-    genre: "shooter",
+    genre: "Shooter",
     minAge: 12,
     addDate: new Date("2023-01-01"),
     description:
@@ -40,7 +40,7 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/gta.jpg",
     rating: 3,
     platforms: ["xbox"],
-    genre: "arcade",
+    genre: "Arcade",
     minAge: 6,
     addDate: new Date("2023-01-01"),
     description:
@@ -53,7 +53,7 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/genshinimpact.jpg",
     rating: 5,
     platforms: ["pc", "xbox"],
-    genre: "survive",
+    genre: "Survive",
     minAge: 3,
     addDate: new Date("2023-01-03"),
     description:
@@ -66,7 +66,7 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/sims4.jpg",
     rating: 5,
     platforms: ["pc", "ps5"],
-    genre: "arcade",
+    genre: "Arcade",
     minAge: 3,
     addDate: new Date("2023-01-01"),
     description:
@@ -79,7 +79,7 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/minecraft.jpg",
     rating: 5,
     platforms: ["pc", "ps5", "xbox"],
-    genre: "arcade",
+    genre: "Arcade",
     minAge: 3,
     addDate: new Date("2023-01-05"),
     description:
@@ -92,7 +92,7 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/terraria.jpg",
     rating: 1,
     platforms: ["pc", "ps5", "xbox"],
-    genre: "arcade",
+    genre: "Arcade",
     minAge: 3,
     addDate: new Date("2023-01-04"),
     description:
@@ -105,7 +105,7 @@ const gamesMockData = [
     image: "https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/overwatch.jpg",
     rating: 1,
     platforms: ["pc", "xbox"],
-    genre: "shooter",
+    genre: "Shooter",
     minAge: 6,
     addDate: new Date("2023-01-06"),
     description:
