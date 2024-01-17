@@ -1,0 +1,100 @@
+.modalContainer {
+  background-color: $backgroundColor;
+  max-width: 800px;
+  padding: 40px;
+
+  .modalHeader {
+    font-size: 22px;
+    font-weight: normal;
+  }
+
+  .subheadings {
+    font-weight: normal;
+    margin-bottom: 20px;
+  }
+
+  .imgFormContainer {
+    position: relative;
+    display: flex;
+    padding: 0 30px;
+    gap: 30px;
+
+    .imgContainer {
+      max-width: 30%;
+
+      .img {
+        width: 100%;
+      }
+    }
+
+    .form {
+      max-width: 70%;
+      margin: 0;
+      flex: 1 1 auto;
+
+      .controls {
+        font-size: 14px;
+        margin: 10px 0;
+        max-width: 340px;
+
+        strong {
+          display: none;
+        }
+
+        input {
+          padding: 15px 0;
+        }
+      }
+
+      .descriptionControl {
+        height: 180px;
+
+        label {
+          height: 180px;
+        }
+
+        span {
+          display: flex;
+          align-items: center;
+
+          wup-areainput {
+            max-height: 180px;
+            margin: 0;
+            overflow: scroll;
+          }
+        }
+      }
+
+      .ageControl {
+        max-width: 80px;
+        height: 20px;
+
+        label {
+          height: 20px;
+        }
+      }
+
+      .checkControl {
+        height: 30px;
+        margin: 0;
+      }
+
+      .heightContainer {
+        height: 55px;
+
+        .buttonContainer {
+          position: absolute;
+          display: flex;
+          left: -15%;
+          gap: 50px;
+          margin-top: 30px;
+
+          .addGameButton {
+            background-color: $mainPinkColor;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
