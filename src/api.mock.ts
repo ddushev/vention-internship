@@ -41,7 +41,7 @@ const gamesMockData = [
     rating: 3,
     platforms: ["xbox"],
     genre: "arcade",
-    minAge: 8,
+    minAge: 6,
     addDate: new Date("2023-01-01"),
     description:
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
@@ -54,7 +54,7 @@ const gamesMockData = [
     rating: 5,
     platforms: ["pc", "xbox"],
     genre: "survive",
-    minAge: 4,
+    minAge: 3,
     addDate: new Date("2023-01-03"),
     description:
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
@@ -67,7 +67,7 @@ const gamesMockData = [
     rating: 5,
     platforms: ["pc", "ps5"],
     genre: "arcade",
-    minAge: 2,
+    minAge: 3,
     addDate: new Date("2023-01-01"),
     description:
       "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
@@ -93,7 +93,7 @@ const gamesMockData = [
     rating: 1,
     platforms: ["pc", "ps5", "xbox"],
     genre: "arcade",
-    minAge: 4,
+    minAge: 3,
     addDate: new Date("2023-01-04"),
     description:
       "The very world is at your fingertips as you fight for survival, fortune, and glory. Delve deep into cavernous expanses, seek out ever-greater foes to test your mettle in combat, or construct your own city - In the World of Terraria, the choice is yours!",
@@ -106,7 +106,7 @@ const gamesMockData = [
     rating: 1,
     platforms: ["pc", "xbox"],
     genre: "shooter",
-    minAge: 5,
+    minAge: 6,
     addDate: new Date("2023-01-06"),
     description:
       "Overwatch 2 is a free-to-play shooter featuring 30+ epic heroes, each with game-changing abilities. Choose your hero, group up with your friends and battle across all-new maps and modes in the ultimate team-based shooter.",
