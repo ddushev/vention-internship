@@ -29,8 +29,8 @@ export async function addProduct({ name, category, description, image, minAge, p
   }
 }
 
-export async function updateProduct({ name, category, description, image, minAge, price, pc, ps5, xbox }: Product) {
-  const product = { name, category, description, image, minAge, price, pc, ps5, xbox };
+export async function updateProduct({ name, category, description, image, minAge, price, pc, ps5, xbox }: Product, id: number) {
+  const product = { id, name, category, description, image, minAge, price, pc, ps5, xbox };
   try {
     const data = await update(apiEndpoints.product, product);
     return data as Game[];

@@ -5,8 +5,9 @@ import apiEndpoints from "./api.endpoints";
 import { Filters, Product, UserMockData } from "./types";
 import createDate from "./utils/createDate";
 import filterGames from "./utils/filterGames";
+import assignPlatform from "./utils/assignPlatform";
 
-const gamesMockData = [
+let gamesMockData = [
   {
     id: 1,
     name: "Counter-Strike",
@@ -274,29 +275,40 @@ export default webpackMockServer.add((app) => {
     const { name, category, description, image, minAge, price, pc, ps5, xbox }: Product = req.body;
     const lastGame = gamesMockData.sort((a, b) => a.id - b.id)[gamesMockData.length - 1];
     const id = lastGame?.id ? lastGame.id + 1 : 1;
-    const platforms: string[] = [];
-    if (pc) {
-      platforms.push("pc");
-    }
-    if (ps5) {
-      platforms.push("ps5");
-    }
-    if (xbox) {
-      platforms.push("xbox");
-    }
+
     const newGame = {
       id,
       name,
       price,
       image,
       rating: Math.round(Math.random() * 5),
-      platforms,
+      platforms: assignPlatform({ pc, ps5, xbox }),
       genre: category,
       minAge: Number(minAge),
       addDate: new Date(createDate("-")),
       description,
     };
     gamesMockData.push(newGame);
+    res.json(filterGames(gamesMockData, filters));
+  });
+
+  app.put(apiEndpoints.product, (req, res) => {
+    const { id, name, category, description, image, minAge, price, pc, ps5, xbox }: Product = req.body;
+
+    gamesMockData = gamesMockData.map((game) =>
+      game.id === id
+        ? {
+            ...game,
+            name,
+            genre: category,
+            description,
+            image,
+            minAge: Number(minAge),
+            price,
+            platforms: assignPlatform({ pc, ps5, xbox }),
+          }
+        : game,
+    );
     res.json(filterGames(gamesMockData, filters));
   });
 });

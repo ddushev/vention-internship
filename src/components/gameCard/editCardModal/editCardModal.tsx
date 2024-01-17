@@ -21,7 +21,7 @@ export default function EditCardModal({ setIsCardModalOpen, game }: { setIsCardM
   const dispatch = useAppDispatch();
 
   const onSubmitHandler = async (data: Product) => {
-    const games: Game[] = await updateProduct(data);
+    const games: Game[] = await updateProduct(data, game.id);
     dispatch(setProductState(games));
   };
   return (

@@ -37,6 +37,7 @@ export interface Game {
 }
 
 export interface Product {
+  id: number;
   name: string;
   price: number;
   category: string;
