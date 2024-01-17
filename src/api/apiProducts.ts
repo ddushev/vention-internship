@@ -21,8 +21,8 @@ export async function getProducts({ urlParams }: GetProductsParams): Promise<Gam
 export async function addProduct({ name, category, description, image, minAge, price, pc, ps5, xbox }: Product) {
   const product = { name, category, description, image, minAge, price, pc, ps5, xbox };
   try {
-    const game = await post(apiEndpoints.product, product);
-    return game;
+    const data = await post(apiEndpoints.product, product);
+    return data as Game[];
   } catch (error) {
     handleErrors(error);
     return [];

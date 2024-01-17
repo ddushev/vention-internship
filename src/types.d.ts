@@ -32,6 +32,7 @@ export interface Game {
   minAge: number;
   addDate: Date;
   description: string;
+  genre?: string;
   amount?: number;
 }
 
@@ -45,4 +46,13 @@ export interface Product {
   pc: boolean;
   ps5: boolean;
   xbox: boolean;
+}
+
+export interface Filters {
+  category: string;
+  searchText: string;
+  sortCriteria: string;
+  sortType: string;
+  genre: string;
+  minAge: string;
 }

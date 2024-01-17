@@ -1,4 +1,6 @@
 import { addProduct } from "@/api/apiProducts";
+import { setProductState } from "@/redux/productSlice";
+import { useAppDispatch } from "@/redux/hooks";
 
 import Modal from "@/elements/controls/wupModal";
 import Form from "@/elements/form/form";
@@ -9,13 +11,20 @@ import TextareaControl from "@/elements/controls/textarea";
 import SelectControl from "@/elements/controls/select/select";
 import CheckControl from "@/elements/controls/check/check";
 
+import { Game, Product } from "@/types";
 import styles from "./createCardModal.module.scss";
 
 export default function CreateCardModal({ setIsCardModalOpen }: { setIsCardModalOpen: (isClose: boolean) => void }) {
+  const dispatch = useAppDispatch();
+
+  const onSubmitHandler = async (data: Product) => {
+    const games: Game[] = await addProduct(data);
+    dispatch(setProductState(games));
+  };
   return (
     <Modal onClose={() => setIsCardModalOpen(false)} className={styles.modalContainer}>
       <h2 className={styles.modalHeader}>Create Card</h2>
-      <Form onSubmit={addProduct}>
+      <Form onSubmit={onSubmitHandler}>
         <h3>Information</h3>
         <TextControl name="name" validations={{ required: true }} />
         <TextControl name="category" />

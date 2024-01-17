@@ -2,8 +2,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import webpackMockServer from "webpack-mock-server";
 import apiEndpoints from "./api.endpoints";
-import { Product, UserMockData } from "./types";
+import { Filters, Product, UserMockData } from "./types";
 import createDate from "./utils/createDate";
+import filterGames from "./utils/filterGames";
 
 const gamesMockData = [
   {
@@ -136,6 +137,7 @@ const usersMockData: UserMockData[] = [
 ];
 
 let currentUser: UserMockData = {};
+let filters: Filters;
 
 export default webpackMockServer.add((app) => {
   app.get(apiEndpoints.search, (_req, res) => {
@@ -241,40 +243,6 @@ export default webpackMockServer.add((app) => {
     res.json({});
   });
 
-  app.get(apiEndpoints.getProducts, (_req, res) => {
-    const { category, searchText, sortCriteria, sortType, genre, minAge } = _req.query;
-
-    let matchingProducts = gamesMockData.filter((game) => game.platforms.includes(category as string));
-
-    if (sortCriteria === "name" && sortType === "ascending") {
-      matchingProducts.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (sortCriteria === "price" && sortType === "ascending") {
-      matchingProducts.sort((a, b) => a.price - b.price);
-    } else if (sortCriteria === "rating" && sortType === "ascending") {
-      matchingProducts.sort((a, b) => a.rating - b.rating);
-    } else if (sortCriteria === "name" && sortType === "descending") {
-      matchingProducts.sort((a, b) => b.name.localeCompare(a.name));
-    } else if (sortCriteria === "price" && sortType === "descending") {
-      matchingProducts.sort((a, b) => b.price - a.price);
-    } else if (sortCriteria === "rating" && sortType === "descending") {
-      matchingProducts.sort((a, b) => b.rating - a.rating);
-    }
-
-    if (searchText) {
-      matchingProducts = matchingProducts.filter((game) => game.name.toLowerCase().includes(searchText as string));
-    }
-
-    if (genre !== "all") {
-      matchingProducts = matchingProducts.filter((game) => game.genre === genre);
-    }
-
-    if (minAge !== "all") {
-      matchingProducts = matchingProducts.filter((game) => game.minAge >= Number(minAge));
-    }
-
-    res.json(matchingProducts);
-  });
-
   app.put(apiEndpoints.updateBalance, (_req, res) => {
     const { balance } = _req.body;
 
@@ -286,6 +254,20 @@ export default webpackMockServer.add((app) => {
     });
 
     res.json("success");
+  });
+
+  app.get(apiEndpoints.getProducts, (_req, res) => {
+    const { category, searchText, sortCriteria, sortType, genre, minAge } = _req.query;
+    filters = {
+      category: category as string,
+      searchText: searchText as string,
+      sortCriteria: sortCriteria as string,
+      sortType: sortType as string,
+      genre: genre as string,
+      minAge: minAge as string,
+    };
+
+    res.json(filterGames(gamesMockData, filters));
   });
 
   app.post(apiEndpoints.product, (req, res) => {
@@ -315,6 +297,6 @@ export default webpackMockServer.add((app) => {
       description,
     };
     gamesMockData.push(newGame);
-    res.json(newGame);
+    res.json(filterGames(gamesMockData, filters));
   });
 });
