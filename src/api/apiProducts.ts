@@ -2,7 +2,7 @@ import apiEndpoints from "@/api.endpoints";
 
 import handleErrors from "@/utils/handleErrors";
 import { Game, Product } from "@/types";
-import { get, post } from "./requests";
+import { get, post, update } from "./requests";
 
 interface GetProductsParams {
   urlParams: string;
@@ -22,6 +22,17 @@ export async function addProduct({ name, category, description, image, minAge, p
   const product = { name, category, description, image, minAge, price, pc, ps5, xbox };
   try {
     const data = await post(apiEndpoints.product, product);
+    return data as Game[];
+  } catch (error) {
+    handleErrors(error);
+    return [];
+  }
+}
+
+export async function updateProduct({ name, category, description, image, minAge, price, pc, ps5, xbox }: Product) {
+  const product = { name, category, description, image, minAge, price, pc, ps5, xbox };
+  try {
+    const data = await update(apiEndpoints.product, product);
     return data as Game[];
   } catch (error) {
     handleErrors(error);
