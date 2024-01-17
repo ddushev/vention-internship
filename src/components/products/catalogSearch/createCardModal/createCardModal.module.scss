@@ -1,7 +1,7 @@
 .modalContainer {
   background-color: $backgroundColor;
   max-width: 700px;
-  padding: 40px;
+  padding: 40px 40px 20px 40px;
 
   .modalHeader {
     font-size: 22px;
@@ -72,7 +72,7 @@
 
       .addGameButton {
         background-color: $mainPinkColor;
-        margin: 30px auto;
+        margin: 30px auto 0 auto;
       }
     }
   }
