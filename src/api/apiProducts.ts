@@ -2,7 +2,7 @@ import apiEndpoints from "@/api.endpoints";
 
 import handleErrors from "@/utils/handleErrors";
 import { Game, Product } from "@/types";
-import { get, post, update } from "./requests";
+import { del, get, post, update } from "./requests";
 
 interface GetProductsParams {
   urlParams: string;
@@ -38,4 +38,9 @@ export async function updateProduct({ name, category, description, image, minAge
     handleErrors(error);
     return [];
   }
+}
+
+export async function deleteProduct(id: number) {
+  const data = await del(`${apiEndpoints.product}/${id}`);
+  return data as { games: Game[]; removedGame: Game[] };
 }

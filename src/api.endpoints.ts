@@ -11,6 +11,7 @@ const apiEndpoints = {
   getProducts: "/api/getProducts",
   updateBalance: "/api/updateBalance",
   product: "/api/product",
+  productId: "/api/product/:id",
 };
 
 export default apiEndpoints;

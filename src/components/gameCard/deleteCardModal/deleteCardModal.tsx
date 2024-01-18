@@ -1,6 +1,11 @@
-import Modal from "@/elements/controls/wupModal";
+import { useAppDispatch } from "@/redux/hooks";
+import { setProductState } from "@/redux/productSlice";
 
+import Modal from "@/elements/controls/wupModal";
 import Button from "@/elements/button/button";
+import { deleteProduct } from "@/api/apiProducts";
+
+import removeFromCart from "@/utils/removeFromCart";
 import styles from "./deleteCardModal.module.scss";
 
 export default function DeleteCardModal({
@@ -12,8 +17,11 @@ export default function DeleteCardModal({
   gameName: string;
   id: number;
 }) {
-  const handleDeleteConfirmClick = () => {
-    console.log(`delete product with id ${id}`);
+  const dispatch = useAppDispatch();
+  const handleDeleteConfirmClick = async () => {
+    const { games, removedGame } = await deleteProduct(id);
+    dispatch(setProductState(games));
+    removeFromCart(removedGame);
   };
   return (
     <Modal onClose={() => setIsDeleteCardModalOpen(false)} className={styles.modalContainer}>
