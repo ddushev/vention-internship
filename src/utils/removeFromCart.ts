@@ -8,7 +8,7 @@ const removeFromCart = (gamesInStateCart: Game[]) => {
 
   if (cartInStorage) {
     const parsedCart = JSON.parse(cartInStorage);
-    const updatedCart = parsedCart.filter((g: Game) => !gamesInStateCart.some((gameInStateCart: Game) => gameInStateCart.name === g.name));
+    const updatedCart = parsedCart.filter((g: Game) => !gamesInStateCart.some((gameInStateCart: Game) => gameInStateCart.id === g.id));
     dispatch(setCartState(updatedCart));
     localStorage.setItem(`${username}Cart`, JSON.stringify(updatedCart));
   }
