@@ -41,6 +41,11 @@ export async function updateProduct({ name, category, description, image, minAge
 }
 
 export async function deleteProduct(id: number) {
-  const data = await del(`${apiEndpoints.product}/${id}`);
-  return data as { games: Game[]; removedGame: Game[] };
+  try {
+    const data = await del(`${apiEndpoints.product}/${id}`);
+    return data as { games: Game[]; removedGame: Game[] };
+  } catch (error) {
+    handleErrors(error);
+    return { games: [], removedGame: [] };
+  }
 }
