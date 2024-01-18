@@ -3,6 +3,7 @@ import cx from "classnames";
 import { updateProduct } from "@/api/apiProducts";
 import { setProductState } from "@/redux/productSlice";
 import { useAppDispatch } from "@/redux/hooks";
+import updateGameInCart from "@/utils/updateGameInCart";
 
 import Modal from "@/elements/controls/wupModal";
 import Form from "@/elements/form/form";
@@ -23,6 +24,8 @@ export default function EditCardModal({ setIsCardModalOpen, game }: { setIsCardM
   const onSubmitHandler = async (data: Product) => {
     const games: Game[] = await updateProduct(data, game.id);
     dispatch(setProductState(games));
+    const updatedGame: Game = games.find((g) => g.id === game.id)!;
+    updateGameInCart(updatedGame);
   };
   return (
     <Modal onClose={() => setIsCardModalOpen(false)} className={styles.modalContainer}>
