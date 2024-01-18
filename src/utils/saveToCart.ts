@@ -2,6 +2,7 @@ import { dispatch, store } from "@/redux/store";
 import { setCartState } from "@/redux/cartSlice";
 
 import { Game } from "@/types";
+import alertModal from "./alertModal/alertModal";
 
 const saveToCart = (game: Game) => {
   const { username } = store.getState().authReduxState;
@@ -13,12 +14,12 @@ const saveToCart = (game: Game) => {
       return {};
     }
     const updatedCart = [...parsedCart, game];
-    alert(`${game.name} added to cart`);
+    alertModal(`${game.name} added to cart`);
     dispatch(setCartState(updatedCart));
     return localStorage.setItem(`${username}Cart`, JSON.stringify(updatedCart));
   }
   const cart = [game];
-  alert(`${game.name} added to cart`);
+  alertModal(`${game.name} added to cart`);
   dispatch(setCartState(cart));
   return localStorage.setItem(`${username}Cart`, JSON.stringify(cart));
 };
