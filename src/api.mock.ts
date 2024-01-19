@@ -141,8 +141,8 @@ let currentUser: UserMockData = {};
 let filters: Filters;
 
 export default webpackMockServer.add((app) => {
-  app.get(apiEndpoints.search, (_req, res) => {
-    const searchText = (_req.query.text as string).toLowerCase();
+  app.get(apiEndpoints.search, (req, res) => {
+    const searchText = (req.query.text as string).toLowerCase();
     const matchingProducts = gamesMockData.filter((game) => game.name.toLowerCase().includes(searchText));
     res.json(matchingProducts);
   });
@@ -152,8 +152,8 @@ export default webpackMockServer.add((app) => {
     res.json(top3RecentlyAddedGames);
   });
 
-  app.post(apiEndpoints.login, (_req, res) => {
-    const { username } = _req.body;
+  app.post(apiEndpoints.login, (req, res) => {
+    const { username } = req.body;
     const existingUser = usersMockData.find((user) => user.username === username.toLowerCase());
     if (existingUser) {
       currentUser = { ...existingUser, password: null };
@@ -163,8 +163,8 @@ export default webpackMockServer.add((app) => {
     res.status(200).json({ username: currentUser.username, isAdmin: currentUser.isAdmin });
   });
 
-  app.put(apiEndpoints.register, (_req, res) => {
-    const { username, password, rePassword } = _req.body;
+  app.put(apiEndpoints.register, (req, res) => {
+    const { username, password, rePassword } = req.body;
     if (usersMockData.some((user) => user.username === username.toLowerCase())) {
       res.status(400).json("Register failed: Username already exists!");
       return;
@@ -201,8 +201,8 @@ export default webpackMockServer.add((app) => {
     res.json(currentUser);
   });
 
-  app.put(apiEndpoints.saveProfile, (_req, res) => {
-    const { username, address, phone, description } = _req.body;
+  app.put(apiEndpoints.saveProfile, (req, res) => {
+    const { username, address, phone, description } = req.body;
     if (currentUser.username !== username && usersMockData.some((user) => user.username === username.toLowerCase())) {
       res.status(400).json("Update failed: Username already exists!");
       return;
@@ -218,8 +218,8 @@ export default webpackMockServer.add((app) => {
     res.json({ username: currentUser.username });
   });
 
-  app.put(apiEndpoints.changePassword, (_req, res) => {
-    const { oldPassword, newPassword } = _req.body;
+  app.put(apiEndpoints.changePassword, (req, res) => {
+    const { oldPassword, newPassword } = req.body;
 
     usersMockData.forEach((user) => {
       if (user.username === currentUser.username) {
@@ -233,8 +233,8 @@ export default webpackMockServer.add((app) => {
     });
   });
 
-  app.put(apiEndpoints.changeProfileImage, (_req, res) => {
-    const profileImg = _req.fileDownloadUrls && _req.fileDownloadUrls[0];
+  app.put(apiEndpoints.changeProfileImage, (req, res) => {
+    const profileImg = req.fileDownloadUrls && req.fileDownloadUrls[0];
     usersMockData.forEach((user, index) => {
       if (user.username === currentUser.username) {
         usersMockData[index] = { ...user, profileImg };
@@ -244,8 +244,8 @@ export default webpackMockServer.add((app) => {
     res.json({});
   });
 
-  app.put(apiEndpoints.updateBalance, (_req, res) => {
-    const { balance } = _req.body;
+  app.put(apiEndpoints.updateBalance, (req, res) => {
+    const { balance } = req.body;
 
     usersMockData.forEach((user, index) => {
       if (user.username === currentUser.username) {
@@ -257,8 +257,8 @@ export default webpackMockServer.add((app) => {
     res.json("success");
   });
 
-  app.get(apiEndpoints.getProducts, (_req, res) => {
-    const { category, searchText, sortCriteria, sortType, genre, minAge } = _req.query;
+  app.get(apiEndpoints.getProducts, (req, res) => {
+    const { category, searchText, sortCriteria, sortType, genre, minAge } = req.query;
     filters = {
       category: category as string,
       searchText: searchText as string,
