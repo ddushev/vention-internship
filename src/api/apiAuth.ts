@@ -18,7 +18,7 @@ export async function onLoginSubmit({ username, password }: RequestParams, dispa
     const data = await post(apiEndpoints.login, { username, password });
     dispatchSetAuthState(data);
   } catch (error: unknown) {
-    handleErrors(error);
+    handleErrors(error as string | string[]);
   }
 }
 
@@ -33,7 +33,7 @@ export async function onRegisterSubmit(
     dispatchSetAuthState(data);
     navigate(PATHS.PROFILE);
   } catch (error) {
-    handleErrors(error);
+    handleErrors(error as string | string[]);
   }
 }
 

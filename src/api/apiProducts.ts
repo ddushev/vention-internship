@@ -13,7 +13,7 @@ export async function getProducts({ urlParams }: GetProductsParams): Promise<Gam
     const data = await get(`${apiEndpoints.getProducts}?${urlParams}`);
     return data as Game[];
   } catch (error) {
-    handleErrors(error);
+    handleErrors(error as string | string[]);
     return [];
   }
 }
@@ -23,7 +23,7 @@ export async function addProduct(product: Product) {
     const data = await post(apiEndpoints.product, product);
     return data as Game[];
   } catch (error) {
-    handleErrors(error);
+    handleErrors(error as string | string[]);
     return [];
   }
 }
@@ -33,7 +33,7 @@ export async function updateProduct(product: Product) {
     const data = await update(apiEndpoints.product, product);
     return data as Game[];
   } catch (error) {
-    handleErrors(error);
+    handleErrors(error as string | string[]);
     return [];
   }
 }
@@ -43,7 +43,7 @@ export async function deleteProduct(id: number) {
     const data = await del(`${apiEndpoints.product}/${id}`);
     return data as { games: Game[]; removedGame: Game[] };
   } catch (error) {
-    handleErrors(error);
+    handleErrors(error as string | string[]);
     return { games: [], removedGame: [] };
   }
 }

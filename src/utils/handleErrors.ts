@@ -1,10 +1,10 @@
 import alertModal from "./alertModal/alertModal";
 
-const handleErrors = (error: unknown) => {
+const handleErrors = (error: string[] | string) => {
   if (Array.isArray(error)) {
     alertModal(error.join("\n"));
   } else {
-    alertModal(error as string);
+    alertModal(error);
   }
 };
 

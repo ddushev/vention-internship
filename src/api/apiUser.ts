@@ -16,7 +16,7 @@ export async function updateUserProfile({ username, address, phone, description 
     const updatedUserName = await update(apiEndpoints.saveProfile, { username, address, phone, description });
     dispatch(setAuthState(updatedUserName));
   } catch (error) {
-    handleErrors(error);
+    handleErrors(error as string | string[]);
   }
 }
 
@@ -24,7 +24,7 @@ export async function changeUserPassword({ oldPassword, newPassword }: { oldPass
   try {
     await update(apiEndpoints.changePassword, { oldPassword, newPassword });
   } catch (error) {
-    handleErrors(error);
+    handleErrors(error as string | string[]);
   }
 }
 
@@ -38,7 +38,7 @@ export async function updateImage(imgFile: File) {
     });
     await response.json();
   } catch (error) {
-    handleErrors(error);
+    handleErrors(error as string | string[]);
   }
 }
 
@@ -46,6 +46,6 @@ export async function updateUserBalance({ balance }: UserMockData) {
   try {
     await update(apiEndpoints.updateBalance, { balance });
   } catch (error) {
-    handleErrors(error);
+    handleErrors(error as string | string[]);
   }
 }
