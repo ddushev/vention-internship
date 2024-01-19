@@ -18,7 +18,7 @@ export default function CreateCardModal({ setIsCardModalOpen }: { setIsCardModal
   };
   return (
     <Modal onClose={() => setIsCardModalOpen(false)} className={styles.modalContainer}>
-      <h2 className={styles.modalHeader}>Create Card</h2>
+      <h2>Create Card</h2>
       <div className={styles.formContainer}>
         <GameForm onSubmitHandler={onSubmitHandler}>
           <Button className={styles.addGameButton} submit>

@@ -49,7 +49,6 @@ export default function GameForm({ children, game, onSubmitHandler }: GameFormPr
         <SelectControl
           className={cx(styles.controls, styles.ageControl)}
           name="minAge"
-          initValue="3"
           items={[
             { text: "3+", value: "3" },
             { text: "6+", value: "6" },
