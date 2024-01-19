@@ -160,7 +160,7 @@ export default webpackMockServer.add((app) => {
     } else {
       currentUser = { ...usersMockData[0], password: null };
     }
-    res.status(201).json({ username: currentUser.username, isAdmin: currentUser.isAdmin });
+    res.status(200).json({ username: currentUser.username, isAdmin: currentUser.isAdmin });
   });
 
   app.put(apiEndpoints.register, (_req, res) => {
