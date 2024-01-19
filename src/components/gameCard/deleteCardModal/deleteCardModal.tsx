@@ -24,7 +24,7 @@ export default function DeleteCardModal({
     removeFromCart(removedGame);
   };
   return (
-    <Modal onClose={() => setIsDeleteCardModalOpen(false)} className={styles.modalContainer}>
+    <Modal onClose={() => setIsDeleteCardModalOpen(false)}>
       <h2 className={styles.modalHeading}>Are you sure you want too delete product {gameName}?</h2>
       <div className={styles.buttonsContainer}>
         <Button onClick={() => handleDeleteConfirmClick()}>Yes</Button>

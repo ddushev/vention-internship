@@ -28,7 +28,7 @@ export default function EditCardModal({ setIsCardModalOpen, game }: { setIsCardM
   return (
     <>
       <Modal onClose={() => setIsCardModalOpen(false)} className={styles.modalContainer}>
-        <h2 className={styles.modalHeader}>Create Card</h2>
+        <h2>Edit Card</h2>
         <div className={styles.imgFormContainer}>
           <div className={styles.imgContainer}>
             <h3 className={styles.subheadings}>Card image</h3>
