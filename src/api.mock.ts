@@ -311,7 +311,7 @@ export default webpackMockServer.add((app) => {
     res.json(filterGames(gamesMockData, filters));
   });
 
-  app.delete(apiEndpoints.productId, (req, res) => {
+  app.delete(apiEndpoints.deleteProduct, (req, res) => {
     const { id } = req.params;
     const removedGame = [gamesMockData.find((game) => game.id === Number(id))];
     gamesMockData = gamesMockData.filter((game) => game.id !== Number(id));
