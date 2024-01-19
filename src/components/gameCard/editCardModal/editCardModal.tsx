@@ -13,7 +13,12 @@ import DeleteCardModal from "../deleteCardModal/deleteCardModal";
 
 import styles from "./editCardModal.module.scss";
 
-export default function EditCardModal({ setIsCardModalOpen, game }: { setIsCardModalOpen: (isClose: boolean) => void; game: Game }) {
+interface EditCardModalProps {
+  setIsCardModalOpen: (isClose: boolean) => void;
+  game: Game;
+}
+
+export default function EditCardModal({ setIsCardModalOpen, game }: EditCardModalProps) {
   const dispatch = useAppDispatch();
   const [isDeleteCardModalOpen, setIsDeleteCardModalOpen] = useState(false);
   const handleDeleteCardClick = () => {
