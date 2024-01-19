@@ -20,7 +20,7 @@ export default function EditCardModal({ setIsCardModalOpen, game }: { setIsCardM
     setIsDeleteCardModalOpen(true);
   };
   const onSubmitHandler = async (data: Product) => {
-    const games: Game[] = await updateProduct(data, game.id);
+    const games: Game[] = await updateProduct({ ...data, id: game.id });
     dispatch(setProductState(games));
     const updatedGame: Game = games.find((g) => g.id === game.id)!;
     updateGameInCart(updatedGame);

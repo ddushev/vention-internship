@@ -18,8 +18,7 @@ export async function getProducts({ urlParams }: GetProductsParams): Promise<Gam
   }
 }
 
-export async function addProduct({ name, category, description, image, minAge, price, pc, ps5, xbox }: Product) {
-  const product = { name, category, description, image, minAge, price, pc, ps5, xbox };
+export async function addProduct(product: Product) {
   try {
     const data = await post(apiEndpoints.product, product);
     return data as Game[];
@@ -29,8 +28,7 @@ export async function addProduct({ name, category, description, image, minAge, p
   }
 }
 
-export async function updateProduct({ name, category, description, image, minAge, price, pc, ps5, xbox }: Product, id: number) {
-  const product = { id, name, category, description, image, minAge, price, pc, ps5, xbox };
+export async function updateProduct(product: Product) {
   try {
     const data = await update(apiEndpoints.product, product);
     return data as Game[];
