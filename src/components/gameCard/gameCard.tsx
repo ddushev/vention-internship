@@ -3,6 +3,7 @@ import ps5 from "images/platforms/ps.png";
 import xbox from "images/platforms/xbox.png";
 
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useAppSelector } from "@/redux/hooks";
 
 import Rating from "@mui/material/Rating";
@@ -18,6 +19,7 @@ import EditCardModal from "./editCardModal/editCardModal";
 export default function GameCard({ game }: { game: Game }) {
   const [isCardModalOpen, setIsCardModalOpen] = useState(false);
   const authData = useAppSelector((state) => state.authReduxState);
+  const location = useLocation();
 
   const handleEditCardClick = () => {
     setIsCardModalOpen(true);
@@ -50,7 +52,7 @@ export default function GameCard({ game }: { game: Game }) {
               <ButtonAddToCart className={styles.cardButtons} game={game}>
                 Add to Cart
               </ButtonAddToCart>
-              {authData.isAdmin && (
+              {authData.isAdmin && location.pathname === "/products" && (
                 <Button onClick={handleEditCardClick} className={styles.cardButtons}>
                   Edit
                 </Button>
