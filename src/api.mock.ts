@@ -3,7 +3,6 @@
 import webpackMockServer from "webpack-mock-server";
 import apiEndpoints from "./api.endpoints";
 import { Filters, Product, UserMockData } from "./types";
-import createDate from "./utils/createDate";
 import filterGames from "./utils/filterGames";
 import assignPlatform from "./utils/assignPlatform";
 
@@ -285,7 +284,7 @@ export default webpackMockServer.add((app) => {
       platforms: assignPlatform({ pc, ps5, xbox }),
       genre: category,
       minAge: Number(minAge),
-      addDate: new Date(createDate("-")),
+      addDate: new Date(),
       description,
     };
     gamesMockData.push(newGame);
