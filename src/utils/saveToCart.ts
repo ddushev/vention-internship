@@ -7,18 +7,16 @@ import alertModal from "./alertModal/alertModal";
 const saveToCart = (game: Game) => {
   const { username } = store.getState().authReduxState;
   const cartInStorage = localStorage.getItem(`${username}Cart`);
-
+  let cart = [];
   if (cartInStorage) {
     const parsedCart = JSON.parse(cartInStorage);
     if (parsedCart.some((g: Game) => g.name === game.name)) {
       return {};
     }
-    const updatedCart = [...parsedCart, game];
-    alertModal(`${game.name} added to cart`);
-    dispatch(setCartState(updatedCart));
-    return localStorage.setItem(`${username}Cart`, JSON.stringify(updatedCart));
+    cart = [...parsedCart, game];
+  } else {
+    cart = [game];
   }
-  const cart = [game];
   alertModal(`${game.name} added to cart`);
   dispatch(setCartState(cart));
   return localStorage.setItem(`${username}Cart`, JSON.stringify(cart));
