@@ -12,20 +12,12 @@ export async function getUserProfile() {
 }
 
 export async function updateUserProfile({ username, address, phone, description }: UserMockData) {
-  try {
-    const updatedUserName = await update(apiEndpoints.saveProfile, { username, address, phone, description });
-    dispatch(setAuthState(updatedUserName));
-  } catch (error) {
-    handleErrors(error as string | string[]);
-  }
+  const updatedUserName = await update(apiEndpoints.saveProfile, { username, address, phone, description });
+  dispatch(setAuthState(updatedUserName));
 }
 
 export async function changeUserPassword({ oldPassword, newPassword }: { oldPassword: string; newPassword: string }) {
-  try {
-    await update(apiEndpoints.changePassword, { oldPassword, newPassword });
-  } catch (error) {
-    handleErrors(error as string | string[]);
-  }
+  await update(apiEndpoints.changePassword, { oldPassword, newPassword });
 }
 
 export async function updateImage(imgFile: File) {
@@ -43,9 +35,5 @@ export async function updateImage(imgFile: File) {
 }
 
 export async function updateUserBalance({ balance }: UserMockData) {
-  try {
-    await update(apiEndpoints.updateBalance, { balance });
-  } catch (error) {
-    handleErrors(error as string | string[]);
-  }
+  await update(apiEndpoints.updateBalance, { balance });
 }

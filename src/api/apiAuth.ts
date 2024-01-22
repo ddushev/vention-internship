@@ -4,7 +4,6 @@ import apiEndpoints from "@/api.endpoints";
 import { AuthData } from "@/types";
 import PATHS from "@/utils/paths";
 import authFormValidations from "@/utils/authFormValidations";
-import handleErrors from "@/utils/handleErrors";
 
 import { post, update } from "./requests";
 
@@ -13,13 +12,9 @@ interface RequestParams {
 }
 
 export async function onLoginSubmit({ username, password }: RequestParams, dispatchSetAuthState: (data: AuthData) => void) {
-  try {
-    authFormValidations({ username, password });
-    const data = await post(apiEndpoints.login, { username, password });
-    dispatchSetAuthState(data);
-  } catch (error: unknown) {
-    handleErrors(error as string | string[]);
-  }
+  authFormValidations({ username, password });
+  const data = await post(apiEndpoints.login, { username, password });
+  dispatchSetAuthState(data);
 }
 
 export async function onRegisterSubmit(
@@ -27,14 +22,10 @@ export async function onRegisterSubmit(
   dispatchSetAuthState: (data: AuthData) => void,
   navigate: NavigateFunction,
 ) {
-  try {
-    authFormValidations({ username, password, rePassword });
-    const data = await update(apiEndpoints.register, { username, password, rePassword });
-    dispatchSetAuthState(data);
-    navigate(PATHS.PROFILE);
-  } catch (error) {
-    handleErrors(error as string | string[]);
-  }
+  authFormValidations({ username, password, rePassword });
+  const data = await update(apiEndpoints.register, { username, password, rePassword });
+  dispatchSetAuthState(data);
+  navigate(PATHS.PROFILE);
 }
 
 export async function onLogout(

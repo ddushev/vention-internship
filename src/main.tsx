@@ -17,6 +17,11 @@ import Products from "./components/products/products";
 import Cart from "./components/cart/cart";
 import UserRouteGuard from "./components/guards/userRouteGuard";
 
+window.onunhandledrejection = (e) => {
+  console.warn(e.reason.toString());
+  return true;
+};
+
 function AppContainer() {
   return (
     // <StrictMode>

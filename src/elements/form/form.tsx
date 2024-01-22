@@ -20,7 +20,11 @@ export default class Form extends BaseWUP<WUPFormElement, Props> {
   updateOptions(nextProps: Props, isInit: boolean): void {
     super.updateOptions(nextProps, isInit);
 
-    this.domEl.$onSubmit = (e) => nextProps.onSubmit?.call(this.domEl, e.detail.model, e);
+    this.domEl.$onSubmit = (e) => {
+      nextProps.onSubmit?.call(this.domEl, e.detail.model, e).catch((err) => {
+        console.warn(err);
+      });
+    };
     if (isInit || nextProps.model !== this.props.model) {
       this.domEl.$model = nextProps.model!; // update only if value changed
     }

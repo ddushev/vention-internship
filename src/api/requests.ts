@@ -1,3 +1,5 @@
+import handleErrors from "@/utils/handleErrors";
+
 interface OptionsProps {
   method: string;
   headers?: {
@@ -7,13 +9,18 @@ interface OptionsProps {
 }
 
 async function request(url: string, options: object): Promise<object> {
-  const response = await fetch(url, options);
+  try {
+    const response = await fetch(url, options);
 
-  if (response.ok !== true) {
-    throw await response.json();
+    if (response.ok !== true) {
+      throw await response.json();
+    }
+
+    return response.json();
+  } catch (error) {
+    handleErrors(error as string | string[]);
+    throw error;
   }
-
-  return response.json();
 }
 
 function createOptions(method: string, data: object | null | undefined) {
