@@ -45,9 +45,7 @@ export default function Cart() {
   const tdPlaceholders = [1, 2, 3, 4, 5];
 
   const handleRemoveClick = () => {
-    const updatedGamesInCart = gamesInCart.filter(
-      (gameInCart) => !selectedGames.some((selectedGame) => selectedGame.name === gameInCart.name),
-    );
+    const updatedGamesInCart = gamesInCart.filter((a) => !selectedGames.some((b) => a.id === b.id));
     removeFromCart(selectedGames);
     setSelectedGames([]);
 

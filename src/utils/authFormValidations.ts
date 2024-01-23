@@ -1,3 +1,5 @@
+import handleErrors from "./handleErrors";
+
 interface authFields {
   username: string;
   password: string;
@@ -20,6 +22,7 @@ export default function authFormValidations(authFields: authFields) {
   }
 
   if (errors.length > 0) {
+    handleErrors(errors);
     throw errors;
   }
 }

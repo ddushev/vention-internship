@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Checkbox, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { Unstable_NumberInput as NumberInput } from "@mui/base/Unstable_NumberInput";
+import dateToString from "web-ui-pack/helpers/dateToString";
 
 import updateGameInCart from "@/utils/updateGameInCart";
 import { useAppSelector } from "@/redux/hooks";
-import createDate from "@/utils/createDate";
 
 import TableData from "@/elements/tableData/tableData";
 import TableRow from "@/elements/tableRow/tableRow";
@@ -53,7 +53,7 @@ export default function TableBodyRow({
     }
   };
 
-  const currentDate = createDate();
+  const currentDate = dateToString(new Date(), "yyyy-MM-dd");
   return (
     <TableRow>
       <TableData>{game.name}</TableData>

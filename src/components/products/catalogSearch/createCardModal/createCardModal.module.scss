@@ -1,0 +1,14 @@
+.modalContainer {
+  max-width: 700px;
+  padding: 40px 40px 20px 40px;
+
+  .formContainer {
+    display: flex;
+    justify-content: center;
+
+    .addGameButton {
+      background-color: $mainPinkColor;
+      margin: 30px auto 0 auto;
+    }
+  }
+}

@@ -1,8 +1,10 @@
-const handleErrors = (error: unknown) => {
+import alertModal from "./alertModal/alertModal";
+
+const handleErrors = (error: string[] | string) => {
   if (Array.isArray(error)) {
-    alert(error.join("\n"));
+    alertModal(error.join("\n"));
   } else {
-    alert(error);
+    alertModal(error);
   }
 };
 

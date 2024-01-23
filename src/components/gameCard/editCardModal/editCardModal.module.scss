@@ -1,0 +1,41 @@
+.modalContainer {
+  max-width: 800px;
+  padding: 40px;
+
+  .subheadings {
+    font-weight: normal;
+    margin-bottom: 20px;
+  }
+
+  .imgFormContainer {
+    position: relative;
+    display: flex;
+    padding: 0 30px;
+    gap: 30px;
+
+    .imgContainer {
+      max-width: 30%;
+
+      .img {
+        width: 100%;
+      }
+    }
+
+    .heightContainer {
+      height: 55px;
+
+      .buttonContainer {
+        position: absolute;
+        display: flex;
+        left: -15%;
+        gap: 50px;
+        margin-top: 30px;
+
+        .addGameButton {
+          background-color: $mainPinkColor;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
