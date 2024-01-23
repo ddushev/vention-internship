@@ -6,7 +6,7 @@ import ControlWrapper from "../controlWrapper/controlWrapper";
 import CheckControl from "../controls/check/check";
 import NumberControl from "../controls/number";
 import SelectControl from "../controls/select/select";
-import TextControl from "../controls/text";
+import TextControlWithLabel from "../controls/textWithLabel";
 import TextareaControl from "../controls/textarea";
 import Form from "../form/form";
 
@@ -30,21 +30,20 @@ export default function GameForm({ children, game, onSubmitHandler }: GameFormPr
   return (
     <Form initModel={initModel} className={styles.form} onSubmit={onSubmitHandler}>
       <h3 className={styles.subheadings}>Information</h3>
-      <ControlWrapper text="Name">
-        <TextControl className={styles.controls} name="name" validations={{ required: true }} />
-      </ControlWrapper>
-      <ControlWrapper text="Category">
-        <TextControl className={styles.controls} name="category" validations={{ required: true }} />
-      </ControlWrapper>
+
+      <TextControlWithLabel className={styles.controls} label="Name" name="name" validations={{ required: true }} />
+      <TextControlWithLabel className={styles.controls} label="Category" name="category" validations={{ required: true }} />
+
       <ControlWrapper text="Price">
         <NumberControl className={styles.controls} name="price" validations={{ required: true }} />
       </ControlWrapper>
-      <ControlWrapper text="Image">
-        <TextControl className={styles.controls} name="image" validations={{ required: true }} />
-      </ControlWrapper>
+
+      <TextControlWithLabel className={styles.controls} label="Image" name="image" validations={{ required: true }} />
+
       <ControlWrapper text="Description">
         <TextareaControl className={cx(styles.controls, styles.descriptionControl)} name="description" validations={{ required: true }} />
       </ControlWrapper>
+
       <ControlWrapper text="Age">
         <SelectControl
           className={cx(styles.controls, styles.ageControl)}
