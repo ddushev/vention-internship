@@ -16,8 +16,9 @@ GameStore is a Singe Page Application that allows users to register login and lo
 ## Pre-seed data
 
 1. Users - there are two users which can be used initially to login into the app
-   -ddushev (admin - can add/edit/delete games) - password: 123 (any password will work for login, but if trying to change the password the old password must be correct)
-   -ddushev2 - password: 123(any password will work for login, but if trying to change the password the old password must be correct)
+   - ddushev (admin - can add/edit/delete games) - password: 123 (any password will work for login, but if trying to change the password the old password must be correct)
+   - ddushev2 - password: 123(any password will work for login, but if trying to change the password the old password must be correct)
+2. Games - there are several games added.
 
 ## Technical stack
 
