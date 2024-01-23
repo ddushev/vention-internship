@@ -1,0 +1,18 @@
+.alertModal {
+  background-color: $backgroundColor;
+
+  h2,
+  footer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  button[data-close="modal"] {
+    display: none;
+  }
+
+  button[data-close="confirm"] {
+    background-color: $mainPinkColor;
+  }
+}

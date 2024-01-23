@@ -104,17 +104,24 @@ $animT: 1s;
         padding: 30px 15px 0 15px;
       }
 
-      .addToCartButton {
-        padding: 10px;
-        background-color: $mainPinkColor;
-        color: $whitTextColor;
-        border: none;
-        border-radius: 5px;
-        margin-bottom: 15px;
-        cursor: pointer;
+      .buttonsContainer {
+        display: flex;
+        gap: 20px;
 
-        &:hover {
-          box-shadow: inset 0 0 0 99999px rgba(0, 0, 0, 0.3);
+        .cardButtons {
+          padding: 10px;
+          background-color: $mainPinkColor;
+          font-size: 14px;
+          font-family: OpenSans-Regular, sans-serif;
+          color: $whitTextColor;
+          border: none;
+          border-radius: 5px;
+          margin-bottom: 15px;
+          cursor: pointer;
+
+          &:hover {
+            box-shadow: inset 0 0 0 99999px rgba(0, 0, 0, 0.3);
+          }
         }
       }
     }

@@ -28,6 +28,14 @@
   //Select control
   --popup-bg: black;
   --menu-hover-bg: rgba(122, 122, 122, 0.7);
+  //Check control
+  --ctrl-check-off-bg: #fff;
+  --ctrl-check-on-bg: #0375ff;
+  --ctrl-check-on: #fff;
+  --ctrl-check-size: 18px;
+  --ctrl-switch-padding: 7px 0;
+  //Modal
+  --modal-bg: #121212;
 }
 
 body {

@@ -3,6 +3,8 @@ import { useRef, useState } from "react";
 import { updateImage } from "@/api/apiUser";
 import Form from "@/elements/form/form";
 import Button from "@/elements/button/button";
+import alertModal from "@/utils/alertModal/alertModal";
+
 import styles from "./userImage.module.scss";
 
 export default function UserImage({ profileImg }: { profileImg?: string }) {
@@ -21,7 +23,7 @@ export default function UserImage({ profileImg }: { profileImg?: string }) {
       reader.readAsDataURL(imgFile);
       await updateImage(imgFile);
     } else {
-      alert("Please select a file!");
+      alertModal("Please upload a image first!");
     }
   };
 

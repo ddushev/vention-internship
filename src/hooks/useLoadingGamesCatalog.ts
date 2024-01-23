@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { WUPTextControl } from "web-ui-pack";
 
-import { Game } from "@/types";
-import getProducts from "@/api/apiProducts";
+import { setProductState } from "@/redux/productSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { getProducts } from "@/api/apiProducts";
 
 export default function useLoadingGamesCatalog() {
+  const dispatch = useAppDispatch();
+  const games = useAppSelector((state) => state.productReduxState);
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState({
@@ -15,7 +18,6 @@ export default function useLoadingGamesCatalog() {
     age: searchParams.get("minAge") || "all",
   });
   const [isFirstRender, setIsFirstRender] = useState(true);
-  const [games, setGames] = useState<Game[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const handleFilterChange = (model: object) => {
@@ -44,7 +46,7 @@ export default function useLoadingGamesCatalog() {
       setIsLoading(true);
       try {
         const data = await getProducts({ urlParams: updatedSearchParams.toString() });
-        setGames(data);
+        dispatch(setProductState(data));
       } finally {
         setIsLoading(false);
       }
