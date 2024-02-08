@@ -2,7 +2,9 @@
 
 The app was build during my React Front-end internship at the Vention organization following a specific set of tasks in a Kanban board.The app uses a local mock-up server imitating REST API which can be found in the src/api.mock.ts. The app is not responsive, so better run it on a full-screen resolution, preferably(1920x1080).
 
-![Watch the video](https://www.youtube.com/watch?v=hDx-R-lSQ3U)
+## Brief video demo
+
+[![Custom thumbnail](https://drive.google.com/drive/folders/0B8lHUE1lgb06cThuUURpU3czSHM?resourcekey=0-R4g6hqqxWvc4bIwUK5VYRg)](https://www.youtube.com/watch?v=hDx-R-lSQ3U)
 
 ## To install locally
 
