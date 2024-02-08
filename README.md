@@ -4,7 +4,8 @@ The app was build during my React Front-end internship at the Vention organizati
 
 ## Brief video demo
 
-[![Custom thumbnail]([https://drive.google.com/file/d/1dUudNEfm5XMz_bmhcSsjo__CKnAexvbG/view](https://drive.google.com/file/d/1dUudNEfm5XMz_bmhcSsjo__CKnAexvbG/view?usp=drive_link))](https://www.youtube.com/watch?v=hDx-R-lSQ3U)
+[![Custom Thumbnail](https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/demo.png)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE)
+
 
 ## To install locally
 
