@@ -7,6 +7,8 @@ The app was build during my React Front-end internship at the Vention organizati
 [![Custom Thumbnail](https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/demo.png)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE)
 
 
+
+
 ## To install locally
 
 1. Clone the repo locally.
