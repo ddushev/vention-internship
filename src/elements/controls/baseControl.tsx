@@ -5,7 +5,7 @@ import BaseWUP from "../baseWUP";
 interface BaseControlP<T, C extends WUPBaseControl<any, any, any>> {
   className?: string;
   onChange?: C["$onChange"];
-
+  inlineLabelText?: string;
   initValue?: T;
   value?: T;
 }
@@ -32,4 +32,9 @@ export default abstract class BaseControl<
       this.domEl.$initValue = nextProps.initValue; // update only if value changed
     }
   }
+  // override goRender(props: React.ClassAttributes<HTMLDivElement> & { class?: string | undefined }): JSX.Element {
+  //   if (this.props.inlineLabelText) {
+  //     console.log(props);
+  //   }
+  // }
 }
