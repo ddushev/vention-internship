@@ -1,64 +1,36 @@
-# webpack-must-have
+# DISCLAIMER
 
-Webpack version: 5+
+The app was build during my React Front-end internship at the Vention organization following a specific set of tasks in a Kanban board.The app uses a local mock-up server imitating REST API which can be found in the src/api.mock.ts. The app is not responsive, so better run it on a full-screen resolution, preferably(1920x1080).
 
-## What is new in Webpack 5
+## Brief video demo
 
-- Faster builds with persistent caching
-- Smaller bundle sizes (better tree-shaking)
-- Better long term caching
+[![Custom Thumbnail](https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/demo.png)](https://www.youtube.com/watch?v=hDx-R-lSQ3U)
 
-### If you need Webpack4 take a look branch [webpack_v4](https://github.com/Yegorich555/WebpackMustHave/tree/webpack_v4)
 
-### Intro into Webpack you can watch on youtube (russian only): [webpack-intro](https://www.youtube.com/watch?v=Ds0l__XMbIo&ab_channel=yahik)
+## To install locally
 
-## How to run project
+1. Clone the repo locally.
+2. Open the project folder in terminal and type "npm install" to install all dependencies.
+3. In the terminal with the client folder type "npm start".
+4. Open the app at the address pointed out - most likely that would be <http://localhost:8080/>
 
-1. Open project in VSCode (for example)
-2. Run command `npm i` in terminal (console) for installing all required packages (Node.js is required: <https://nodejs.org/en/>)
-3. For building project you can use the following commands:
-   - `npm run build-prod` - building production version (minimized and optimized). The project will be builded into `build` folder. You can change destination in `webpack.common.js (line 19)`
-   - `npm run build-dev` - building development version
-   - `npm run serve` - building development hot-reloaded version with webpack-dev-server
+## Overview
 
-## Recommended VSCode extensions
+GameStore is a Singe Page Application that allows users to register login and logout into a system. Guest users have access only to the home page search and to login/register functionality. Logged-in users has access to all functionalities - filter games in product page, add/buy/remove/ games from cart, change profile data, upload a picture and change password. If the user is admin(username - ddushev) he can also add/edit/delete games.
 
-- CSS Modules: <https://marketplace.visualstudio.com/items?itemName=clinyong.vscode-css-modules>
-- CSS Modules Syntax Highlighter: <https://marketplace.visualstudio.com/items?itemName=andrewleedham.vscode-css-modules>
-- ESlint: <https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint>
-- StyleLint: <https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint>
-- SCSS intellisense: <https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss>
-- Path autocomplete: <https://marketplace.visualstudio.com/items?itemName=ionutvmi.path-autocomplete>
-- Prettier - Code formatter: <https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode>
-- Import Cost: <https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost>
-- Markdownlint: <https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint>
-- EditConfig for VS Code: <https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig>
-- Spell Checker: <https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker>
-- TodoTree: <https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree>
+## Pre-seed data
 
-## Features
+1. Users - there are two users which can be used initially to login into the app
+   - ddushev (admin - can add/edit/delete games) - password: 123 (any password will work for login, but if trying to change the password the old password must be correct)
+   - ddushev2 - password: 123(any password will work for login, but if trying to change the password the old password must be correct)
+2. Games - there are several games added.
 
-- **Lint**. Integrated the most popular linters: ESlint, StyleLint
-- **BrowserList**. All required browsers are pointed in **.browserslistrc**, so project will be compiled according to required browsers (babel, postcss, styleLint uses this file)
-- **BrowserList. StyleLint**. Integrated [no-unsupported-browser-features](https://www.npmjs.com/package/stylelint-no-unsupported-browser-features), so during the css,scss-coding styleLint will show on-css rule that unsupported (according to .browserslistrc)
-- **MockServer**. For mocking api responses integrated [webpack-mock-server](https://www.npmjs.com/package/webpack-mock-server) that supports JS,TS and hot-replacement:
-- **Styles**. Integrated [CSS-Modules](https://github.com/css-modules/css-modules) and [postcss-autoprefixer](https://www.npmjs.com/package/autoprefixer), [postcss-normalize](https://www.npmjs.com/package/postcss-normalize), [CssMinimizerPlugin](https://www.npmjs.com/package/css-minimizer-webpack-plugin) (uses [css-nano](https://cssnano.co/) for production build)
+## Technical stack
 
-## Recommended npm-packages
-
-- [web-ui-pack](https://www.npmjs.com/package/web-ui-pack) - nice package with form-controls, smart-popup, spinner etc. & useful helpers
-- [ytech-js-extensions](https://www.npmjs.com/package/ytech-js-extensions) - very common extensions for Arrays, Dates (that lacks in web-ui-pack)
-
-## TODO
-
-- Add icomoon to fonts
-- Path autocomplete doesn't read path-alias-config from tsconfig.json
-
-## Troubleshooting
-
-- Impossible to install anything with `npm i`
-  > check if your NodeJS version matches with pointed in **package.json: engines.node** section (use [NVM](https://github.com/coreybutler/nvm-windows/releases) to easy manage NodeJS versions)
-- Impossible to run scripts from package.json
-  > try to change backslashes (npm-cli issue that flows between versions time to time)
-  > from `.\\node_modules\\.bin\\webpack serve --open --config webpack.devServer.js"`
-  > to `./node_modules/.bin/webpack serve --open --config webpack.devServer.js"`
+1. HTML
+2. SCSS
+3. React with Typescript
+4. Redux toolkit
+5. Material UI
+6. WUP
+7. WebPack
