@@ -2,11 +2,10 @@ import cx from "classnames";
 
 import { Game, Product } from "@/types";
 
-import ControlWrapper from "../controlWrapper/controlWrapper";
 import CheckControl from "../controls/check/check";
 import NumberControl from "../controls/number";
 import SelectControl from "../controls/select/select";
-import TextControlWithLabel from "../controls/textWithLabel";
+import TextControl from "../controls/text";
 import TextareaControl from "../controls/textarea";
 import Form from "../form/form";
 
@@ -31,42 +30,36 @@ export default function GameForm({ children, game, onSubmitHandler }: GameFormPr
     <Form initModel={initModel} className={styles.form} onSubmit={onSubmitHandler}>
       <h3 className={styles.subheadings}>Information</h3>
 
-      <TextControlWithLabel className={styles.controls} label="Name" name="name" validations={{ required: true }} />
-      <TextControlWithLabel className={styles.controls} label="Category" name="category" validations={{ required: true }} />
+      <TextControl className={styles.controls} inlineLabelText="Name" name="name" validations={{ required: true }} />
+      <TextControl className={styles.controls} inlineLabelText="Category" name="category" validations={{ required: true }} />
 
-      <ControlWrapper text="Price">
-        <NumberControl className={styles.controls} name="price" validations={{ required: true }} />
-      </ControlWrapper>
+      <NumberControl className={styles.controls} inlineLabelText="Price" name="price" validations={{ required: true }} />
 
-      <TextControlWithLabel className={styles.controls} label="Image" name="image" validations={{ required: true }} />
+      <TextControl className={styles.controls} inlineLabelText="Image" name="image" validations={{ required: true }} />
 
-      <ControlWrapper text="Description">
-        <TextareaControl className={cx(styles.controls, styles.descriptionControl)} name="description" validations={{ required: true }} />
-      </ControlWrapper>
+      <TextareaControl
+        className={cx(styles.controls, styles.descriptionControl)}
+        inlineLabelText="Description"
+        name="description"
+        validations={{ required: true }}
+      />
 
-      <ControlWrapper text="Age">
-        <SelectControl
-          className={cx(styles.controls, styles.ageControl)}
-          name="minAge"
-          items={[
-            { text: "3+", value: "3" },
-            { text: "6+", value: "6" },
-            { text: "12+", value: "12" },
-            { text: "18+", value: "18" },
-          ]}
-        />
-      </ControlWrapper>
+      <SelectControl
+        className={cx(styles.controls, styles.ageControl)}
+        inlineLabelText="Age"
+        name="minAge"
+        items={[
+          { text: "3+", value: "3" },
+          { text: "6+", value: "6" },
+          { text: "12+", value: "12" },
+          { text: "18+", value: "18" },
+        ]}
+      />
 
       <h3 className={styles.subheadings}>Platform</h3>
-      <ControlWrapper text="PC">
-        <CheckControl className={cx(styles.controls, styles.checkControl)} name="pc" />
-      </ControlWrapper>
-      <ControlWrapper text="PlayStation 5">
-        <CheckControl className={cx(styles.controls, styles.checkControl)} name="ps5" />
-      </ControlWrapper>
-      <ControlWrapper text="XBox One">
-        <CheckControl className={cx(styles.controls, styles.checkControl)} name="xbox" />
-      </ControlWrapper>
+      <CheckControl className={cx(styles.controls, styles.checkControl)} inlineLabelText="PC" name="pc" />
+      <CheckControl className={cx(styles.controls, styles.checkControl)} inlineLabelText="PlayStation 5" name="ps5" />
+      <CheckControl className={cx(styles.controls, styles.checkControl)} inlineLabelText="XBox One" name="xbox" />
       {children}
     </Form>
   );

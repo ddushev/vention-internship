@@ -5,7 +5,7 @@ import BaseWUP from "../baseWUP";
 interface BaseControlP<T, C extends WUPBaseControl<any, any, any>> {
   className?: string;
   onChange?: C["$onChange"];
-
+  inlineLabelText?: string;
   initValue?: T;
   value?: T;
 }

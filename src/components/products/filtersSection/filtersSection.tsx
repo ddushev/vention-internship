@@ -18,7 +18,7 @@ export default function FiltersSection({ handleFilterChange }: FilterSectionProp
   const [searchParams] = useSearchParams();
 
   return (
-    <Form onChange={handleFilterChange}>
+    <Form key={searchParams.get("category")} onChange={handleFilterChange}>
       <div className={styles.alignTextCenter}>
         <SectionWrapper isNarrow heading={searchParams.get("category")?.toUpperCase()}>
           <SelectFilterWrapper heading="Sort">
