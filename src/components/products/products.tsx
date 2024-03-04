@@ -13,6 +13,7 @@ import styles from "./products.module.scss";
 export default function Products() {
   const { games, isLoading, handleFilterChange, handleSearchInputChange } = useLoadingGamesCatalog();
   const memoizedHandleFilterChange = useCallback(handleFilterChange, []);
+  const memoizedHandleSearchInputChange = useCallback(handleSearchInputChange, []);
 
   return (
     <Page title="Products">
@@ -22,7 +23,7 @@ export default function Products() {
         </div>
 
         <div className={styles.searchCatalogContainer}>
-          <CatalogSearch handleInputChange={handleSearchInputChange} />
+          <CatalogSearch handleInputChange={memoizedHandleSearchInputChange} />
           <SectionWrapper heading="Products">{isLoading ? <Loading /> : <GamesCatalog games={games} />}</SectionWrapper>
         </div>
       </div>
