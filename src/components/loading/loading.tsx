@@ -1,5 +1,12 @@
+import cx from "classnames";
 import loading from "images/loading.svg";
 
-export default function Loading() {
-  return <img src={loading} alt="loading-img" />;
+import styles from "./loading.module.scss";
+
+export default function Loading({ isLazyLoading }: { isLazyLoading?: boolean | undefined }) {
+  return (
+    <div className={cx({ [styles.lazyLoading]: isLazyLoading })}>
+      <img src={loading} alt="loading-img" />
+    </div>
+  );
 }

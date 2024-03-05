@@ -1,0 +1,9 @@
+.lazyLoading {
+  background-image: url("images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: calc(100vh - $headerHeight - $footerHeight);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
