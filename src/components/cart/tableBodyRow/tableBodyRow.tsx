@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { Checkbox, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { Unstable_NumberInput as NumberInput } from "@mui/base/Unstable_NumberInput";
 import dateToString from "web-ui-pack/helpers/dateToString";
@@ -13,13 +13,7 @@ import { Game } from "@/types";
 import { checkBoxStyles, selectStyles } from "@/mui/muiStyles";
 import { menuProps, numberInputSlotProps } from "@/mui/muiProps";
 
-export default function TableBodyRow({
-  game,
-  setSelectedGames,
-}: {
-  game: Game;
-  setSelectedGames: React.Dispatch<React.SetStateAction<Game[]>>;
-}) {
+const TableBodyRow = memo(({ game, setSelectedGames }: { game: Game; setSelectedGames: React.Dispatch<React.SetStateAction<Game[]>> }) => {
   const [platform, setPlatform] = useState(game.platforms[0]);
   const [amount, setAmount] = useState(game.amount || 1);
   const [checked, setChecked] = useState(false);
@@ -76,4 +70,6 @@ export default function TableBodyRow({
       </TableData>
     </TableRow>
   );
-}
+});
+
+export default TableBodyRow;
