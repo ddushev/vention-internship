@@ -8,7 +8,6 @@ import alertModal from "@/utils/alertModal/alertModal";
 import styles from "./userImage.module.scss";
 
 const UserImage = memo(({ profileImg }: { profileImg?: string }) => {
-  console.log("UserImage");
   const [uploadedImg, setUploadedImg] = useState<string>();
   const fileInputRef = useRef<HTMLInputElement>(null);
 

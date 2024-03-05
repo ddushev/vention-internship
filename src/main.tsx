@@ -37,8 +37,6 @@ function AppContainer() {
               <Route path={PATHS.PROFILE} element={<Profile />} />
               <Route path={PATHS.CART} element={<Cart />} />
             </Route>
-            <Route path={PATHS.SIGN_IN} element={<Page title="Sign In" />} />
-            <Route path={PATHS.SIGN_UP} element={<Page title="Sign Up" />} />
             <Route path={PATHS.ERROR} element={<ErrorPage onResetError={() => {}} />} />
             <Route path="*" element={<Navigate to={PATHS.HOME} />} />
           </Routes>
