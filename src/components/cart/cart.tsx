@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Box, Modal, Typography, Button as ButtonMui } from "@mui/material";
 
 import removeFromCart from "@/utils/removeFromCart";
@@ -25,10 +25,14 @@ export default function Cart() {
   const gamesInCart = useAppSelector((state) => state.cartReduxState);
   const { username } = useAppSelector((state) => state.authReduxState);
   const dispatch = useAppDispatch();
-  const totalGameCost = gamesInCart.reduce((sum, game) => {
-    sum += game.price * (game.amount || 1);
-    return sum;
-  }, 0);
+  const totalGameCost = useMemo(
+    () =>
+      gamesInCart.reduce((sum, game) => {
+        sum += game.price * (game.amount || 1);
+        return sum;
+      }, 0),
+    [gamesInCart],
+  );
 
   useEffect(() => {
     getUserProfile().then((data) => setUserData(data));

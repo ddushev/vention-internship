@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { memo, useRef, useState } from "react";
 
 import { updateImage } from "@/api/apiUser";
 import Form from "@/elements/form/form";
@@ -7,7 +7,7 @@ import alertModal from "@/utils/alertModal/alertModal";
 
 import styles from "./userImage.module.scss";
 
-export default function UserImage({ profileImg }: { profileImg?: string }) {
+const UserImage = memo(({ profileImg }: { profileImg?: string }) => {
   const [uploadedImg, setUploadedImg] = useState<string>();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -48,4 +48,6 @@ export default function UserImage({ profileImg }: { profileImg?: string }) {
       </Form>
     </div>
   );
-}
+});
+
+export default UserImage;

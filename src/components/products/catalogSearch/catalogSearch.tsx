@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import SearchField from "@/elements/searchField/searchField";
 import Button from "@/elements/button/button";
 
@@ -10,10 +10,9 @@ interface CatalogSearchProps {
   handleInputChange: (event: CustomEvent) => void;
 }
 
-export default function CatalogSearch({ handleInputChange }: CatalogSearchProps) {
+const CatalogSearch = memo(({ handleInputChange }: CatalogSearchProps) => {
   const [isCardModalOpen, setIsCardModalOpen] = useState(false);
   const authData = useAppSelector((state) => state.authReduxState);
-
   const handleCreateCardClick = () => {
     setIsCardModalOpen(true);
   };
@@ -30,4 +29,6 @@ export default function CatalogSearch({ handleInputChange }: CatalogSearchProps)
       {isCardModalOpen && <CreateCardModal setIsCardModalOpen={setIsCardModalOpen} />}
     </>
   );
-}
+});
+
+export default CatalogSearch;

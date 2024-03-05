@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import SectionWrapper from "@/elements/sectionWrapper/sectionWrapper";
@@ -14,9 +15,8 @@ interface FilterSectionProps {
   handleFilterChange: (model: object) => void;
 }
 
-export default function FiltersSection({ handleFilterChange }: FilterSectionProps) {
+const FiltersSection = memo(({ handleFilterChange }: FilterSectionProps) => {
   const [searchParams] = useSearchParams();
-
   return (
     <Form key={searchParams.get("category")} onChange={handleFilterChange}>
       <div className={styles.alignTextCenter}>
@@ -83,4 +83,6 @@ export default function FiltersSection({ handleFilterChange }: FilterSectionProp
       </div>
     </Form>
   );
-}
+});
+
+export default FiltersSection;
