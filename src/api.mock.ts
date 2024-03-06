@@ -1,6 +1,7 @@
 /* This is file contains api-mock-response to help you develop UI without real API side */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import webpackMockServer from "webpack-mock-server";
+import compression from "compression";
 import apiEndpoints from "./api.endpoints";
 import { Filters, Product, UserMockData } from "./types";
 import filterGames from "./utils/filterGames";
@@ -140,6 +141,8 @@ let currentUser: UserMockData = {};
 let filters: Filters;
 
 export default webpackMockServer.add((app) => {
+  app.use(compression());
+
   app.get(apiEndpoints.search, (req, res) => {
     const searchText = (req.query.text as string).toLowerCase();
     const matchingProducts = gamesMockData.filter((game) => game.name.toLowerCase().includes(searchText));
