@@ -12,6 +12,7 @@ const WebpackObsoletePlugin = require("webpack-obsolete-plugin");
 const svgToMiniDataURI = require("mini-svg-data-uri");
 const path = require("path");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const srcPath = path.resolve(__dirname, "./src/");
 const destPath = path.resolve(__dirname, "./build/"); // ('../Api/wwwroot')
@@ -262,6 +263,9 @@ module.exports = function (env, argv) {
       }),
       new WebpackObsoletePlugin({ isStrict: true }), // provides popup via alert-script if browser unsupported (according to .browserslistrc)
       // optional: new BundleAnalyzerPlugin() // creates bundles-map in browser https://github.com/webpack-contrib/webpack-bundle-analyzer
+      new BundleAnalyzerPlugin({
+        generateStatsFile: true,
+      }),
     ],
   };
 
