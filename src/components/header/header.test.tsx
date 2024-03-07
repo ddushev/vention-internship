@@ -1,18 +1,14 @@
 import renderer from "react-test-renderer";
-import { MemoryRouter } from "react-router-dom";
-import { store } from "@/redux/store";
-import { Provider } from "react-redux";
+import TestWrapper from "@/elements/testWrapper";
 import Header from "./header";
 
 describe("Header component", () => {
   test("renders correctly", () => {
     const tree = renderer
       .create(
-        <MemoryRouter>
-          <Provider store={store}>
-            <Header />
-          </Provider>
-        </MemoryRouter>,
+        <TestWrapper>
+          <Header />
+        </TestWrapper>,
       )
       .toJSON();
 

@@ -1,7 +1,5 @@
 import renderer from "react-test-renderer";
-import { store } from "@/redux/store";
-import { Provider } from "react-redux";
-import { MemoryRouter } from "react-router-dom";
+import TestWrapper from "@/elements/testWrapper";
 import GameCard from "./gameCard";
 
 const game = {
@@ -21,11 +19,9 @@ const game = {
 describe("GameCard component", () => {
   test("renders a specific game with predefined values", () => {
     const tree = renderer.create(
-      <MemoryRouter>
-        <Provider store={store}>
-          <GameCard game={game} />
-        </Provider>
-      </MemoryRouter>,
+      <TestWrapper>
+        <GameCard game={game} />
+      </TestWrapper>,
     );
     expect(tree).toMatchInlineSnapshot(`
 <div
