@@ -1,10 +1,21 @@
-import { render, screen } from "@testing-library/react";
+import renderer from "react-test-renderer";
 import About from "./about";
 
 describe("About component", () => {
-  render(<About />);
+  test("renders correctly", () => {
+    const tree = renderer.create(<About />).toJSON();
 
-  test("h2 text", () => {
-    expect(screen.getByText("About page")).toBeDefined();
+    expect(tree).toMatchInlineSnapshot(`
+    <div
+      className="center-text"
+    >
+      <h2>
+        About page
+      </h2>
+      <p>
+        This is the about page
+      </p>
+    </div>
+  `);
   });
 });
