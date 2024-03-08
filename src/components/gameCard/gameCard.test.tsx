@@ -1,5 +1,6 @@
 import renderer from "react-test-renderer";
 import TestWrapper from "@/elements/testWrapper";
+import { cleanup, render, screen } from "@testing-library/react";
 import GameCard from "./gameCard";
 
 const game = {
@@ -15,6 +16,8 @@ const game = {
   description:
     "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
 };
+
+afterEach(cleanup);
 
 describe("GameCard snapshot", () => {
   test("renders a specific game with predefined values", () => {
@@ -192,5 +195,44 @@ describe("GameCard snapshot", () => {
   </div>
 </div>
 `);
+  });
+});
+
+describe("GameCard functional", () => {
+  beforeEach(() => {
+    render(
+      <TestWrapper>
+        <GameCard game={game} />
+      </TestWrapper>,
+    );
+  });
+
+  test("game name", () => {
+    expect(screen.getByText("Counter-Strike")).toBeDefined();
+    expect(
+      screen.getByText(
+        "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
+      ),
+    ).toBeDefined();
+  });
+
+  test("game description", () => {
+    expect(
+      screen.getByText(
+        "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
+      ),
+    ).toBeDefined();
+  });
+
+  test("game price", () => {
+    expect(screen.getByText("29.99$")).toBeDefined();
+  });
+
+  test("game rating", () => {
+    expect(screen.getByLabelText("3 Stars")).toBeDefined();
+  });
+
+  test("game platform", () => {
+    expect(screen.getByAltText("pc")).toBeDefined();
   });
 });
