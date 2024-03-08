@@ -16,7 +16,7 @@ const game = {
     "Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the world or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.",
 };
 
-describe("GameCard component", () => {
+describe("GameCard snapshot", () => {
   test("renders a specific game with predefined values", () => {
     const tree = renderer.create(
       <TestWrapper>

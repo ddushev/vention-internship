@@ -1,7 +1,7 @@
 import renderer from "react-test-renderer";
 import About from "./about";
 
-describe("About component", () => {
+describe("About snapshot", () => {
   test("renders correctly", () => {
     const tree = renderer.create(<About />).toJSON();
 
