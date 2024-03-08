@@ -1,8 +1,9 @@
-import renderer from "react-test-renderer";
 import TestWrapper from "@/elements/testWrapper";
+import renderer from "react-test-renderer";
+
 import Header from "./header";
 
-describe("Header component", () => {
+describe("Header snapshot", () => {
   test("renders correctly", () => {
     const tree = renderer
       .create(

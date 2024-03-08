@@ -12,4 +12,5 @@ module.exports = {
   },
   transformIgnorePatterns: ["/node_modules/(?!web-ui-pack)/"],
   prettierPath: null,
+  setupFiles: ["./setupJest.ts"],
 };
