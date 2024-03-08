@@ -1,6 +1,6 @@
+import { cleanup, render, screen } from "@testing-library/react";
 import renderer from "react-test-renderer";
 import TestWrapper from "@/elements/testWrapper";
-import { cleanup, render, screen } from "@testing-library/react";
 import GameCard from "./gameCard";
 
 const game = {
