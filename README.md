@@ -29,8 +29,9 @@ GameStore is a Singe Page Application that allows users to register login and lo
 
 1. HTML
 2. SCSS
-3. React with Typescript
-4. Redux toolkit
-5. Material UI
-6. WUP
-7. WebPack
+3. React
+4. Typescript
+5. Redux toolkit
+6. Material UI
+7. WUP
+8. WebPack
