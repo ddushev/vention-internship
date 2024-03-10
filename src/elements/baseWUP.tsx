@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import WUPBaseElement from "web-ui-pack/baseElement";
+import React from "react";
 
 /** Base React wrapper for web-ui-pack elements */
 export default abstract class BaseWUP<
