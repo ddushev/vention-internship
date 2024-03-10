@@ -1,6 +1,6 @@
 # DISCLAIMER
 
-The app is still being developed and related to a React Front-end internship at the Vention organization following a specific set of tasks in a Kanban board. The app uses a local mock-up server imitating REST API which can be found in the src/api.mock.ts. The app is not responsive, so better run it on a full-screen resolution, preferably(1920x1080).
+The app is related to my work as a Front-end developer at Vention. The app uses a local mock-up server imitating REST API which can be found in the src/api.mock.ts. The app is not responsive, so better run it on a full-screen resolution, preferably(1920x1080).
 
 ## Brief video demo
 
