@@ -6,6 +6,15 @@ The app is related to my work as a Front-end developer at Vention. The app uses 
 
 [![Custom Thumbnail](https://raw.githubusercontent.com/ddushev/Vention/master/src/publicMock/demo.png)](https://www.youtube.com/watch?v=hDx-R-lSQ3U)
 
+## Achievements
+
+1. Developed multiple reusable components and elements for maximum developer experience and efficiency
+2. Used well-defined Webpack configuration with strict linting rules
+3. Utilised Redux Toolkit for state managing as per client requirements
+4. Used SCSS modules to prevent style conflicts and make it easier to maintain and refactor code
+5. Applied several layers of optimization (such as lazy loading, React.memo, useMemo, image optimisation, and gzip compression) for maximum application performance and better UX
+6. Analysed bundle size with the webpack-bundle-analyser plugin
+7. Added functional and snapshot testing via Jest
 
 ## To install locally
 
