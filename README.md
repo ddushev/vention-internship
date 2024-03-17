@@ -19,8 +19,8 @@ The app is related to my work as a Front-end developer at Vention. The app uses 
 ## To install locally
 
 1. Clone the repo locally.
-2. Open the project folder in terminal and type "npm install" to install all dependencies.
-3. In the terminal with the client folder type "npm start".
+2. Open the project folder in terminal and type `npm install` to install all dependencies.
+3. In the terminal with the client folder type `npm start`.
 4. Open the app at the address pointed out - most likely that would be <http://localhost:8080/>
 
 ## Overview
